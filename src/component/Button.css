@@ -10,6 +10,6 @@
 }
 
 .btn:active {
-  background-color: #0056b3;
+  background-color: #0056b3;  
   transform: scale(0.98); /* 버튼 클릭 시 살짝 작아지게 */
 }
