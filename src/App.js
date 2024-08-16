@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Button from './component/Button.js';
+import Modal from './component/Modal.js';
 
 function App() {
-  const handleClick = () => {
-    console.log('버튼이 클릭되었습니다!');
-  }
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="App">
       <header className="App-header">
-        <Button onClick={handleClick}>클릭하세요</Button>
+        <Button onClick={() => setIsModalOpen(true)}>
+          Open Modal
+        </Button>
+
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Guild Name"
+        >
+          <p>dkaasdl</p>
+        </Modal>
       </header>
     </div>
   );
