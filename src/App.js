@@ -5,11 +5,8 @@ import GuildListPage from './pages/GuildListPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import './App.css';
-import Button from './component/Button.js';
-import Modal from './component/Modal.js';
-
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  
 
   return (
     <Router>
