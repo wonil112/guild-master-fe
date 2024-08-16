@@ -1,14 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import Button from './component/Button.js';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import GuildListPage from './pages/GuildListPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
+  const handleClick = () => {
+    console.log('버튼이 클릭되었습니다!');
+  }
+
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <Button>Hello</Button>
-      </header>
+        <Routes>           
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/guildlist" element={<GuildListPage />}/>  
+        </Routes>
     </div>
+    </Router>
   );
 }
 

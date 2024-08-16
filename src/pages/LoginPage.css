@@ -1,0 +1,68 @@
+/* LoginPage.css */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 전체 화면 높이 */
+    text-align: left;
+    padding: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 300px; /* 입력창의 최대 너비 */
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .login-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff; /* 버튼 배경색 */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3; /* 버튼 호버 색상 */
+  }
+  
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal button {
+    margin-top: 10px;
+  }
+  .condition {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    text-align: left; /* 좌측 정렬, 필요 시 추가 */
+    max-width: 300px; /* 입력 필드와 같은 너비로 설정 */
+    margin-left: auto; /* 가운데 정렬을 위해 자동 마진 추가 */
+    margin-right: auto; /* 가운데 정렬을 위해 자동 마진 추가 */
+  }
+  
