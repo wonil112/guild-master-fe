@@ -10,7 +10,7 @@ const HomePage = () => {
     return (
         <div className="home-container">
             <Button 
-                className="center-button" 
+                className="center-buttion" 
                 onClick={() => setIsModalOpen(true)}
             >
                 Open Modal
