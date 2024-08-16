@@ -1,0 +1,38 @@
+
+.guild-list {
+    display: flex; /* Use flexbox for the container */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    width: 100%; /* Ensure it takes full width of its parent */
+}
+.guild-item {
+    display: flex; /* Use flexbox for horizontal layout */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Distribute space between items */
+    height: 50px; /* Fixed height for each item */
+    margin-bottom: 10px; /* Space between list items */
+    border: 1px solid #ddd; /* Optional: Add a border for visual clarity */
+    padding: 0 10px; /* Horizontal padding for spacing */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    width: 100%; /* Ensures it takes up the full width of its container */
+    max-width: 600px; /* Optionally limit the maximum width */
+}
+  
+.guild-name {
+    font-size: 1.2em; /* Larger font size for guild name */
+    font-weight: bold; /* Bold text for guild name */
+    margin-right: 10px; /* Space between guild name and population info */
+}
+  
+.guild-info {
+    font-size: 0.9em; /* Slightly smaller font size for population info */
+    color: #666; /* Light grey color for population info */
+    margin-right: 10px; /* Space between population info and button */
+}
+  
+button {
+    padding: 5px 10px; /* Padding for the button */
+    font-size: 0.9em; /* Font size for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+  

@@ -1,0 +1,13 @@
+.img-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* 이미지 간의 간격 */
+    padding: 20px;
+    background-color: bisque;
+}
+  
+.img-container img {
+    width: 70px; /* 이미지의 너비를 조정 */
+    height: 100px; /* 이미지 비율을 유지 */
+    object-fit: contain; /* 이미지의 비율을 유지하며 컨테이너에 맞춤 */
+}
