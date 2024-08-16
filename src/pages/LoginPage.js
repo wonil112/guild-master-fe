@@ -15,8 +15,6 @@ const LoginPage = () => {
     navigate('/home'); // 로그인 성공 후 홈 페이지로 이동
   };
   
-
-
   const validateEmail = (email) => {
     // 이메일 형식 확인
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

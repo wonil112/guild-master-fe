@@ -6,19 +6,15 @@ import GuildListPage from './pages/GuildListPage';
 import LoginPage from './pages/LoginPage';
 
 function App() {
-  const handleClick = () => {
-    console.log('버튼이 클릭되었습니다!');
-  }
-
   return (
     <Router>
-    <div className="App">
-        <Routes>           
+      <div className="App">
+        <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<LoginPage/>}/>
-          <Route path="/guildlist" element={<GuildListPage />}/>  
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/guildlist" element={<GuildListPage />} />
         </Routes>
-    </div>
+      </div>
     </Router>
   );
 }
