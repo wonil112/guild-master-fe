@@ -1,20 +1,27 @@
 import React from 'react';
-import './Modal.css'; // 모달 스타일
+import './Modal.css'; // 모달 관련 CSS 파일
 
-function Modal({ isOpen, onClose, title, children }) {
+const Modal = ({ isOpen, onClose, children, title }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal" onClick={onClose}>
-    
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <button onClick={onClose}>X</button>
-        {title && <h2>{title}</h2>}
-        <div>{children}</div>
-        <button onClick={onClose}>저장!!</button>
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose}>
+          &times;
+        </button>
+        <h2>{title}</h2>
+        <div className="modal-body">
+          {children}
+        </div>
+        <div className="modal-footer">
+          <button className="modal-confirm" onClick={onClose}>
+            확인
+          </button>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Modal;
