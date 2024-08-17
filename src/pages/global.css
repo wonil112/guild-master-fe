@@ -1,0 +1,17 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+.main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #040029, #32279C, #5C50CE, #CFCAFF);
+    text-align: center;
+    position: relative;
+}

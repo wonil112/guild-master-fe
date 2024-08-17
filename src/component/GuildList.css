@@ -1,38 +1,55 @@
+.guild-list-container {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items:flex-start ; /* 세로 중앙 정렬 */
+    height: 70vh; /* 화면 전체 높이 사용 */
+}
 
 .guild-list {
-    display: flex; /* Use flexbox for the container */
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    width: 100%; /* Ensure it takes full width of its parent */
+    width: 90%; /* 컨테이너 너비를 화면의 40%로 설정 */
+    height: 50vh; /* 리스트의 높이를 화면의 50%로 설정 */
+    padding: 30px;
+    margin-top: 10px;
+    margin-bottom: 90px;
+    overflow-y: auto; /* 내용이 넘칠 경우 세로 스크롤 가능 */
+    border-radius: 20px;
+    border: 1px solid #ddd; /* 컨테이너 테두리 */
+    background-color: rgba(187, 128, 246, 0.179); /* 반투명 흰색 배경 */
+    max-height: 200vh; /* 최대 높이 설정 (스크롤 가능하도록) */
+    overflow-y: scroll; /* 세로 스크롤 가능 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+    border-radius: 10px; /* 모서리 둥글게 */
 }
 .guild-item {
-    display: flex; /* Use flexbox for horizontal layout */
-    align-items: center; /* Center items vertically */
-    justify-content: space-between; /* Distribute space between items */
-    height: 50px; /* Fixed height for each item */
-    margin-bottom: 10px; /* Space between list items */
-    border: 1px solid #ddd; /* Optional: Add a border for visual clarity */
-    padding: 0 10px; /* Horizontal padding for spacing */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-    width: 100%; /* Ensures it takes up the full width of its container */
-    max-width: 600px; /* Optionally limit the maximum width */
+    display: flex; /* 가로로 레이아웃 설정 */
+    align-items: center; /* 세로로 아이템 중앙 정렬 */
+    justify-content: space-between; /* 아이템 사이 간격 유지 */
+    height: 40px; /* 각 아이템의 고정 높이, 작게 조정 */
+    margin-bottom: 10px; /* 리스트 아이템 간 간격 */
+    border: 1px solid #aaa; /* 아이템 테두리 색상 진하게 */
+    padding: 0 15px; /* 가로 패딩 추가 */
+    box-sizing: border-box; /* 패딩과 테두리를 요소의 전체 너비와 높이에 포함 */
+    width: 100%; /* 리스트 아이템이 리스트 컨테이너 너비를 모두 사용 */
+    background-color: rgba(128, 0, 128, 0.2); /* 반투명 보라색 배경 */
+    border-radius: 5px; /* 아이템 모서리 둥글게 처리 */
 }
   
 .guild-name {
-    font-size: 1.2em; /* Larger font size for guild name */
-    font-weight: bold; /* Bold text for guild name */
-    margin-right: 10px; /* Space between guild name and population info */
+    font-size: 1em; /* 길드 이름의 글자 크기 */
+    font-weight: bold; /* 굵은 텍스트 */
+    color :white;
+    margin-right: 10px; /* 길드 이름과 인구 정보 사이의 간격 */
 }
   
 .guild-info {
-    font-size: 0.9em; /* Slightly smaller font size for population info */
-    color: #666; /* Light grey color for population info */
-    margin-right: 10px; /* Space between population info and button */
+    font-size: 0.9em; /* 인구 정보의 글자 크기 */
+    color: #fce554; /* 인구 정보의 글자 색상 */
+    margin-right: 10px; /* 인구 정보와 버튼 사이의 간격 */
 }
   
 button {
     padding: 5px 10px; /* Padding for the button */
-    font-size: 0.9em; /* Font size for the button */
+    font-size: 0.5em; /* Font size for the button */
     cursor: pointer; /* Pointer cursor on hover */
 }
   

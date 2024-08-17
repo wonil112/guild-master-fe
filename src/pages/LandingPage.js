@@ -1,6 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './LandingPage.css';  // 스타일 모듈 임포트
+import './global.css';       // 공통 스타일 임포트
 import Button from '../component/Button';  // 경로 확인
+import Logo from '../logo/fulllogo_white_big.png';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -14,10 +17,10 @@ const LandingPage = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <Button onClick={handleLogin} message="Login" />
-      <h1>Welcome to Our Guild Service</h1>
-      <Button onClick={handleStartEnter} message="시작하기" />
+    <div className="main">
+      <button className="loginButton" onClick={handleLogin}>login</button>
+      <img src={Logo} className="logo" />
+      <Button className="startButton" onClick={handleStartEnter} message="find your guild ➔ " />
     </div>
   );
 };

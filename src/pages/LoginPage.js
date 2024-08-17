@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
+import Header from './HomeHeader';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -44,7 +45,10 @@ const LoginPage = () => {
   const isLoginDisabled = !(validateEmail(email) && validatePassword(password));
 
   return (
-    <div className="login-container">
+    <div>
+        <Header/>
+        <div className='main'>
+        <div className="login-container">
       <div className="input-group">
         <label htmlFor="email">이메일</label>
         <input
@@ -84,6 +88,10 @@ const LoginPage = () => {
         </div>
       )}
     </div>
+
+        </div>
+    </div>
+    
   );
 };
 

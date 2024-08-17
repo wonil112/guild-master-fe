@@ -1,9 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './HomeHeader';
-import './HomePage.css'
 
-const HomePage = () => {
+const MyPage = () => {
     return (
         <div>
             <Header/>
@@ -11,4 +10,4 @@ const HomePage = () => {
         </div>
     )
 };
-export default HomePage;
+export default MyPage;
