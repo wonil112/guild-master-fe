@@ -26,7 +26,7 @@ html {
 
 /* 시작하기 버튼 스타일 */
 .startButton {
-  margin-top: 20px; /* 시작하기 버튼과 로고 간의 간격 */
+  margin-top: 40px; /* 시작하기 버튼과 로고 간의 간격 */
   background: black;
 }
 
