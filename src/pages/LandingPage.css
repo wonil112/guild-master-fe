@@ -6,7 +6,6 @@ html {
   overflow: hidden;
 }
 .main {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,9 +16,8 @@ html {
 }
 
 /* 로고 스타일 */
-
 .logo {
-  width: 120%; /* 로고 크기를 조정합니다 (너비를 전체 너비의 60%로 설정) */
+  width: 180%; /* 로고 크기를 조정합니다 (너비를 전체 너비의 60%로 설정) */
   max-width: 800px; /* 최대 너비를 600px로 설정 */
   margin-bottom: 20px; 
 }

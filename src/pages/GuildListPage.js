@@ -10,17 +10,21 @@ import './GuildListPage.css'
 import Header from './HomeHeader'
 
 const GuildListPage = () => {
+  const [selectedGameId, setSelectedGameId] = useState(null);
+  const handleImageClick = (gameId) => {
+    setSelectedGameId(gameId);
+  };
     return (
       <div> 
         <Header/>
         <div className='main'>
             <div className="img-container">
-              <img className='img' src={lolImage} />
-              <img src = {overwatchImage}/>
-              <img src = {valorantImage}/>
-              <img src = {loastark} />
+              <img src = {overwatchImage} onClick={() => handleImageClick(1)}/>
+              <img src = {valorantImage} onClick={() => handleImageClick(2)}/>
+              <img src={lolImage} onClick={() => handleImageClick(3)}/>
+              <img src = {loastark} onClick={() => handleImageClick(4)} />
             </div>
-          <GuildList/>
+            <GuildList gameId={selectedGameId}/>
         </div>   
       </div>
          

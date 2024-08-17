@@ -2,24 +2,26 @@ import React from 'react';
 import './GuildList.css';
 import GuildListItem from './\bGuildListItem';
 
-const GuildList = () => {
+const GuildList = ({gameId}) => {
+  console.log("Received gameId:", gameId);
   const guilds = [
-    {id: 1, guildname : 'Guild name A', currentpopulation:'12', totalpopulation:'20'},
-    {id: 2, guildname : 'Guild name B', currentpopulation:'30', totalpopulation:'50'},
-    {id: 3, guildname : 'Guild name C', currentpopulation:'145', totalpopulation:'200'},
-    {id: 4, guildname : 'Guild name D', currentpopulation:'200', totalpopulation:'300'},
-    {id: 5, guildname : 'Guild name E', currentpopulation:'70', totalpopulation:'250'},
-    {id: 6, guildname : 'Guild name F', currentpopulation:'123', totalpopulation:'300'},
-    {id: 7, guildname : 'Guild name G', currentpopulation:'345', totalpopulation:'430'},
-    {id: 8, guildname : 'Guild name H', currentpopulation:'10', totalpopulation:'90'}
+    {guildId: 1, gameId: 1, guildName : 'Guild name A', guildCurrentPopulation:'12', guildTotalPopulation:'20'},
+    {guildId: 2, gameId: 1, guildName : 'Guild name B', guildCurrentPopulation:'30', guildTotalPopulation:'50'},
+    {guildId: 3, gameId: 2, guildName : 'Guild name C', guildCurrentPopulation:'145', guildTotalPopulation:'200'},
+    {guildId: 4, gameId: 2, guildName : 'Guild name D', guildCurrentPopulation:'200', guildTotalPopulation:'300'},
+    {guildId: 5, gameId: 2, guildName : 'Guild name E', guildCurrentPopulation:'70', guildTotalPopulation:'250'},
+    {guildId: 6, gameId: 3, guildName : 'Guild name F', guildCurrentPopulation:'123', guildTotalPopulation:'300'},
+    {guildId: 7, gameId: 3, guildName : 'Guild name G', guildCurrentPopulation:'345', guildTotalPopulation:'430'},
+    {guildId: 8, gameId: 4, guildName : 'Guild name H', guildCurrentPopulation:'10', guildTotalPopulation:'90'}
     
   ];
+  const filteredGuilds = guilds.filter(guild => guild.gameId);
+  console.log("Filtered guilds:", filteredGuilds); 
 
   return (
     <div className='guild-list-container'>
     <div className='guild-list'>
-      
-            {guilds.map((guilditem) => 
+            {filteredGuilds.map((guilditem) => 
             <GuildListItem
                 guild={guilditem}
             />)}
