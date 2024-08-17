@@ -1,22 +1,23 @@
 .guild-list-container {
     display: flex;
     justify-content: center; /* 가로 중앙 정렬 */
-    align-items:flex-start ; /* 세로 중앙 정렬 */
+    align-items: start ; /* 세로 중앙 정렬 */
     height: 70vh; /* 화면 전체 높이 사용 */
 }
 
 .guild-list {
     width: 90%; /* 컨테이너 너비를 화면의 40%로 설정 */
     height: 50vh; /* 리스트의 높이를 화면의 50%로 설정 */
+    position: static;
     padding: 30px;
     margin-top: 10px;
-    margin-bottom: 90px;
+    margin-bottom: 20px;
     overflow-y: auto; /* 내용이 넘칠 경우 세로 스크롤 가능 */
-    border-radius: 20px;
+    border-radius: 10px;
     border: 1px solid #ddd; /* 컨테이너 테두리 */
     background-color: rgba(187, 128, 246, 0.179); /* 반투명 흰색 배경 */
     max-height: 200vh; /* 최대 높이 설정 (스크롤 가능하도록) */
-    overflow-y: scroll; /* 세로 스크롤 가능 */
+    overflow-y: visible; /* 세로 스크롤 가능 */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
     border-radius: 10px; /* 모서리 둥글게 */
 }
