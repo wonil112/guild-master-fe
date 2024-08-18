@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './HomeHeader';
 import './GuildBoardPage.css';
-import Modal from '../component/Modal'
+import Modal from '../component/Modal';
 import { guildEventData } from '../data/guildEventData';
 import GuildEventItem from '../component/GuildEventItem';
 
 const GuildBoardPage = () => {
     const { id } = useParams();
     const [activeTab, setActiveTab] = useState('ongoing');
-    const [Modal, setModal] = 
-
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    
     const activeEvents = guildEventData.filter(event => event.eventStatus === "EVENT_ACTIVE");
     const completedEvents = guildEventData.filter(event => event.eventStatus === "EVENT_COMPLETE");
+
+    const handleEventClick = (event) => {
+        setSelectedEvent(event);
+        setModalOpen(true);
+    };
 
     return (
         <div className="guild-board-container">
@@ -41,13 +47,27 @@ const GuildBoardPage = () => {
                         </div>
                         <div className="event-list">
                             {activeTab === 'ongoing' 
-                                ? activeEvents.map(event => <GuildEventItem key={event.guildId} guildEvent={event} />)
-                                : completedEvents.map(event => <GuildEventItem key={event.guildId} guildEvent={event} />)
+                                ? activeEvents.map(event => (
+                                    <div key={event.guildId} onClick={() => handleEventClick(event)}>
+                                        <GuildEventItem guildEvent={event} />
+                                    </div>
+                                ))
+                                : completedEvents.map(event => (
+                                    <div key={event.guildId} onClick={() => handleEventClick(event)}>
+                                        <GuildEventItem guildEvent={event} />
+                                    </div>
+                                ))
                             }
                         </div>
                     </div>
                 </div>
             </div>
+            {modalOpen && selectedEvent && (
+                <Modal 
+                    event={selectedEvent} 
+                    onClose={() => setModalOpen(false)}
+                />
+            )}
         </div>
     );
 };

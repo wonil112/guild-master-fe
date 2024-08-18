@@ -6,7 +6,7 @@ const GuildEventItem = ({guildEvent}) => {
 
     
     return (
-        <div className="guild-event-item">
+        <div className="event-item">
             <h1 className="event-dates">
                 {guildEvent.eventName}
             </h1>
