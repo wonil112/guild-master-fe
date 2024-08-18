@@ -6,8 +6,10 @@ import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
 import HomePage from './pages/HomePage';
 import GuildBoardPage from './pages/GuildBoardPage'
+import './App.css';
 
 function App() {
+  
   return (
     <Router>
       <div>
