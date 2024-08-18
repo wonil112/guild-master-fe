@@ -5,14 +5,18 @@ import {guildEventData} from '../data/guildEventData'
 import './GuildEventTab.css'; 
 import './Tab.css'
 
-const GuildEventTab = () => {
+const GuildEventTab = ({ guildId }) => {
+
+
     console.log(guildEventData); 
-    if (!guildEventData) {
+    if (!guildEventData || ! guildId) {
         return <p>No event data available.</p>;
     }
+    const filteredEvents = guildEventData.filter(event => event.guildId === guildId);
+
     // EVENT_ACTIVE와 EVENT_COMPLETE로 분류
-    const activeEvents = guildEventData.filter(event => event.eventStatus === "EVENT_ACTIVE");
-    const completeEvents = guildEventData.filter(event => event.eventStatus === "EVENT_COMPLETE");
+    const activeEvents = filteredEvents.filter(event => event.eventStatus === "EVENT_ACTIVE");
+    const completeEvents = filteredEvents.filter(event => event.eventStatus === "EVENT_COMPLETE");
 
     const tabs = [
         {
@@ -21,7 +25,7 @@ const GuildEventTab = () => {
                 <>
                     {activeEvents.length > 0 ? (
                         activeEvents.map(eventItem => (
-                            <GuildEventItem key={eventItem.guildId} guildEvent={eventItem} />
+                            <GuildEventItem key={eventItem.eventId} guildEvent={eventItem} />
                         ))
                     ) : (
                         <p>No active events</p>
@@ -35,7 +39,7 @@ const GuildEventTab = () => {
                 <>
                     {completeEvents.length > 0 ? (
                         completeEvents.map(event => (
-                            <GuildEventItem key={event.guildId} guildEvent={event} />
+                            <GuildEventItem key={event.eventId} guildEvent={event} />
                         ))
                     ) : (
                         <p>No completed events</p>

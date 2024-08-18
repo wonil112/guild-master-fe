@@ -11,7 +11,7 @@ const GuildBoardPage = () => {
             <Header/>
             <div className='main'>
                 Guild Board for ID :{id}
-                <GuildEventTab />
+                <GuildEventTab guildId ={parseInt(id, 10)}/>
             </div>
             
         </div>
