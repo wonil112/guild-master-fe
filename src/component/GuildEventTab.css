@@ -1,0 +1,115 @@
+/* GuildEventTab CSS */
+.guild-event-tab-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 20px;
+    background-color: #f8f9fa; /* 밝은 배경색 */
+    justify-content: right; /* 가로 중앙 정렬 */
+    align-items: start ; /* 세로 중앙 정렬 */
+    height: 60vh; /* 화면 전체 높이 사용 */
+    overflow: hidden;
+}
+
+/* Tab 컴포넌트에 사용될 스타일 */
+.tab-list {
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+    background-color: #007bff; /* 탭 배경색 */
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    background-color: #007bff; /* 기본 탭 색상 */
+    transition: background-color 0.3s ease;
+    
+}
+
+.tab.active {
+    background-color: #0056b3; /* 활성화된 탭 색상 */
+    color: #ffffff;
+}
+
+.tab:hover {
+    background-color: #0056b3; /* 탭 호버 시 색상 */
+}
+
+.tab-content {
+    width: 70%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 60vh;
+    overflow-y: scroll; 
+    
+}
+
+/* GuildEventItem CSS */
+.guild-event-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: rgba(187, 128, 246, 0.179); /* 기존의 반투명 배경색 유지 */
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guild-event-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.guild-event-item h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+}
+
+.guild-event-item p {
+    font-size: 1em;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+/* Button 스타일 */
+.guild-event-item button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.guild-event-item button:hover {
+    background-color: #0056b3;
+}
+
+/* 추가적인 스타일들 */
+.guild-event-item .event-dates,
+.guild-event-item .event-population {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #555;
+}

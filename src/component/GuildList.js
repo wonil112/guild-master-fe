@@ -3,7 +3,7 @@ import './GuildList.css';
 import GuildListItem from './\bGuildListItem';
 import {guildData} from '../data/guildData'
 
-const GuildList = () => {
+const GuildList = ({ gameId }) => {
   const filteredGuilds = guildData.filter(guild => guild.gameId === gameId);
 
   return (

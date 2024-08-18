@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useParams} from 'react-router-dom';
 import Header from './HomeHeader';
 import './HomePage.css'
+import GuildEventTab from '../component/GuildEventTab';
 
 const GuildBoardPage = () => {
     const { id } = useParams();
@@ -10,7 +11,9 @@ const GuildBoardPage = () => {
             <Header/>
             <div className='main'>
                 Guild Board for ID :{id}
+                <GuildEventTab />
             </div>
+            
         </div>
     )
 };

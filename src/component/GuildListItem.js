@@ -5,6 +5,7 @@ import './GuildList.css';
 
 const GuildListItem = ({ guild }) => {
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 네비게이션 기능 추가
+    
   
     const handleSelect = () => {
       navigate(`/guildboard/${guild.guildId}`); // 버튼 클릭 시 해당 guild ID에 맞는 페이지로 이동
