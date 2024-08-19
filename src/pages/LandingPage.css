@@ -15,17 +15,20 @@ html {
   position: relative; /* 로그인 버튼을 우측 상단에 배치하기 위한 기준 설정 */
 }
 
-/* 로고 스타일 */
 .logo {
-  width: 180%; /* 로고 크기를 조정합니다 (너비를 전체 너비의 60%로 설정) */
-  max-width: 800px; /* 최대 너비를 600px로 설정 */
-  margin-bottom: 20px; 
+  width: 100%; /* 부모 요소의 너비에 맞춤 */
+  max-width: 1000px; /* 최대 너비를 1000px로 증가 */
+  height: auto; /* 비율 유지 */
+  margin-bottom: 40px; /* 하단 여백 증가 */
 }
 
 /* 시작하기 버튼 스타일 */
 .startButton {
   margin-top: 40px; /* 시작하기 버튼과 로고 간의 간격 */
   background: black;
+}
+.startButton:hover {
+  background-color: #333; /* 호버 시 배경색 변경 */
 }
 
 /* 로그인 버튼 스타일 */
