@@ -21,7 +21,7 @@ const Tab = ({ tabs }) => {
             <div className="tab-content">
                 {tabs.map((tab) => 
                     activeTab === tab.label && (
-                        <div key={tab.label} className="tab-panel">
+                        <div key={tab.label}>
                             {tab.content}
                         </div>
                     )
