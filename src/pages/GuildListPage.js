@@ -68,7 +68,7 @@ const GuildListPage = () => {
 
 
   return (
-    <div> 
+    <div>
       <Header/>
       <div className='main'>
         <div className="img-container">
@@ -141,10 +141,14 @@ const GuildListPage = () => {
               </span>
             </div>
           </Modal>
-        </div> 
+        </div>
         <GuildList 
           gameId={selectedGameId} 
-          onGuildClick={handleGuildClick} />
+          onGuildClick={handleGuildClick} 
+          />
+        <div className="home-button-container">
+           <button className="home-button" onClick={handleHomeClick}>홈으로 가기</button>
+        </div>
           <Modal
             isOpen={isGuildInfoModalOpen}
             onClose={closeGuildInfoModal}
@@ -152,7 +156,7 @@ const GuildListPage = () => {
             buttonText="가입 신청"
             onButtonClick={handleJoinGuild}
           >
-          {selectedGuild && (
+            {selectedGuild && (
             <div className="guild-info-modal">
               <span> 인원수 </span>
                <p> {selectedGuild.guildCurrentPopulation} / {selectedGuild.guildTotalPopulation} </p>
@@ -170,11 +174,8 @@ const GuildListPage = () => {
                 />
               </div>
             </div>
-          )}
-        </Modal>
-        <div className="home-button-container">
-          <button className="home-button" onClick={handleHomeClick}>흠으로 가기</button>
-        </div> 
+            )}
+          </Modal>
       </div>
     </div>
   );

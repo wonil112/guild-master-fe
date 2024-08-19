@@ -16,9 +16,9 @@ body, html {
     background-color: rgba(255, 255, 255, 0); /* 투명 배경색 */
     display: flex;
     align-items: center; /* 수직 중앙 정렬 */
-    padding: 0 20px; /* 좌우 패딩 */
-    z-index: 1000; /* 다른 요소들 위에 놓이도록 설정 */
-    box-sizing: border-box; /* 패딩과 테두리를 전체 너비에 포함 */
+    padding: 0 20px; 
+    z-index: 1000; 
+    box-sizing: border-box; 
 }
 
 /* 로고 스타일 */
@@ -26,7 +26,7 @@ body, html {
     width: 300px; /* 로고의 너비 */
     height: auto; /* 자동 높이 유지 */
     margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 중앙 정렬 */
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 /* 네비게이션 버튼 스타일 */
@@ -72,7 +72,7 @@ body, html {
 .guild-board-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 90vh;
     width: 100%;
 }
 

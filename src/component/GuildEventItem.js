@@ -6,16 +6,19 @@ const GuildEventItem = ({guildEvent}) => {
 
     return (
         <div className="event-item">
-            <h1 className="event-dates">
+            <h2 className="event-dates">
                 {guildEvent.eventName}
-            </h1>
-            <p>
-                일시 {guildEvent.startDate} - {guildEvent.dueDate}
-            </p>
-            <p className="event-population">
+            </h2>
+            <span>
+                일시 {new Date(guildEvent.startDate).toLocaleDateString()} - {new Date(guildEvent.dueDate).toLocaleDateString()}
+            </span>
+            <span className="event-population">
                 참석 {guildEvent.eventCurrentPopulation} / {guildEvent.eventTotalPopulation}
-            </p>
+            </span>
         </div>
     )
 }
 export default GuildEventItem;
+
+
+

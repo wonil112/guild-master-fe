@@ -20,7 +20,7 @@ const GuildEventTab = ({ guildId, onEventClick }) => {
 
     const tabs = [
         {
-            label: 'ActiveEvents',
+            label: '진행중 이벤트',
             content: (
                 <>
                     {activeEvents.length > 0 ? (
@@ -36,7 +36,7 @@ const GuildEventTab = ({ guildId, onEventClick }) => {
             )
         },
         {
-            label: 'Completed Events',
+            label: '종료된 이벤트',
             content: (
                 <>
                     {completeEvents.length > 0 ? (

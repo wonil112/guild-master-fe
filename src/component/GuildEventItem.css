@@ -1,9 +1,10 @@
 
 .event-item {
     background-color: rgba(208, 61, 241, 0.295);
-    border-radius: 15px;
-    padding: 15px;
-    margin-bottom: 15px;
+    border-radius: 13px;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
     color: white;
     display: flex;
     flex-direction: column; /* 요소들을 세로로 배치 */
@@ -30,13 +31,13 @@
 
 .event-details h1 {
     margin: 0 0 10px 0;
-    font-size: 18px;
-    line-height: 1.5;
+    font-size: 10px;
+    line-height: 1;
 }
 
 .event-details p {
-    margin: 3px 0;
-    font-size: 14px;
+    margin: 0px 0;
+    font-size: 11px;
     line-height: 1.5;
 }
 
