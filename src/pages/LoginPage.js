@@ -40,6 +40,10 @@ const LoginPage = () => {
       if (!passwordValid) setPasswordError('비밀번호는 8자 이상이며, 영어와 특수문자를 포함해야 합니다.');
     }
   };
+  const handleSignUp = () => {
+    navigate('/signUp');
+  };
+  
 
   // 로그인 버튼 활성화 조건
   const isLoginDisabled = !(validateEmail(email) && validatePassword(password));
@@ -50,7 +54,7 @@ const LoginPage = () => {
         <div className='main'>
         <div className="login-container">
       <div className="input-group">
-        <label htmlFor="email">이메일</label>
+        <label htmlFor="email">Email</label>
         <input
           id="email"
           type="text"
@@ -62,7 +66,7 @@ const LoginPage = () => {
         <div className="condition">이메일 형식: example@domain.com, 한글 사용 금지</div>
       </div>
       <div className="input-group">
-        <label htmlFor="password">비밀번호</label>
+        <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
@@ -78,8 +82,16 @@ const LoginPage = () => {
         onClick={handleLogin}
         disabled={!validateEmail(email) || !validatePassword(password)}
       >
-        로그인하기
+        login
       </button>
+      <button
+            className="signup-button"
+            onClick={handleSignUp}
+          >
+            Sign Up
+        </button>
+      
+
 
       {showModal && (
         <div className="modal">

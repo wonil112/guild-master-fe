@@ -6,7 +6,7 @@
     justify-content: center;
     height: 100vh; /* 전체 화면 높이 */
     text-align: left;
-    padding: 20px;
+    padding: 30px;
   }
   
   .input-group {
@@ -19,27 +19,32 @@
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #ffffff;
   }
   
   .input-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 4px;
+    background-color: rgba(179, 123, 252, 0.282); 
   }
+  .input-group input::placeholder {
+    color: #cecece; /* 원하는 색상으로 변경하세요 */
+}
   
   .login-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff; /* 버튼 배경색 */
+    background-color: black;
+    color: white;
     border: none;
-    border-radius: 4px;
+    padding: 5px 15px;
+    font-size: 16px;
     cursor: pointer;
+    border-radius: 5px;
   }
   
   .login-button:hover {
-    background-color: #0056b3; /* 버튼 호버 색상 */
+    background-color: #b1b1b1; /* 버튼 호버 색상 */
   }
   
   .modal {
@@ -58,11 +63,24 @@
   }
   .condition {
     font-size: 14px;
-    color: #666;
+    color: #ffb4b4;
     margin-top: 5px;
     text-align: left; /* 좌측 정렬, 필요 시 추가 */
     max-width: 300px; /* 입력 필드와 같은 너비로 설정 */
     margin-left: auto; /* 가운데 정렬을 위해 자동 마진 추가 */
     margin-right: auto; /* 가운데 정렬을 위해 자동 마진 추가 */
+  }
+  .signup-button {
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 10px;
+  }
+  
+  .signup-button:hover {
+    text-decoration: none;
   }
   

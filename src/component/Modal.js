@@ -1,19 +1,27 @@
 import React from 'react';
 import './Modal.css';
 
-const Modal = ({ event, onClose }) => {
-    return (
-        <div className="modal-overlay" onClick={onClose}>
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
-                <h2>{event.eventName}</h2>
-                <p>Start Time: {event.startDate}</p>
-                <p>End Time: {event.dueDate}</p>
-                <p>Status: {event.eventStatus}</p>
-                <p>Participants: {event.eventCurrentPopulation} / {event.eventTotalPopulation}</p>
-                <button onClick={onClose}>Close</button>
-            </div>
+const Modal = ({ isOpen, onClose, title, buttonText, onButtonClick, children }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h2>{title}</h2>
+          <button className="close-button" onClick={onClose}>×</button>
         </div>
-    );
+        <div className="modal-body">
+          {children}
+        </div>
+        <div className="modal-footer">
+          <button className="modal-action-button" onClick={onButtonClick}>
+            {buttonText}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Modal;

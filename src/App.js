@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import MyPage from './pages/MyPage';
 import HomePage from './pages/HomePage';
 import GuildBoardPage from './pages/GuildBoardPage'
+import SignUpPage from './pages/SignUpPage'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/guildboard/:id" element={<GuildBoardPage />} /> 
           <Route path="/guildlist" element={<GuildListPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
         </Routes>
       </div>
     </Router>
