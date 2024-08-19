@@ -3,48 +3,85 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     background: linear-gradient(to bottom, #040029, #32279C, #5C50CE, #CFCAFF);
-    font-family: Arial, sans-serif;
 }
 
-.guild-board-container {
+.header {
+    position: fixed; /* 헤더를 고정시키기 */
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100vh;
+    height: 80px; /* 헤더 높이 */
+    background-color: rgba(255, 255, 255, 0); /* 투명 배경색 */
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    padding: 0 20px; /* 좌우 패딩 */
+    z-index: 1000; /* 다른 요소들 위에 놓이도록 설정 */
+    box-sizing: border-box; /* 패딩과 테두리를 전체 너비에 포함 */
+}
+
+/* 로고 스타일 */
+.header .logo {
+    width: 300px; /* 로고의 너비 */
+    height: auto; /* 자동 높이 유지 */
+    margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 중앙 정렬 */
+    margin-top: 20px;
+}
+
+/* 네비게이션 버튼 스타일 */
+.header .nav-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* 로고 오른쪽에 공간을 확보 */
+}
+
+.header .nav-button, .header .login-button {
+    background: none;
+    border: none;
+    color: rgb(255, 255, 255); /* 버튼 텍스트 색상 */
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 15px; /* 버튼 간의 간격 */
+    white-space: nowrap; /* 버튼 텍스트가 줄바꿈되지 않도록 */
+}
+
+/* 로그인 버튼 스타일 */
+.header .login-button {
+    background-color: white;
+    color: black;
+    padding: 5px 15px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* 버튼 그림자 */
+    white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 */
+}
+
+
+.main {
+    margin-top: 80px; /* 헤더 높이만큼 여백 추가 */
+    height: calc(100vh - 60px); /* 전체 높이에서 헤더 높이만큼 뺌 */
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+
+.guild-board-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
 }
 
 .guild-board-content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 80px;
+    flex-direction: row;
+    height: 100%;
     padding: 20px;
     box-sizing: border-box;
-    height: calc(100vh - 80px);
-}
-
-.guild-info {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.guild-info h2 {
-    color: white;
-    font-size: 36px;
-    margin: 0;
-}
-
-.guild-info p {
-    color: white;
-    font-size: 18px;
-    margin: 5px 0;
-}
-
-.main-content {
-    display: flex;
-    width: 100%;
-    height: calc(100% - 100px);
 }
 
 .calendar-placeholder {
@@ -56,27 +93,36 @@ body, html {
 
 .event-tab-container {
     width: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 0;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.guild-event-tab-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 .tab-container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .tab {
+    flex: 1;
     padding: 10px;
     cursor: pointer;
-    color: white;
-    flex: 1;
     text-align: center;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px 5px 0 0;
     transition: background-color 0.3s;
 }
@@ -85,7 +131,32 @@ body, html {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.event-list {
-    flex-grow: 1;
+.tab-content {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 0 0 5px 5px;
     overflow-y: auto;
+    flex-grow: 1;
+    max-height: calc(100vh - 150px); /* 상단 헤더 및 탭을 제외한 최대 높이 */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.event-item {
+    background-color: #985FB8;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.event-item:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
 }

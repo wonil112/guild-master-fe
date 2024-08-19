@@ -5,7 +5,7 @@ import {guildEventData} from '../data/guildEventData'
 import './GuildEventTab.css'; 
 import './Tab.css'
 
-const GuildEventTab = ({ guildId }) => {
+const GuildEventTab = ({ guildId, onEventClick }) => {
 
 
     console.log(guildEventData); 
@@ -25,7 +25,9 @@ const GuildEventTab = ({ guildId }) => {
                 <>
                     {activeEvents.length > 0 ? (
                         activeEvents.map(eventItem => (
-                            <GuildEventItem key={eventItem.eventId} guildEvent={eventItem} />
+                            <div key={eventItem.eventId} onClick={() => onEventClick(eventItem)}>
+                                <GuildEventItem guildEvent={eventItem} />
+                            </div>
                         ))
                     ) : (
                         <p>No active events</p>
@@ -38,8 +40,10 @@ const GuildEventTab = ({ guildId }) => {
             content: (
                 <>
                     {completeEvents.length > 0 ? (
-                        completeEvents.map(event => (
-                            <GuildEventItem key={event.eventId} guildEvent={event} />
+                        completeEvents.map(eventItem => (
+                            <div key={eventItem.eventId} onClick={() => onEventClick(eventItem)}>
+                                <GuildEventItem guildEvent={eventItem} />
+                            </div>
                         ))
                     ) : (
                         <p>No completed events</p>
