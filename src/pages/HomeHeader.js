@@ -21,7 +21,7 @@ const Header = () => {
       <div className="nav-container">
         <button className="nav-button" onClick={() => handleNavigate('/mypage')}>My Page</button>
         <button className="nav-button" onClick={() => handleNavigate('/guildlist')}>Search</button>
-        <button className="login-button" onClick={() => handleNavigate('/login')}>Login</button>
+        <button className="login-button" onClick={() => handleNavigate('/login')}>login</button>
       </div>
     </header>
   );

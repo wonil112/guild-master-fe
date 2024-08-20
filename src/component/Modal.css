@@ -4,40 +4,75 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(249, 117, 249, 0.301); /* 투명한 보라색 배경 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    max-width: 450px;
+    text-align: left; 
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center; 
+    position: relative;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    position: absolute; /* 헤더 내에서 절대 위치 */
+    right: 0; /* 오른쪽에 붙임 */
+    top: 50%; /* 상하 중앙 정렬 */
+    transform: translateY(-50%); 
+    padding: 5px 10px;
+    line-height: 1; /* 텍스트 세로 정렬 조정 */
+    color: #333; /* 버튼 색상 설정 */
+    transition: color 0.3s ease;
+  }
+
+.close-button:hover {
+    color: #ff0000; /* 호버 시 빨간색으로 변경 */
+  }
+  
+  
+  .modal-body {
+    margin-bottom: 20px;
+  }
+  
+  .modal-footer {
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    width: 80%;
-    max-width: 500px;
-}
-
-.modal-content h2 {
-    margin-top: 0;
-    color: #333;
-}
-
-.modal-content p {
-    margin: 10px 0;
-    color: #666;
-}
-
-.modal-content button {
-    background-color: #007bff;
-    color: white;
+  }
+  
+  .modal-action-button {
+    background-color: #000000; /* 검은색 배경 */
+    color: #ffffff; /* 흰색 텍스트 */
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    margin-top: 15px;
-}
-
-.modal-content button:hover {
-    background-color: #0056b3;
-}
+    font-size: 16px; /* 글자 크기 설정 */
+    transition: background-color 0.3s ease; /* 부드러운 배경색 전환 효과 */
+  }
+  .modal-action-button:hover {
+    background-color: #333333; /* 호버 시 약간 밝은 검은색 */
+  }
+  .modal-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* 상단 여백 추가 */
+  }

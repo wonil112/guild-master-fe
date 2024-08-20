@@ -4,7 +4,6 @@ import './GuildEventItem.css';
 
 const GuildEventItem = ({guildEvent}) => {
 
-    
     return (
         <div className="event-item">
             <h1 className="event-dates">

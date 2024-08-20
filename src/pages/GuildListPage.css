@@ -1,8 +1,8 @@
 body, html {
-    margin: 0;
-    padding: 0;
+    margin: 20px;
+    padding: 10px;
     width: 100%;
-    height: 100%;
+    height: 50%;
     overflow: hidden;
     background: linear-gradient(to bottom, #040029, #32279C, #5C50CE, #CFCAFF);
 }
@@ -11,7 +11,7 @@ body, html {
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px; /* 헤더 높이 */
+    height: 100px; /* 헤더 높이 */
     background-color: rgba(255, 255, 255, 0); /* 투명 배경색 */
     display: flex;
     align-items: center; /* 수직 중앙 정렬 */
@@ -25,7 +25,8 @@ body, html {
     width: 300px; /* 로고의 너비 */
     height: auto; /* 자동 높이 유지 */
     margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 중앙 정렬 */
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px; 
 }
 
 /* 네비게이션 버튼 스타일 */
@@ -57,11 +58,11 @@ body, html {
 
 
 .main {
-    margin-top: 80px; /* 헤더 높이만큼 여백 추가 */
-    height: calc(100vh - 60px); /* 전체 높이에서 헤더 높이만큼 뺌 */
+    margin-top: 250px; /* 헤더 높이만큼 여백 추가 */
+    height: calc(100vh - 70px); /* 전체 높이에서 헤더 높이만큼 뺌 */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
     position: relative;
@@ -91,3 +92,120 @@ body, html {
     transform: scale(0.95); /* 클릭 시 약간 축소 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 클릭 시 그림자 줄임 */
 }
+
+.modal-button-container {
+    margin: 10px 0;  /* 위아래 여백 유지 */
+    text-align: left;  /* 오른쪽 정렬로 변경 */
+    padding-left: 25%;  /* 오른쪽에서 20% 떨어진 위치에 배치 */
+}
+  
+.modal-button-container button {
+    padding: 8px 10px;
+    font-size: 16px;
+    background-color: #ffffff; /* 초록색 배경 */
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+  
+.modal-button-container button:hover {
+    background-color: #e0e0e0; /* 호버 시 더 어두운 초록색 */
+}
+
+.home-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 0%;
+    margin-bottom: 10px;
+  }
+  
+  .home-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .home-button:hover {
+    background-color: #595959;
+  }
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .modal-content > div {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .modal-content input,
+  .modal-content textarea {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .modal-content textarea {
+    height: 80px;
+    resize: vertical;
+  }
+  
+  .modal-content input:focus,
+  .modal-content textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+  }
+  .guild-info-modal p {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  .guild-info-modal span {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .guild-info-modal label {
+    display: block;
+    color:#5C50CE;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .guild-info-modal input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .guild-info-modal input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+  }
+  
+
+
