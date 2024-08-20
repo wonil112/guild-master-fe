@@ -53,11 +53,6 @@
     margin-bottom: 20px;
   }
   
-  .modal-footer {
-    display: flex;
-    justify-content: center;
-  }
-  
   .modal-action-button {
     background-color: #000000; /* 검은색 배경 */
     color: #ffffff; /* 흰색 텍스트 */

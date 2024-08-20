@@ -1,0 +1,77 @@
+.manage-container {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #040029, #32279C, #5C50CE, #CFCAFF);
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.manage-content {
+    flex: 1;
+    padding: 20px;
+    margin-top: 80px; /* Header 높이만큼 여백 추가 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* 길드원 목록을 위한 스타일 */
+.guild-member-list {
+    width: 100%;
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.guild-member-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.guild-member-item:last-child {
+    border-bottom: none;
+}
+
+.member-name {
+    font-size: 1.2rem;
+}
+
+.member-actions button {
+    padding: 8px 15px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.promote-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.demote-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.remove-button {
+    background-color: #ff9800;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}

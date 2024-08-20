@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './HomeHeader';
+import Modal from '../component/Modal'
 import { memberData } from '../data/memberData';
 import logo from '../logo/fulllogo_white.png'
 import './MyPage.css'
@@ -65,6 +66,13 @@ const MyPage = () => {
     const cancelWithdraw = () => {
         setShowWithdrawModal(false);
     };
+    const withdrawModalContent = (
+        <>
+            <p>정말 길드 마스터를 탈퇴하시겠습니까?</p>
+            <img src={logo} className="modal-logo" alt="Guild Master Logo" />
+        </>
+    );
+
 
 
     
@@ -131,18 +139,15 @@ const MyPage = () => {
                         </div>
                     </div>
                 )}
-                {showWithdrawModal && (
-                    <div className="modal-overlay">
-                        <div className="modal-content">
-                            <p>정말 길드 마스터를 탈퇴하시겠습니까?</p>
-                            <img src={logo} className="modal-logo" />
-                            <div className="modal-buttons">
-                                <button className="modal-button-yes" onClick={confirmWithdraw}>예</button>
-                                <button className="modal-button-no" onClick={cancelWithdraw}>아니오</button>
-                            </div>
-                        </div>
-                    </div>
-                )}
+                <Modal
+                    isOpen={showWithdrawModal}
+                    onClose={cancelWithdraw}
+                    title="길드 마스터 탈퇴"
+                    buttonText="예"
+                    onButtonClick={confirmWithdraw}
+                >
+                    {withdrawModalContent}
+                </Modal>
             </div>
         </div>
     )

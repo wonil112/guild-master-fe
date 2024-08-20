@@ -88,27 +88,6 @@
     opacity: 0.8;
 }
 
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: rgb(211, 211, 211);
-    padding: 30px;
-    margin: 30px 10px;
-    border-radius: 8px;
-    font-size: 29px;
-    text-align: center;
-}
-
 .modal-logo {
     width: 400px;
     margin: 20px 0;
@@ -123,7 +102,7 @@
 
 .modal-button-yes {
     padding: 8px 16px;
-    background-color: #a9a9a9;
+    background-color: #ffffff;
     color: white;
     border: none;
     border-radius: 4px;
