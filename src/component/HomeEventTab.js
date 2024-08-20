@@ -2,7 +2,6 @@ import React from 'react';
 import Tab from './Tab';
 import GuildEventItem from './GuildEventItem';
 import {guildEventData} from '../data/guildEventData'
-import './HomeEventTab.css'; 
 import './Tab.css'
 
 const HomeEventTab = ({ onEventClick }) => { 

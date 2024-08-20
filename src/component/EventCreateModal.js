@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
-import './EventCreateModal.css';
 
 const EventCreateModal = ({ isOpen, onClose, onCreateEvent }) => {
     const [eventName, setEventName] = useState('');
