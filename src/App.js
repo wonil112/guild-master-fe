@@ -8,7 +8,9 @@ import HomePage from './pages/HomePage';
 import GuildBoardPage from './pages/GuildBoardPage'
 import SignUpPage from './pages/SignUpPage'
 
+
 function App() {
+  
   return (
     <Router>
       <div>

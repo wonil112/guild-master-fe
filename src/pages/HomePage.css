@@ -1,3 +1,4 @@
+
 body, html {
     margin: 0;
     padding: 0;
@@ -65,4 +66,77 @@ body, html {
     align-items: center;
     text-align: center;
     position: relative;
+}
+=======
+.home-page {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #1e004e, #431b81);
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  height: 50px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.logout-button {
+  background-color: white;
+  color: #1a0049;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  flex: 1;
+}
+
+.guild-list, .event-list {
+  background-color: #3e1e7a;
+  border-radius: 15px;
+  padding: 20px;
+  width: 48%;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.tabs .active {
+  border-bottom: 2px solid white;
+}
+
+.tab-content {
+  background-color: #5e2d9c;
+  border-radius: 10px;
+  padding: 20px;
 }
