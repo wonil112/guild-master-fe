@@ -1,0 +1,26 @@
+.player-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+.player-nickname {
+    font-weight: bold;
+    color: #000;
+}
+  
+.player-total-events,
+.player-recent-events,
+.player-role {
+    margin-left: 10px;
+}
+.player-role {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 14px;
+    color:#000;
+  }

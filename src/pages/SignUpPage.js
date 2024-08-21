@@ -1,7 +1,29 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './SignUpPage.css';
 import Header from './HomeHeader';
+
+export function SignUp (email, name, password, phone) {
+  let webUrl = "http://localhost:8080";
+
+  function request() {
+    const data = {
+      email: email,
+      name: name,
+      password: password,
+      phone: phone
+    }
+    axios.post(webUrl + "/members", data)
+      .then(response => {
+        alert(response.status + "성공했습니다.")
+      }).catch(error => {
+        console.log("회원가입 실패.")
+        alert(error);
+      });
+  }
+  request();
+}
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('');
@@ -20,9 +42,11 @@ const SignUpPage = () => {
   };
 
   const validatePassword = (password) => {
-    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d]).{8,}$/;
+    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/;
     return passwordPattern.test(password);
   };
+
+  const isSignUpDisabled = !(validateEmail(email) && validatePassword(password) && validateName(name) && validatePhone(phone));
 
   const validateName = (name) => {
     return name.length >= 1 && name.length <= 15;
@@ -50,8 +74,6 @@ const SignUpPage = () => {
       if (!phoneValid) setPhoneError('올바른 전화번호 형식으로 입력해주세요.');
     }
   };
-
-  const isSignUpDisabled = !(validateEmail(email) && validatePassword(password) && validateName(name) && validatePhone(phone));
 
   return (
     <div>

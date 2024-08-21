@@ -1,22 +1,32 @@
 export const memberGuildData = [
     {
-        guildId: 1,
-        nickname: "호호호",
-        memberGuildRole: "MEMBER_GUILD_ROLE_PLAYER"
+        memberId: 1,
+        nickname: "은하늘",
+        memberGuildRole: "MEMBER_GUILD_ROLE_PLAYER",
+        deletedAt: "null"
     },
     {
-        guildId: 3,
-        nickname: "호호호",
-        memberGuildRole: "MEMBER_GUILD_ROLE_MASTER"
+        memberId: 3,
+        nickname: "김영진",
+        memberGuildRole: "MEMBER_GUILD_ROLE_MASTER",
+        deletedAt: "null"
     },
     {
-        guildId: 6,
-        nickname: "미미",
-        memberGuildRole: "MEMBER_GUILD_ROLE_MANAGER"
+        memberId: 6,
+        nickname: "김준하",
+        memberGuildRole: "MEMBER_GUILD_ROLE_MANAGER",
+        deletedAt: "null"
     },
     {
-        guildId: 8,
-        nickname: "호호호",
-        memberGuildRole: "null"
+        memberId: 8,
+        nickname: "박원일",
+        memberGuildRole: "null",
+        deletedAt: "null"
+    },
+    {
+        memberId: 10,
+        nickname: "옥성민",
+        memberGuildRole: "MEMBER_GUILD_ROLE_MANAGER",
+        deletedAt: "2024-07-03T16:00"
     },
 ];

@@ -51,8 +51,3 @@
     border: 2px solid rgba(255, 255, 255, 0.3);
     transition: background-color 0.3s, border-color 0.3s;
 }
-/* 
-.tab-panel:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
-} */
