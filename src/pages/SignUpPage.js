@@ -1,29 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { signUp } from '../api/signup';
 import { useNavigate } from 'react-router-dom';
 import './SignUpPage.css';
 import Header from './HomeHeader';
-
-export function SignUp (email, name, password, phone) {
-  let webUrl = "http://localhost:8080";
-
-  function request() {
-    const data = {
-      email: email,
-      name: name,
-      password: password,
-      phone: phone
-    }
-    axios.post(webUrl + "/members", data)
-      .then(response => {
-        alert(response.status + "성공했습니다.")
-      }).catch(error => {
-        console.log("회원가입 실패.")
-        alert(error);
-      });
-  }
-  request();
-}
 
 const SignUpPage = () => {
 
@@ -50,6 +30,7 @@ const SignUpPage = () => {
   useEffect(() => {
     setPhoneError('');
   }, [phone]);
+
   const navigate = useNavigate();
 
   const validateEmail = (email) => {
@@ -80,18 +61,21 @@ const SignUpPage = () => {
     setPhone(phoneNumber);
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     const emailValid = validateEmail(email);
     const passwordValid = validatePassword(password);
     const nameValid = validateName(name);
     const phoneValid = validatePhone(phone);
 
     if (emailValid && passwordValid && nameValid && phoneValid) {
-      // 회원가입 로직 구현
-      console.log('회원가입 성공');
-      SignUp(emailValid, passwordValid, nameValid, phoneValid)
-      navigate('/login');
-
+      await signUp(email, name, password, phone)
+      .then(() => {
+        alert('회원가입에 성공했습니다.');
+        navigate('/login');
+      })
+      .catch(error => {
+        alert(error.message);
+      });
     } else {
       if (!emailValid) setEmailError('올바른 이메일 형식으로 입력해주세요.');
       if (!passwordValid) setPasswordError('비밀번호는 8자 이상이며, 영어와 특수문자를 포함해야 합니다.');
@@ -99,6 +83,7 @@ const SignUpPage = () => {
       if (!phoneValid) setPhoneError('올바른 전화번호 형식으로 입력해주세요.');
     }
   };
+
 
   const isSignUpDisabled = !(validateEmail(email) && validatePassword(password) && validateName(name) && validatePhone(phone));
   console.log('isSignUpDisabled:', isSignUpDisabled);
