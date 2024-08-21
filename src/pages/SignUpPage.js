@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './SignUpPage.css';
@@ -26,6 +26,7 @@ export function SignUp (email, name, password, phone) {
 }
 
 const SignUpPage = () => {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -34,6 +35,21 @@ const SignUpPage = () => {
   const [passwordError, setPasswordError] = useState('');
   const [nameError, setNameError] = useState('');
   const [phoneError, setPhoneError] = useState('');
+  useEffect(() => {
+    setEmailError('');
+  }, [email]);
+  
+  useEffect(() => {
+    setPasswordError('');
+  }, [password]);
+  
+  useEffect(() => {
+    setNameError('');
+  }, [name]);
+  
+  useEffect(() => {
+    setPhoneError('');
+  }, [phone]);
   const navigate = useNavigate();
 
   const validateEmail = (email) => {
@@ -42,19 +58,26 @@ const SignUpPage = () => {
   };
 
   const validatePassword = (password) => {
-    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/;
+    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z\d]).{8,}$/;
     return passwordPattern.test(password);
   };
-
-  const isSignUpDisabled = !(validateEmail(email) && validatePassword(password) && validateName(name) && validatePhone(phone));
 
   const validateName = (name) => {
     return name.length >= 1 && name.length <= 15;
   };
 
   const validatePhone = (phone) => {
-    const phonePattern = /^[0-9]{10,11}$/;
+    const phonePattern = /^010-\d{4}-\d{4}$/;
     return phonePattern.test(phone);
+  };
+  
+
+  const handlePhoneChange = (e) => {
+    const value = e.target.value.replace(/[^\d]/g, '');
+    const phoneNumber = value
+      .replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3')
+      .slice(0, 13); // 최대 13자리 (010-1234-5678)
+    setPhone(phoneNumber);
   };
 
   const handleSignUp = () => {
@@ -66,7 +89,9 @@ const SignUpPage = () => {
     if (emailValid && passwordValid && nameValid && phoneValid) {
       // 회원가입 로직 구현
       console.log('회원가입 성공');
+      SignUp(emailValid, passwordValid, nameValid, phoneValid)
       navigate('/login');
+
     } else {
       if (!emailValid) setEmailError('올바른 이메일 형식으로 입력해주세요.');
       if (!passwordValid) setPasswordError('비밀번호는 8자 이상이며, 영어와 특수문자를 포함해야 합니다.');
@@ -75,6 +100,14 @@ const SignUpPage = () => {
     }
   };
 
+  const isSignUpDisabled = !(validateEmail(email) && validatePassword(password) && validateName(name) && validatePhone(phone));
+  console.log('isSignUpDisabled:', isSignUpDisabled);
+  console.log('Email valid:', email);
+  console.log('Password valid:', validatePassword(password));
+  console.log('Name valid:', validateName(name));
+  console.log('Phone valid:', validatePhone(phone));
+  
+  
   return (
     <div>
       <Header />
@@ -124,15 +157,17 @@ const SignUpPage = () => {
               type="tel"
               placeholder="전화번호"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={handlePhoneChange}
+              maxLength={13}
             />
             {phoneError && <div className="error">{phoneError}</div>}
-            <div className="condition">전화번호 형식: 10-11자리 숫자</div>
+            <div className="condition">전화번호 형식: 010-1234-5678
+            </div>
           </div>
           <button
             className="signup-submit-button" 
             onClick={handleSignUp}
-            disabled={isSignUpDisabled}
+              // disabled={isSignUpDisabled}
           >
             SignUp
           </button>

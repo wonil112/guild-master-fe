@@ -54,8 +54,7 @@ const GuildListPage = () => {
     closeGuildInfoModal();
   };
   const [nickname, setNickname] = useState('');
-
-
+  
   // 길드 생성 버튼을 누르면 모달이 뜸. 
   const handleCreateGuild = (newGuild) => {
     // 여기에 길드 생성 로직을 구현합니다.
