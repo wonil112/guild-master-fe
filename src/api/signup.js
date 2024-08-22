@@ -1,27 +1,3 @@
-import axios from 'axios';
-
-// const API_URL = "http://localhost:8080";
-
-// export const signUp = (email, name, password, phone) => {
-//   const data = { name, email, password, phone };
-//   console.log('Original data:', data);
-//   console.log('JSON data:', JSON.stringify(data));
-
-//   return fetch(`${API_URL}/members`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(data)
-//   })
-//   .then(response => {
-//     if (!response.created) {
-//       return response.json().then(err => Promise.reject(err));
-//     }
-//     return response.json();
-//   });
-// };
-
 const API_URL = "http://localhost:8080";
 
 export const signUp = async (email, name, password, phone) => {

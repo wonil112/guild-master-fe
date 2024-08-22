@@ -61,11 +61,12 @@ const SignUpPage = () => {
     setPhone(phoneNumber);
   };
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e) => {
     const emailValid = validateEmail(email);
     const passwordValid = validatePassword(password);
     const nameValid = validateName(name);
     const phoneValid = validatePhone(phone);
+    e.preventDefault();
 
     if (emailValid && passwordValid && nameValid && phoneValid) {
       await signUp(email, name, password, phone)

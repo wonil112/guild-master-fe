@@ -12,14 +12,14 @@ export const login = async (email, password) => {
             body: JSON.stringify(data)
         });
 
-        console.log('Response status:', response.status);
         const responseText = await response.text();
-        console.log('Response text:', responseText);
 
         if (response.ok) {
-            const parsedData = responseText ? JSON.parse(responseText) : {};
-            console.log('Login successful:', parsedData);
-            return parsedData;
+            const token = response.headers.get('authorization');
+            localStorage.setItem('token', token);
+            const memberId = response.headers.get('memberId');
+            localStorage.setItem('memberId', memberId);
+
         } else {
             console.error('Login failed:', responseText);
             throw new Error(responseText || '로그인에 실패했습니다.');

@@ -1,31 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import Header from './HomeHeader';
 import Modal from '../component/Modal'
-import { memberData } from '../data/memberData';
+import { memberget } from '../api/memberget';
 import logo from '../logo/fulllogo_white.png'
 import './MyPage.css'
 
 const MyPage = () => {
     const [member, setMember] = useState(null);
-    console.log(memberData);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        // 실제 애플리케이션에서는 로그인한 사용자의 ID를 사용해야 합니다.
-        // 여기서는 예시로 첫 번째 회원 데이터를 사용합니다.
-        setMember(memberData[0]);
-        setEditName(memberData[0].name);
-    }, []);
-
-    // 수정 로직.을 함. name 과 password 가능. 수정 가능.
-    // 수정 버튼을 누르면 이름은 Input 창이 뜨고, 
-    // 비밀번호는 비밀번호 변경 버튼이 뜸. 또 그 버튼을 눌러야 수정이 가능함. 
-
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [editName, setEditName] = useState('');
     const [isChangingPassword, setIsChangingPassword] = useState(false);
     const [newPassword, setNewPassword] = useState('');
+    const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchMemberInfo = async () => {
+            try {
+                const memberInfo = await memberget();
+                setMember(memberInfo);
+                setEditName(memberInfo.name);
+            } catch (err) {
+                setError(err.message);
+                if (err.message === 'No token found' || err.message === 'No member ID found') {
+                    // 토큰이나 memberId가 없으면 로그인 페이지로 리다이렉트
+                    navigate('/login');
+                }
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchMemberInfo();
+    }, [navigate]);
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+    // 수정 로직.을 함. name 과 password 가능. 수정 가능.
+    // 수정 버튼을 누르면 이름은 Input 창이 뜨고, 
+    // 비밀번호는 비밀번호 변경 버튼이 뜸. 또 그 버튼을 눌러야 수정이 가능함. 
     const handleEdit = () => {
         // 수정한 내용 상태를 받음. 
         setIsEditing(true);
@@ -52,7 +68,7 @@ const MyPage = () => {
 
     // 탈퇴 로직 수행. 
     // 탈퇴 의사를 묻는 상태 변수. 
-    const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+
     const handleWithdraw = () => {
         setShowWithdrawModal(true);
     };

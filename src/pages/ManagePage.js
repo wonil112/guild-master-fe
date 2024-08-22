@@ -3,8 +3,6 @@ import Header from './HomeHeader';
 import './ManagePage.css';
 import ManagePlayerTab from '../component/ManagePlayerTab';
 
-const TempComponent = () => <div>Temporary Component</div>;
-
 const ManagePage = () => {
     return (
         <div className="manage-container">
