@@ -2,22 +2,16 @@ import React from 'react';
 import Tab from './Tab';
 import GuildEventItem from './GuildEventItem';
 import {guildEventData} from '../data/guildEventData'
-import './GuildEventTab.css'; 
 import './Tab.css'
 
-const GuildEventTab = ({ guildId, onEventClick }) => {
-
-
+const HomeEventTab = ({ onEventClick }) => { 
     console.log(guildEventData); 
-    if (!guildEventData || ! guildId) {
+    if ( !guildEventData ) {
         return <p>No event data available.</p>;
     }
-    const filteredEvents = guildEventData.filter(event => event.guildId === guildId);
-
-    // EVENT_ACTIVE와 EVENT_COMPLETE로 분류
-    const activeEvents = filteredEvents.filter(event => event.eventStatus === "EVENT_ACTIVE");
-    const completeEvents = filteredEvents.filter(event => event.eventStatus === "EVENT_COMPLETE");
-
+    const activeEvents = guildEventData.filter(event => event.eventStatus === "EVENT_ACTIVE");
+    const completeEvents = guildEventData.filter(event => event.eventStatus === "EVENT_COMPLETE");
+    
     const tabs = [
         {
             label: '진행중 이벤트',
@@ -53,7 +47,9 @@ const GuildEventTab = ({ guildId, onEventClick }) => {
         }
     ];
 
-    return <div className="guild-event-tab-container"><Tab tabs={tabs} /></div>;
+    return <div className="home-event-tab-container'"><Tab tabs={tabs} /></div>;
+
+
 };
 
-export default GuildEventTab;
+export default HomeEventTab;

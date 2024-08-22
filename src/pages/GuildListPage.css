@@ -1,11 +1,12 @@
 body, html {
-    margin: 20px;
+    margin: 30px;
     padding: 10px;
     width: 100%;
     height: 50%;
     overflow: hidden;
     background: linear-gradient(to bottom, #040029, #32279C, #5C50CE, #CFCAFF);
 }
+  
 .header {
     position: fixed; /* 헤더를 고정시키기 */
     top: 0;
@@ -58,12 +59,12 @@ body, html {
 
 
 .main {
-    margin-top: 250px; /* 헤더 높이만큼 여백 추가 */
-    height: calc(100vh - 70px); /* 전체 높이에서 헤더 높이만큼 뺌 */
+    margin-top: 100px; /* 헤더 높이만큼 여백 추가 */
+    height: 200px; 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     text-align: center;
     position: relative;
 }
@@ -71,9 +72,9 @@ body, html {
 .img-container {
     display: flex;
     justify-content: center;
-    gap: 20px; /* 이미지 간의 간격 */
-    margin-bottom: 20px; /* 이미지와 길드 목록 간의 간격 */
-}
+    gap: 20px;
+    margin-bottom: 10px;
+  }
   
 .img-container img {
     width: 60px; /* 이미지의 너비 조정 */
@@ -94,13 +95,13 @@ body, html {
 }
 
 .modal-button-container {
-    margin: 10px 0;  /* 위아래 여백 유지 */
-    text-align: left;  /* 오른쪽 정렬로 변경 */
-    padding-left: 25%;  /* 오른쪽에서 20% 떨어진 위치에 배치 */
+    text-align: left;
+    margin-bottom: 10px;
+    padding-left: 400px; 
 }
   
 .modal-button-container button {
-    padding: 8px 10px;
+    padding: 8px 16px;
     font-size: 16px;
     background-color: #ffffff; /* 초록색 배경 */
     color: rgb(0, 0, 0);
@@ -115,13 +116,15 @@ body, html {
 }
 
 .home-button-container {
+    position: sticky;
+    bottom: 30px;
     display: flex;
     justify-content: center;
-    margin-top: 0%;
-    margin-bottom: 10px;
-  }
+    padding: 55px 0;
+}
   
-  .home-button {
+
+.home-button {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #000000;
@@ -130,13 +133,13 @@ body, html {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
+}
   
-  .home-button:hover {
+.home-button:hover {
     background-color: #595959;
-  }
+}
 
-  .modal-content {
+.modal-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -194,7 +197,7 @@ body, html {
   }
   
   .guild-info-modal input {
-    width: 90%;
+    width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

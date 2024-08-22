@@ -17,10 +17,13 @@ const LandingPage = () => {
 
   return (
     <div className="main">
-      <button className="loginButton" onClick={handleLogin}>login</button>
-      <img src={Logo} className="logo" />
-      <Button className="startButton" onClick={handleStartEnter} message="find your guild ➔ " />
+      <div className="logo-container">
+        <button className="loginButton" onClick={handleLogin}>login</button>
+        <img src={Logo} className="landing-logo" />
+        <Button className="startButton" onClick={handleStartEnter} message="find your guild ➔ " />
+      </div>
     </div>
+
   );
 };
 

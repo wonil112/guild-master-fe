@@ -9,6 +9,7 @@ import loastark from '../img/loastark_black.png'
 import './GuildListPage.css'
 import Header from './HomeHeader'
 import Modal from '../component/Modal';
+import GuildCreateModal from '../component/GuildCreateModal';
 
 const GuildListPage = () => {
   // 상위 게임을 눌렀을 때 gameId를 입력 받기 위한 state. 
@@ -20,20 +21,11 @@ const GuildListPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const handleButtonClick = () => {
-    closeModal();
-  };
   // 홈으로 가기 버튼 후 홈 페이지로 이동하기 위한 state
   const navigate = useNavigate();
   const handleHomeClick = () => {
     navigate('/home');
   };
-  // 길드 생성 입력 창을 받기 위한 state
-  const [guildName, setGuildName] = useState('');
-  const [maxMembers, setMaxMembers] = useState('');
-  const [masterNickname, setMasterNickname] = useState('');
-  const [guildDescription, setGuildDescription] = useState('');
-  const [selectedGame, setSelectedGame] = useState('');
   // Games 드롭박스를 받기 위한 함수. 
   const games = [
     { id: 1, name: '오버워치' },
@@ -45,30 +37,34 @@ const GuildListPage = () => {
   const [isGuildInfoModalOpen, setIsGuildInfoModalOpen] = useState(false);
   // guildid 의 길드를 데리고 와서, 
   const [selectedGuild, setSelectedGuild] = useState(null);
-
+  
+  //guild list item 을 클릭하면 guild의 Id 를 전달하고, guild 조회 신청 Modal 이 열리게 함. 
   const handleGuildClick = (guild) => {
     setSelectedGuild(guild);
     setIsGuildInfoModalOpen(true);
   };
+  // guild 조회 신청 모달이 닫힘. 
   const closeGuildInfoModal = () => {
     setIsGuildInfoModalOpen(false);
     setSelectedGuild(null);
-    setNickname('');
   };
-
-  // 닉네임을 받는 State 
-  const [nickname, setNickname] = useState('');
   // 모달 후 길드 가입을 위한 로직. 
   const handleJoinGuild = () => {
     // 여기에 길드 가입 로직을 구현합니다.
-    console.log(`Joining guild ${selectedGuild.guildName} with nickname: ${nickname}`);
     closeGuildInfoModal();
+  };
+  const [nickname, setNickname] = useState('');
+  
+  // 길드 생성 버튼을 누르면 모달이 뜸. 
+  const handleCreateGuild = (newGuild) => {
+    // 여기에 길드 생성 로직을 구현합니다.
+    console.log('New guild created:', newGuild);
+    closeModal();
   };
 
 
-
   return (
-    <div> 
+    <div>
       <Header/>
       <div className='main'>
         <div className="img-container">
@@ -79,102 +75,47 @@ const GuildListPage = () => {
         </div>
         <div className="modal-button-container">
           <button className="guild-list-button" onClick={openModal}>길드 생성</button>
-          <Modal
-            isOpen={isModalOpen}
-            onClose={closeModal}
-            title="길드 생성"
-            buttonText="생성"
-            onButtonClick={handleButtonClick}
-          >
-            <div className="modal-content">
-              <label htmlFor="guildName">길드명</label>
-              <input
-                type="text"
-                id="guildName"
-                placeholder="길드이름을 입력하세요"
-                value={guildName}
-                onChange={(e) => setGuildName(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="gameSelect">게임 선택</label>
-              <select
-              id="gameSelect"
-              value={selectedGame}
-              onChange={(e) => setSelectedGame(e.target.value)}
-              >
-              <option value="">게임을 선택하세요</option>
-                {games.map(game => (
-              <option key={game.id} value={game.id}>{game.name}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="maxMembers">최대 인원 수</label>
-              <input
-                type="number"
-                id="maxMembers"
-                placeholder="최대 인원 수를 입력하세요"
-                value={maxMembers}
-                onChange={(e) => setMaxMembers(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="masterNickname">마스터 닉네임</label>
-              <input
-                type="text"
-                id="masterNickname"
-                placeholder="길드마스터의 닉네임을 입력하세요"
-                value={masterNickname}
-                onChange={(e) => setMasterNickname(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="guildDescription">길드 설명</label>
-              <span>
-                <textarea
-                  id="guildDescription"
-                  placeholder="길드에 대한 설명을 입력하세요"
-                  value={guildDescription}
-                  onChange={(e) => setGuildDescription(e.target.value)}
-                ></textarea>
-              </span>
-            </div>
-          </Modal>
-        </div> 
+
+        </div>
         <GuildList 
           gameId={selectedGameId} 
-          onGuildClick={handleGuildClick} />
-          <Modal
-            isOpen={isGuildInfoModalOpen}
-            onClose={closeGuildInfoModal}
-            title={selectedGuild ? selectedGuild.guildName : ''}
-            buttonText="가입 신청"
-            onButtonClick={handleJoinGuild}
-          >
-          {selectedGuild && (
-            <div className="guild-info-modal">
-              <span> 인원수 </span>
-               <p> {selectedGuild.guildCurrentPopulation} / {selectedGuild.guildTotalPopulation} </p>
-              <span> 길드 설명 </span>
-              <p>{selectedGuild.guildContent}</p>
-              <p></p>
-              <div>
-                <label htmlFor="nickname">닉네임</label>
-                <input
-                  type="text"
-                  id="nickname"
-                  placeholder="닉네임을 입력하세요"
-                  value={nickname}
-                  onChange={(e) => setNickname(e.target.value)}
-                />
-              </div>
-            </div>
-          )}
-        </Modal>
+          onGuildClick={handleGuildClick} 
+          />
         <div className="home-button-container">
-          <button className="home-button" onClick={handleHomeClick}>흠으로 가기</button>
-        </div> 
+           <button className="home-button" onClick={handleHomeClick}>홈으로 가기</button>
+        </div>
+        <GuildCreateModal 
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          onCreateGuild={handleCreateGuild}
+          games={games}
+        />
+    <Modal
+        isOpen={isGuildInfoModalOpen}
+        onClose={closeGuildInfoModal}
+        title={selectedGuild ? selectedGuild.guildName : ''}
+        buttonText="가입 신청"
+        onButtonClick={handleJoinGuild}
+    >
+      {selectedGuild && (
+        <div className="guild-info-modal">
+          <span>인원수</span>
+          <p>{selectedGuild.guildCurrentPopulation} / {selectedGuild.guildTotalPopulation}</p>
+          <span>길드 설명</span>
+          <p>{selectedGuild.guildContent}</p>
+          <div>
+            <label htmlFor="nickname">닉네임</label>
+            <input
+              type="text"
+              id="nickname"
+              placeholder="닉네임을 입력하세요"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+          </div>
+        </div>
+      )}
+    </Modal>
       </div>
     </div>
   );
