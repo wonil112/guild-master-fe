@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GuildList from '../component/GuildList';
-import GuildListItem from '../component/\bGuildListItem';
+import GuildListItem from '../component/GuildListItem';
 import lolImage from '../img/lol_black.png';
 import overwatchImage from '../img/overwatch_black.png'
 import valorantImage from '../img/valorant_black.png'
-import loastark from '../img/loastark_black.png'
+import loastarkImage from '../img/loastark_black.png'
 import './GuildListPage.css'
 import Header from './HomeHeader'
 import Modal from '../component/Modal';
@@ -102,7 +102,7 @@ const GuildListPage = () => {
           <img src = {overwatchImage} onClick={() => handleImageClick(1)}/>
           <img src = {valorantImage} onClick={() => handleImageClick(2)}/>
           <img src={lolImage} onClick={() => handleImageClick(3)}/>
-          <img src = {loastark} onClick={() => handleImageClick(4)} />
+          <img src = {loastarkImage} onClick={() => handleImageClick(4)} />
         </div>
         <div className="modal-button-container">
           <button className="guild-list-button" onClick={openModal}>길드 생성</button>

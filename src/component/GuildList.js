@@ -1,6 +1,6 @@
 import React from 'react';
 import './GuildList.css';
-import GuildListItem from './\bGuildListItem';
+import GuildListItem from './GuildListItem';
 import {guildData} from '../data/guildData'
 
 const GuildList = ({ gameId, onGuildClick }) => {

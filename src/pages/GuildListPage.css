@@ -139,49 +139,11 @@ body, html {
     background-color: #595959;
 }
 
-.modal-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-  }
-  
-  .modal-content > div {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  
-  .modal-content label {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  .modal-content input,
-  .modal-content textarea {
-    width: 95%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .modal-content textarea {
-    height: 80px;
-    resize: vertical;
-  }
-  
-  .modal-content input:focus,
-  .modal-content textarea:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-  }
   .guild-info-modal p {
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     font-size: 16px;
   }
+  
   .guild-info-modal span {
     margin-bottom: 10px;
     font-weight: bold;

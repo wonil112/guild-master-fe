@@ -14,10 +14,11 @@
   .modal-content {
     background-color: white;
     padding: 20px;
+    margin-top: 20px;
     border-radius: 8px;
     width: 50%;
     max-width: 450px;
-    text-align: left; 
+    text-align: left;
   }
   
   .modal-header {
@@ -70,7 +71,7 @@
   .modal-footer {
     display: flex;
     justify-content: center;
-    margin-top: 20px; /* 상단 여백 추가 */
+    margin-top: 35px; /* 상단 여백 추가 */
   }
   h2 {
     color: #333;
@@ -137,3 +138,5 @@ button[type="button"] {
 button[type="button"]:hover {
     background-color: #7e7e7e;
 }
+
+
