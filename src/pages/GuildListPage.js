@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GuildList from '../component/GuildList';
 import GuildListItem from '../component/\bGuildListItem';
@@ -12,6 +12,13 @@ import Modal from '../component/Modal';
 import GuildCreateModal from '../component/GuildCreateModal';
 
 const GuildListPage = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  
   // 상위 게임을 눌렀을 때 gameId를 입력 받기 위한 state. 
   const [selectedGameId, setSelectedGameId] = useState(null);
   const handleImageClick = (gameId) => {
@@ -24,7 +31,15 @@ const GuildListPage = () => {
   // 홈으로 가기 버튼 후 홈 페이지로 이동하기 위한 state
   const navigate = useNavigate();
   const handleHomeClick = () => {
-    navigate('/home');
+    if (isLoggedIn) {
+      // 로그인 되어 있으면 홈으로 가기. 
+      navigate('/home');
+    } else {
+      alert('로그인이 필요한 서비스입니다.');
+      // 로그인 페이지로 리다이렉트하는 로직을 추가할 수 있습니다.
+      navigate('/login');
+    }
+    
   };
   // Games 드롭박스를 받기 위한 함수. 
   const games = [
@@ -49,17 +64,33 @@ const GuildListPage = () => {
     setSelectedGuild(null);
   };
   // 모달 후 길드 가입을 위한 로직. 
-  const handleJoinGuild = () => {
-    // 여기에 길드 가입 로직을 구현합니다.
-    closeGuildInfoModal();
-  };
   const [nickname, setNickname] = useState('');
+  const handleJoinGuild = () => {
+    //로그인이 되어 있는 상태면, 
+    if (isLoggedIn) {
+      // 여기에 길드 가입 로직을 구현합니다.
+      closeGuildInfoModal();
+    } else {
+      alert('로그인이 필요한 서비스입니다.');
+      // 로그인 페이지로 리다이렉트하는 로직을 추가할 수 있습니다.
+      navigate('/login');
+    }
+  };
+
   
   // 길드 생성 버튼을 누르면 모달이 뜸. 
   const handleCreateGuild = (newGuild) => {
     // 여기에 길드 생성 로직을 구현합니다.
     console.log('New guild created:', newGuild);
-    closeModal();
+    
+    if (isLoggedIn) {
+      // 여기에 길드 가입 로직을 구현합니다.
+      closeModal();
+    } else {
+      alert('로그인이 필요한 서비스입니다.');
+      // 로그인 페이지로 리다이렉트하는 로직을 추가할 수 있습니다.
+      navigate('/login');
+    }
   };
 
 

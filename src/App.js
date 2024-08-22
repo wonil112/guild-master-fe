@@ -9,7 +9,9 @@ import GuildBoardPage from './pages/GuildBoardPage'
 import SignUpPage from './pages/SignUpPage'
 import ManagePage from './pages/ManagePage';
 
+
 function App() {
+  
   return (
     <Router>
       <div>
