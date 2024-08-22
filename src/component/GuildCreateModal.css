@@ -1,0 +1,19 @@
+  .guild-create-modal-content {
+    background-color: white;
+    padding: 0px;
+    margin-top: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 450px;
+    text-align: left;
+  }
+
+  .guild-create-modal-content-select {
+    margin-bottom: 20px;
+  }
+
+
+  .guild-create-modal-content-input {
+    margin-bottom: 20px;
+  }

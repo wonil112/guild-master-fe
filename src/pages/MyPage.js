@@ -184,7 +184,7 @@ const MyPage = () => {
                                 )}
                             </div>
                             <div className="button-container">
-                            <div className="button-container">
+                            <div className="mypage-button-container">
                                 {isEditing ? (
                                     <>
                                         <button onClick={handleSave} disabled={!!nameError} >저장</button>

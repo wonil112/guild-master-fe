@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
+import './GuildCreateModal.css';
 
 const GuildCreateModal = ({ isOpen, onClose, onCreateGuild, games }) => {
   const [guildName, setGuildName] = useState('');
@@ -28,7 +29,7 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateGuild, games }) => {
       buttonText="생성"
       onButtonClick={handleCreateGuild}
     >
-      <div className="modal-content">
+      <div className="guild-create-modal-content">
         <label htmlFor="guildName">길드명</label>
         <input
           type="text"
@@ -38,7 +39,7 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateGuild, games }) => {
           onChange={(e) => setGuildName(e.target.value)}
         />
       </div>
-      <div>
+      <div className="guild-create-modal-content-select">
         <label htmlFor="gameSelect">게임 선택</label>
         <select
           id="gameSelect"
@@ -51,7 +52,7 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateGuild, games }) => {
           ))}
         </select>
       </div>
-      <div>
+      <div className="guild-create-modal-content-input">
         <label htmlFor="maxMembers">최대 인원 수</label>
         <input
           type="number"
@@ -61,7 +62,7 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateGuild, games }) => {
           onChange={(e) => setMaxMembers(e.target.value)}
         />
       </div>
-      <div>
+      <div className="guild-create-modal-content-input">
         <label htmlFor="masterNickname">마스터 닉네임</label>
         <input
           type="text"
@@ -71,7 +72,7 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateGuild, games }) => {
           onChange={(e) => setMasterNickname(e.target.value)}
         />
       </div>
-      <div>
+      <div className="guild-create-modal-content-textarea">
         <label htmlFor="guildDescription">길드 설명</label>
         <span>
           <textarea

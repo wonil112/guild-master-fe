@@ -1,45 +1,62 @@
 
-.header {
+.header-container {
     display: flex;
-    position: fixed;
+    flex-direction: column;
+    background-color: #32279C;
+  }
+
+  .header {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #32279C; /* 헤더 배경색 */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 헤더 그림자 추가 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-.logo {
+.guild-board-logo {
     width: 120px; /* 로고 크기 */
     cursor: pointer; /* 로고에 포인터 커서 추가 */
 }
-  
-.nav {
-    display: flex;
-    gap: 20px; /* 버튼 사이의 간격 */
+
+.guild-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
 }
   
-.nav-container {
+.guild-game-image {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 10px;
+    cursor: pointer
+  }
+  
+  .guild-name {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .nav-buttons {
     display: flex;
     align-items: center;
-    margin-left: auto; /* 버튼들을 오른쪽으로 정렬 */
-    margin-right: 10px;
-    gap: 10px;
-}
+  }
   
-.nav-button {
+  .guild-board-header-nav-button {
     background: none;
     border: none;
     color: white;
     font-size: 16px;
     cursor: pointer;
-    width: 100px;   
-    height: 38.5px;
-}
+    padding: 10px 15px;
+    margin-left: 10px;
+  }
   
-.nav-button:hover {
-    text-decoration: underline;
-}
+  .guild-board-header-nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
   
 .login-button {
     background-color: white;
