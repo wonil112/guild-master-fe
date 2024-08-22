@@ -156,7 +156,7 @@ const MyPage = () => {
                                 )}
                             </div>
                             <div className="button-container">
-                            <div className="button-container">
+                            <div className="mypage-button-container">
                                 {isEditing ? (
                                     <>
                                         <button onClick={handleSave}>저장</button>

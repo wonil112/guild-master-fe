@@ -24,7 +24,7 @@ body, html {
 .header .logo {
     width: 300px; /* 로고의 너비 */
     height: auto; /* 자동 높이 유지 */
-    margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 중앙 정렬 */
+    margin-right: 20px; /* 오른쪽 여백을 자동으로 설정하여 중앙 정렬 */
     margin-top: 20px;
 }
 
