@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import Header from './HomeHeader';
-import Modal from '../component/Modal';
 import './HomePage.css'
 import HomeEventTab from '../component/HomeEventTab';
 import EventCreateModal from '../component/EventCreateModal';

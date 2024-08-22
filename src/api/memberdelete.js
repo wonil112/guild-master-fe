@@ -1,6 +1,6 @@
 const API_URL = "http://localhost:8080";
 
-export const memberget = async () => {
+export const memberdelete = async () => { 
     try {
         const token = localStorage.getItem('token');
         const memberId = Number(localStorage.getItem('memberId'));
@@ -14,19 +14,20 @@ export const memberget = async () => {
         }
 
         const response = await fetch(`${API_URL}/members/${memberId}`, {
-            method: 'GET',
+            method: 'DELETE',
             headers: {
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
-            }
+            },
         });
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch member info');
-        } 
+        if (response.status === 204) {
+            // 204 No Content는 성공이지만 반환할 데이터가 없음을 의미합니다.
+            return null;
+        }
 
         return await response.json();
     } catch (error) {
-        console.error('Error fetching member info:', error);
+        console.error('Error delete member', error);
         throw error;
     }
 };
