@@ -1,8 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import Header from './HomeHeader';
-import Modal from '../component/Modal'
+import Modal from '../component/Modal';
 import { memberget } from '../api/memberget';
+import { memberpatch } from '../api/memberpatch';
 import logo from '../logo/fulllogo_white.png'
 import './MyPage.css'
 
@@ -20,9 +21,13 @@ const MyPage = () => {
     useEffect(() => {
         const fetchMemberInfo = async () => {
             try {
-                const memberInfo = await memberget();
-                setMember(memberInfo);
-                setEditName(memberInfo.name);
+                const response = await memberget();
+                if (response && response.data) {
+                    setMember(response.data);
+                    setEditName(response.data.name);
+                } else {
+                    throw new Error('Invalid response format');
+                }
             } catch (err) {
                 setError(err.message);
                 if (err.message === 'No token found' || err.message === 'No member ID found') {
@@ -46,11 +51,24 @@ const MyPage = () => {
         // 수정한 내용 상태를 받음. 
         setIsEditing(true);
     };
-    const handleSave = () => {
-        // 여기에 실제 저장 로직 구현
-        setMember({...member, name: editName});
-        setIsEditing(false);
-        setIsChangingPassword(false);
+    const handleSave = async () => {
+        try {
+            const updatedData = { name: editName };
+            if (isChangingPassword && newPassword) {
+                updatedData.password = newPassword;
+            }
+            const updatedMember = await memberpatch(updatedData);
+            setMember(updatedMember);
+            setIsEditing(false);
+            setIsChangingPassword(false);
+            setNewPassword('');
+            // 성공 메시지 표시
+            alert('회원 정보가 성공적으로 업데이트되었습니다.');
+        } catch (error) {
+            console.error('Failed to update member info:', error);
+            // 에러 메시지 표시
+            alert('회원 정보 업데이트에 실패했습니다: ' + error.message);
+        }
     };
 
     const handleCancel = () => {
