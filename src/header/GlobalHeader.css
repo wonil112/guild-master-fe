@@ -1,0 +1,78 @@
+.header {
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+.logo {
+    width: 350px; /* 로고 크기 */
+    cursor: pointer; /* 로고에 포인터 커서 추가 */
+    margin-left: 10px;
+}
+  
+.nav {
+    display: flex;
+    gap: 20px; /* 버튼 사이의 간격 */
+}
+  
+.nav-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* 버튼들을 오른쪽으로 정렬 */
+    margin-right: 30px;
+    gap: 10px;
+}
+  
+.nav-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100px;   
+    height: 38.5px;
+}
+  
+.nav-button:hover {
+    text-decoration: underline;
+}
+  
+.login-button {
+    background-color: white;
+    color: black;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    height: 38.5px;
+}
+  
+.login-button:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 배경색 변경 */
+}
+
+.logout-button {
+    background-color: white;
+    color: black;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 105px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    height: 38.5px;
+}
+  
+.logout-button:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 배경색 변경 */
+}

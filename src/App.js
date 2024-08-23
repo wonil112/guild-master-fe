@@ -1,13 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import GuildListPage from './pages/GuildListPage';
+import LoginPage from './pages/LoginPage';
+import MyPage from './pages/MyPage';
+import HomePage from './pages/HomePage';
+import GuildBoardPage from './pages/GuildBoardPage'
+import SignUpPage from './pages/SignUpPage'
+import ManagePage from './pages/ManagePage';
+import './Global.css';
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/manage" element={<ManagePage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/guildboard/:guildId" element={<GuildBoardPage />} /> 
+          <Route path="/guildlist" element={<GuildListPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
