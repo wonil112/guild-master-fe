@@ -1,7 +1,7 @@
 const API_URL = "http://localhost:8080";
 
-export const Login = async (email, password) => {
-    const data = { username: email, password };
+export const GuildPost = async (guildName, ) => {
+    const data = { };
 
     try {
         const response = await fetch(`${API_URL}/members/login`, {

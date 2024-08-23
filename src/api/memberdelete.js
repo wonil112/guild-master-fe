@@ -1,6 +1,6 @@
 const API_URL = "http://localhost:8080";
 
-export const memberdelete = async () => { 
+export const MemberDelete = async () => { 
     try {
         const token = localStorage.getItem('token');
         const memberId = Number(localStorage.getItem('memberId'));

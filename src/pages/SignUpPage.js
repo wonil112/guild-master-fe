@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { signUp } from '../api/signup';
+import { SignUp } from '../api/SignUp';
 import { useNavigate } from 'react-router-dom';
 import './SignUpPage.css';
 import Header from './HomeHeader';
@@ -69,7 +69,7 @@ const SignUpPage = () => {
     e.preventDefault();
 
     if (emailValid && passwordValid && nameValid && phoneValid) {
-      await signUp(email, name, password, phone)
+      await SignUp(email, name, password, phone)
       .then(() => {
         alert('회원가입에 성공했습니다.');
         navigate('/login');

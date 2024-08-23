@@ -27,13 +27,18 @@
 }
 
 .info-item {
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid #5b5b5b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .info-item h3 {
@@ -47,15 +52,16 @@
     margin: 0;
     color: #333;
     font-size: 16px;
+    text-align: right;
 }
 
 .info-item input {
     width: 30%;
-    height: 10px;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
+    text-align: right;  
 }
 .mypage-button-container {
     display: flex;

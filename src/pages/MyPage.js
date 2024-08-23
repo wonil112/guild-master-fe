@@ -2,9 +2,9 @@ import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import Header from './HomeHeader';
 import Modal from '../component/Modal';
-import { memberget } from '../api/memberget';
-import { memberpatch } from '../api/memberpatch';
-import { memberdelete } from '../api/memberdelete';
+import { memberget } from '../api/MemberGet';
+import { MemberPatch } from '../api/MemberPatch';
+import { MemberDelete } from '../api/MemberDelete';
 import logo from '../logo/fulllogo_white.png'
 import './MyPage.css'
 
@@ -76,7 +76,7 @@ const MyPage = () => {
             if (isChangingPassword && newPassword) {
                 updatedData.password = newPassword;
             }
-            const updatedMember = await memberpatch(updatedData);
+            const updatedMember = await MemberPatch(updatedData);
             setMember(updatedMember);
             setIsEditing(false);
             setIsChangingPassword(false);
@@ -110,7 +110,7 @@ const MyPage = () => {
 
     const confirmDelete = async () => {
         try {
-            await memberdelete();
+            await MemberDelete();
             setShowDeleteModal(false);
             // 로컬 스토리지에서 토큰과 회원 ID 제거
             localStorage.removeItem('token');
@@ -146,17 +146,19 @@ const MyPage = () => {
                         <div className="member-info">
                             <div className="info-item">
                                 <h3>이름</h3>
+                                <div className="info-item-content">
                                 {isEditing ? (
                                     <>
                                     <input 
                                         value={editName} 
                                         onChange={handleNameChange}
                                     />
-                                    {nameError && <p className="error-message">{nameError}</p>}
+                                    {nameError && <div className="error-message">{nameError}</div>}
                                     </>
                                 ) : (
                                     <p>{member.name}</p>
                                 )}
+                                </div>
                             </div>
                             <div className="info-item">
                                 <h3>이메일</h3>

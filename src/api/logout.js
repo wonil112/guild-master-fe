@@ -1,6 +1,4 @@
-const API_URL = "http://localhost:8080";
-
-export const logout = async () => {
+export const Logout = async () => {
     const token = localStorage.getItem('token');
 
     if(!token) {
