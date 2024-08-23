@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../api/login'
+import { Login } from '../api/Login';
 import './LoginPage.css';
 import Header from './HomeHeader';
 
@@ -31,12 +31,12 @@ const LoginPage = () => {
 
   // 로그인 버튼 클릭 핸들러
   const handleLogin = async () => {
-    console.log('login function:', login); 
+    console.log('login function:', Login); 
     const emailValid = validateEmail(email);
     const passwordValid = validatePassword(password);
 
     if (emailValid && passwordValid) {
-      const result = await login(email, password);
+      const result = await Login(email, password);
       console.log('Login result:', result);
       setShowModal(true);
     } else {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomeHeader.css'; // 스타일 파일 확인
 import Logo from '../logo/fulllogo_white.png'; // 경로 확인
-import { logout } from '../api/logout';
+import { Logout } from '../api/Logout'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Header = () => {
   const handleLogout = () => {
     setIsLoggedIn(false);
     handleNavigate('/login');
-    logout();
+    Logout();
   };
   const handleHome = () => {
     if (isLoggedIn) {

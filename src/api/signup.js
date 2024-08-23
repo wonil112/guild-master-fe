@@ -1,6 +1,6 @@
 const API_URL = "http://localhost:8080";
 
-export const signUp = async (email, name, password, phone) => {
+export const SignUp = async (email, name, password, phone) => {
   const data = { name, email, password, phone };
   console.log('Original data:', data);
   console.log('JSON data:', JSON.stringify(data));
