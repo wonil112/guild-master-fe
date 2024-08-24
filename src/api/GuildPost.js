@@ -1,31 +1,35 @@
 const API_URL = "http://localhost:8080";
 
-export const GuildPost = async (guildName, ) => {
-    const data = { };
+export const GuildPost = async (gameId, guildName, guildMasterName, guildTotalPopulation, guildContent) => {
+    const data = { gameId, guildName, guildMasterName, guildTotalPopulation, guildContent };
+    const token = localStorage.getItem('token');
+    console.log('Token:', token); // 토큰 로그
+    console.log('Request URL:', `${API_URL}/guilds`); // 요청 URL 로그
+    console.log('Request body:', JSON.stringify(data)); // 요청 본문 로그
 
     try {
-        const response = await fetch(`${API_URL}/members/login`, {
+        const response = await fetch(`${API_URL}/guilds`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `${token}`
             },
             body: JSON.stringify(data)
         });
 
-        const responseText = await response.text();
-
-        if (response.ok) {
-            const token = response.headers.get('authorization');
-            localStorage.setItem('token', token);
-            const memberId = response.headers.get('memberId');
-            localStorage.setItem('memberId', memberId);
-
-        } else {
-            console.error('Login failed:', responseText);
-            throw new Error(responseText || '로그인에 실패했습니다.');
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(errorText || '길드 생성에 실패했습니다.');
         }
+
+        // 성공 메시지 반환
+        return {
+            success: true,
+            message: '길드 생성에 성공했습니다!',// 서버에서 반환한 데이터
+        };
+
     } catch (error) {
-        console.error('Login error:', error);
+        console.error('Guild creation error:', error);
         throw error;
     }
-};
+}

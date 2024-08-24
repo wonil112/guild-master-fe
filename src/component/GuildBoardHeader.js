@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './GuildBoardHeader.css'; // 스타일 파일 확인
 import { games } from '../data/gameData';
 import Logo from '../logo/logo_white.png'; // 경로 확인
-import { logout } from '../api/logout';
+import { Logout } from '../api/Logout';
 import { guildData } from '../data/guildData';
 
 const Header = () => {
@@ -25,7 +25,7 @@ const Header = () => {
   const handleLogout = () => {
     setIsLoggedIn(false);
     handleNavigate('/login');
-    logout();
+    Logout();
   };
   
   const selectedGuild = guildData[0]; // 첫 번째 길드 선택

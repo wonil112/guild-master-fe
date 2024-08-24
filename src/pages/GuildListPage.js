@@ -10,20 +10,37 @@ import './GuildListPage.css'
 import Header from './HomeHeader'
 import Modal from '../component/Modal';
 import GuildCreateModal from '../component/GuildCreateModal';
+import { GuildPost } from '../api/GuildPost'; 
+import { GuildsGet } from '../api/GuildsGet';
 
 const GuildListPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
-  }, []);
+  // 길드 데이터 get api 요청하는 로직. 
+  const [guilds,  setGuilds] = useState([]); // 길드 목록을 저장할 state
+  const [loading, setLoading] = useState(false); // 로딩 상태
+  const [error, setError] = useState(null); // 에러 상태
+    // 길드 목록을 가져오는 함수
+  const fetchGuilds = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await GuildsGet(1, 100); // 페이지 1, 크기 100으로 요청
+        setGuilds(data.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+  };
 
-  
+
   // 상위 게임을 눌렀을 때 gameId를 입력 받기 위한 state. 
   const [selectedGameId, setSelectedGameId] = useState(null);
   const handleImageClick = (gameId) => {
     setSelectedGameId(gameId);
   };
+  useEffect(() => {
+    fetchGuilds();
+  }, [selectedGameId]);
   // 모달을 열고 닫기 위한 state. 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
@@ -31,15 +48,6 @@ const GuildListPage = () => {
   // 홈으로 가기 버튼 후 홈 페이지로 이동하기 위한 state
   const navigate = useNavigate();
   const handleHomeClick = () => {
-    if (isLoggedIn) {
-      // 로그인 되어 있으면 홈으로 가기. 
-      navigate('/home');
-    } else {
-      alert('로그인이 필요한 서비스입니다.');
-      // 로그인 페이지로 리다이렉트하는 로직을 추가할 수 있습니다.
-      navigate('/login');
-    }
-    
   };
   // Games 드롭박스를 받기 위한 함수. 
   const games = [
@@ -67,30 +75,30 @@ const GuildListPage = () => {
   const [nickname, setNickname] = useState('');
   const handleJoinGuild = () => {
     //로그인이 되어 있는 상태면, 
-    if (isLoggedIn) {
-      // 여기에 길드 가입 로직을 구현합니다.
-      closeGuildInfoModal();
-    } else {
-      alert('로그인이 필요한 서비스입니다.');
-      // 로그인 페이지로 리다이렉트하는 로직을 추가할 수 있습니다.
-      navigate('/login');
-    }
   };
 
   
   // 길드 생성 버튼을 누르면 모달이 뜸. 
-  const handleCreateGuild = (newGuild) => {
-    // 여기에 길드 생성 로직을 구현합니다.
-    console.log('New guild created:', newGuild);
-    
-    if (isLoggedIn) {
-      // 여기에 길드 가입 로직을 구현합니다.
-      closeModal();
-    } else {
-      alert('로그인이 필요한 서비스입니다.');
-      // 로그인 페이지로 리다이렉트하는 로직을 추가할 수 있습니다.
-      navigate('/login');
-    }
+  const handleCreateGuild = async (newGuild) => {
+      try {
+        const result = await GuildPost(
+          newGuild.game,
+          newGuild.name,
+          newGuild.masterNickname,
+          newGuild.maxMembers,
+          newGuild.description
+        );
+        if (result.success) {
+          alert(result.message); // 성공 메시지 표시
+          // 여기에 길드 목록을 새로고침하는 로직을 추가할 수 있습니다.
+          closeModal();
+        } else {
+          alert('길드 생성에 실패했습니다.');
+        }
+      } catch (error) {
+        console.error('Guild creation error:', error);
+        alert(error.message || '길드 생성 중 오류가 발생했습니다.');
+      }
   };
 
 
@@ -106,9 +114,11 @@ const GuildListPage = () => {
         </div>
         <div className="modal-button-container">
           <button className="guild-list-button" onClick={openModal}>길드 생성</button>
-
         </div>
+        // 모든 길드 datafmf 데리고 와야 함. 
+
         <GuildList 
+          guilds={guilds} // 가져온 길드 목록을 전달한다. 
           gameId={selectedGameId} 
           onGuildClick={handleGuildClick} 
           />

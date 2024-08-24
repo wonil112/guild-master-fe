@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 import './GuildCreateModal.css';
+import { GuildPost } from '../api/GuildPost';
 
 const GuildCreateModal = ({ isOpen, onClose, onCreateGuild, games }) => {
   const [guildName, setGuildName] = useState('');
@@ -8,17 +9,16 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateGuild, games }) => {
   const [maxMembers, setMaxMembers] = useState('');
   const [masterNickname, setMasterNickname] = useState('');
   const [guildDescription, setGuildDescription] = useState('');
+  const [error, setError] = useState('');
 
-  const handleCreateGuild = () => {
-    const newGuild = {
-      name: guildName,
-      game: selectedGame,
-      maxMembers: parseInt(maxMembers),
-      masterNickname,
-      description: guildDescription
-    };
-    onCreateGuild(newGuild);
-    onClose();
+  const handleCreateGuild = async () => {
+      const result = await GuildPost(
+        selectedGame,
+        guildName,
+        masterNickname,
+        parseInt(maxMembers),
+        guildDescription
+      );
   };
 
   return (
@@ -29,6 +29,7 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateGuild, games }) => {
       buttonText="생성"
       onButtonClick={handleCreateGuild}
     >
+      {error && <div className="error-message">{error}</div>}
       <div className="guild-create-modal-content">
         <label htmlFor="guildName">길드명</label>
         <input

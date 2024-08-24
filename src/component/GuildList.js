@@ -3,17 +3,22 @@ import './GuildList.css';
 import GuildListItem from './GuildListItem';
 import {guildData} from '../data/guildData'
 
-const GuildList = ({ gameId, onGuildClick }) => {
-  const filteredGuilds = guildData.filter(guild => guild.gameId === gameId);
+const GuildList = ({ guilds, gameId, onGuildClick }) => {
 
+  const filteredGuilds = gameId
+  ? guilds.data.filter(guild => guild.data.gameId === gameId)
+  : guilds;
+
+  console.log(filteredGuilds);
+  console.log(guilds)
   return (
     <div className='guild-list-container'>
       <div className='guild-list'>
-            {filteredGuilds.map(guilditem => (
+            {filteredGuilds.map(guild => (
             <GuildListItem
-                key={guilditem.guildId}
-                guild={guilditem}
-                onClick={() => onGuildClick(guilditem)}
+                key={guild.guildId}
+                guild={guild}
+                onClick={() => onGuildClick(guild)}
             />))}
       </div>
     </div>

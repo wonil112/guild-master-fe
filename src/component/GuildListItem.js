@@ -7,9 +7,9 @@ const GuildListItem = ({ guild, onClick }) => {
 
   return (
         <div className='guild-item' onClick={onClick} >
-            <div className='guild-name'>{guild.guildName}</div>
+            <div className='guild-name'>{guild.data.guildName}</div>
             <div className='guild-info'>
-                {guild.guildCurrentPopulation} / {guild.guildTotalPopulation} </div>
+                {guild.data.guildCurrentPopulation} / {guild.data.guildTotalPopulation} </div>
         </div>
     );
 };

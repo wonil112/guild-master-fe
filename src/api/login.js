@@ -15,6 +15,8 @@ export const Login = async (email, password) => {
         const responseText = await response.text();
 
         if (response.ok) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('memberId');
             const token = response.headers.get('authorization');
             localStorage.setItem('token', token);
             const memberId = response.headers.get('memberId');
