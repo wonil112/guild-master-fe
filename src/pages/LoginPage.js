@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Global.css';
 import GlobalHeader from '../header/GlobalHeader';
-import LoginInput from '../component/LoginPage/LoginInput';
+import LoginInput from '../component/RegistInput';
 import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
