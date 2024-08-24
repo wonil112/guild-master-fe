@@ -4,6 +4,9 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; 
   }
   
 .logo {
@@ -37,6 +40,7 @@
   
 .nav-button:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
   
 .login-button {

@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './GlobalHeader.css'; // 스타일 파일 확인
-import Logo from '../logo/fulllogo_white.png'; // 경로 확인
+import './GlobalHeader.css';
+import Logo from '../logo/fulllogo_white.png';
 
-
-const Header = () => {
+const GlobalHeader = () => {
   const navigate = useNavigate();
 
   const handleNavigate = (path) => {
+    console.log('handleNavigate called with path:', path);
     navigate(path);
   };
-
-  const handleLogout = () => {
-    // Logout();
-  };
-  const handleHome = () => {
-
-  }
-  const handleMyPage = () => {
-  }
 
   return (
     <header className="header">
@@ -26,19 +17,28 @@ const Header = () => {
         src={Logo} 
         alt="Logo" 
         className="logo" 
-        onClick={handleHome} // 클릭 시 이동
+        onClick={() => {
+          console.log('Logo clicked');
+          handleNavigate('/home');
+        }}
+        style={{ cursor: 'pointer' }}
       />
-      <div className="nav-container">
-        <button className="nav-button" onClick={handleMyPage}>My Page</button>
-        <button className="nav-button" onClick={() => handleNavigate('/guildlist')}>Search</button>
-        {/* {isLoggedIn ? (
-          <button className="logout-button" onClick={handleLogout}>logout</button>
-        ) : ( */}
-          <button className="login-button" onClick={() => handleNavigate('/login')}>login</button>
-        {/* )} */}
-      </div>
+      <nav className="nav-container">
+        <button className="nav-button" onClick={() => {
+          console.log('My Page button clicked');
+          handleNavigate('/mypage');
+        }}>My Page</button>
+        <button className="nav-button" onClick={() => {
+          console.log('Search button clicked');
+          handleNavigate('/guildlist');
+        }}>Search</button>
+        <button className="login-button" onClick={() => {
+          console.log('Login button clicked');
+          handleNavigate('/login');
+        }}>Login</button>
+      </nav>
     </header>
   );
 };
 
-export default Header;
+export default GlobalHeader;
