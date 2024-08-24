@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Global.css';
-import GlobalHeader from '../header/GlobalHeader';
+import GlobalHeader from './GlobalHeader';
 
 const MyPage = () => {
     return (
