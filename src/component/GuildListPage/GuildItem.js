@@ -43,8 +43,14 @@ const GuildPopulation = styled.p`
   margin: 5px 0 0;
   font-size: 14px;
 `;
-
-const GuildItem = ({ gameId, guildName, guildCurrentPopulation, guildTotalPopulation, onClick }) => {
+const PendingStatus = styled.span`
+    color: #ffa500;
+    font-size: 12px;
+    margin-top: 5px;
+`;
+// 가입 신청을 했을 경우. 그 길드 item 은 가입 대기가 뜨도록 함. 
+// 만약 내가 가입 해 놓은,,, 길드라면????? 그거는 어떻게 상태를 알아야 되는거지..
+const GuildItem = ({ gameId, guildName, guildCurrentPopulation, guildTotalPopulation, onClick, isPending }) => {
 
     const game = gameData[gameId];
 
@@ -54,6 +60,7 @@ const GuildItem = ({ gameId, guildName, guildCurrentPopulation, guildTotalPopula
             <GuildInfo>
                 <GuildName>{guildName}</GuildName>
                 <GuildPopulation>{guildCurrentPopulation} / {guildTotalPopulation}</GuildPopulation>
+                {isPending && <PendingStatus>가입 대기</PendingStatus>}
             </GuildInfo>
         </GuildItemWrapper>
     );
