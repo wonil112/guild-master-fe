@@ -16,20 +16,21 @@ const InputContainerStyle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    min-height: 140px; // 최소 높이 설정
+    height: 130px; // 최소 높이 설정
+    position: relative;
 `;
 
 const InputTitleStyle = styled.h1`
     font-size: 20px;
     font-weight: bold;
     color: #FFFFFF;
-    margin-bottom: 10px;
 `;
 
 const InputWrapper = styled.div`
     display: flex;
     width: 410px;
     align-items: center;
+    margin-bottom: 40px;
     gap: 10px; // 입력창과 버튼 사이의 간격
 `;
 
@@ -57,10 +58,10 @@ const InputStyle = styled.input`
 const ErrorMessageStyle = styled.p`
     color: red;
     font-size: 14px;
-    margin-top: 5px;
+    position: absolute;
+    margin-top: 95px;
     width: 100%;
     word-wrap: break-word;
-    min-height: 20px; // 최소 높이 설정
 `;
 
 const NavButton = styled.button`

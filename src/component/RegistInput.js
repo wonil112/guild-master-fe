@@ -16,6 +16,7 @@ const InputContainerStyle = styled.div`
     flex-direction: column;
     align-items: flex-start;
     min-height: 140px; // 최소 높이 설정
+    position: relative;
 `;
 
 const InputTitleStyle = styled.h1`
@@ -52,7 +53,8 @@ const ErrorMessageStyle = styled.p`
     margin-top: 5px;
     width: 100%;
     word-wrap: break-word;
-    min-height: 20px; // 최소 높이 설정
+    position: relative;
+    height: 10px;
 `;
   
 
