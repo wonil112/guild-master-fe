@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../Global.css';
 import GlobalHeader from './GlobalHeader';
 import RegistInput from '../component/RegistInput';
@@ -105,9 +106,10 @@ const SignUpPage = () => {
 
     // 이름 검증 
     const handleName = (e) => {
-        setName(e.target.value);
+        const newName = e.target.value;
+        setName(newName);
         const regex = /^[가-힣]{1,15}$/;
-        if (regex.test(name)) {
+        if (regex.test(newName)) {
             setNameValid(true);
             setNameError('')
         } else {
@@ -135,15 +137,28 @@ const SignUpPage = () => {
     };
 
     // signUp 버튼 클릭. email과 비밀번호, 전화번호, 이름 검증이 다 끝냈을 때 버튼 활성화.
-    const onClickConfirmButton = () => {
+    const onClickConfirmButton = async () => {
         // 나중에 여기다가 api /Members Post 요청을 보내야 함.
         // 실제 API 호출 및 응답 처리 로직으로 대체해야 함
         console.log('회원가입 버튼 클릭됨');  // 수정된 부분
         if (emailValid && pwValid && nameValid && phoneValid) {
-            // API 호출 성공을 가정
-            console.log('모든 필드가 유효함');  // 추가된 로그
-            alert('회원가입에 성공했습니다.');
-            navigate('/home'); // 홈 페이지로 이동
+            try {
+                const response = await axios.post('/members', {
+                    name: name,
+                    email: email,
+                    password: pw,
+                    phone: phone
+                });
+                
+                console.log('회원가입 성공', response.data);
+                alert('회원가입에 성공했습니다.' );
+                navigate('/home'); // 홈 페이지로 이동
+            } catch (error) {
+                console.error('회원 가입 실패', error);
+                console.log('API 요청 URL:', axios.defaults.baseURL + '/members');
+                alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+            }
+
         } else {
             console.log('유효하지 않은 필드가 있음');  // 추가된 로그
             alert('모든 필드를 올바르게 입력해주세요.');
