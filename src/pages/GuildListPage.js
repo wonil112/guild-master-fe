@@ -133,7 +133,7 @@ const GuildListPage = () => {
                 </div>
                     <GuildList list={filteredGuildList}/>
                 <div>
-                    <HomeButton to="/">홈으로 가기</HomeButton>
+                    <HomeButton to="/home">홈으로 가기</HomeButton>
                     <div>
                         <span> 0 </span>
                         <span> / 5 </span>
