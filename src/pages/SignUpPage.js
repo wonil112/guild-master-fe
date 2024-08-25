@@ -17,10 +17,11 @@ const SignUpContainer = styled.div`
 
 const SignUpForm = styled.div`
     width: 100%;
+    margin-top: 140px;
     max-width: 400px;
     display: flex;
     flex-direction: column;
-    gap: 15px; // 입력창들 사이의 간격
+    gap: 0px; // 입력창들 사이의 간격
 `;
 
 const SignUpButton = styled.button`
@@ -92,7 +93,8 @@ const SignUpPage = () => {
 
     // 비밀번호 검증. 
     const handlePw = (e) => {
-        setPw(e.target.value);
+        const newPw = e.target.value;
+        setPw(newPw);
         const regex =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
         if (regex.test(pw)) {
@@ -143,7 +145,8 @@ const SignUpPage = () => {
         console.log('회원가입 버튼 클릭됨');  // 수정된 부분
         if (emailValid && pwValid && nameValid && phoneValid) {
             try {
-                const response = await axios.post('/members', {
+                const response = await axios.post('/members', 
+                {
                     name: name,
                     email: email,
                     password: pw,
@@ -151,8 +154,8 @@ const SignUpPage = () => {
                 });
                 
                 console.log('회원가입 성공', response.data);
-                alert('회원가입에 성공했습니다.' );
-                navigate('/home'); // 홈 페이지로 이동
+                alert('회원가입에 성공했습니다.');
+                navigate('/login'); // 로그인 페이지로 이동
             } catch (error) {
                 console.error('회원 가입 실패', error);
                 console.log('API 요청 URL:', axios.defaults.baseURL + '/members');
@@ -186,9 +189,9 @@ const SignUpPage = () => {
     return (
         <div>
             <GlobalHeader />
-            <SignUpContainer>
-                <h1>회원가입</h1>
-                <SignUpForm>
+            <div className="main">
+                <SignUpContainer>
+                    <SignUpForm>
                     <DuplicateInput 
                         title = 'Email'
                         type ={email}
@@ -225,6 +228,7 @@ const SignUpPage = () => {
                     </SignUpButton>
                 </SignUpForm>
             </SignUpContainer>
+            </div>
         </div>
     );
 };
