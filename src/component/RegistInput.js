@@ -26,7 +26,7 @@ const InputTitleStyle = styled.h1`
 `;
 
 const InputStyle = styled.input`
-    width: 100%;
+    width: 300px;
     height: 40px;
     border-radius: 10px;
     font-size: 16px;

@@ -9,23 +9,89 @@
 // 아 회원가입은 중복확인 버튼이 필요하군. email 에서! 그러면 이름을 바꿔야 겠군. 
 
 import React from 'react';
-const DuplicateInput = ({title, type, value, placeholder, onChange , error, onCheckDuplicate}) => { 
+import styled from 'styled-components';
+
+const InputContainerStyle = styled.div`
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 140px; // 최소 높이 설정
+`;
+
+const InputTitleStyle = styled.h1`
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+`;
+
+const InputWrapper = styled.div`
+    display: flex;
+    width: 410px;
+    align-items: center;
+    gap: 10px; // 입력창과 버튼 사이의 간격
+`;
+
+const InputStyle = styled.input`
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: transparent;
+    border: 2px solid #F3F3F3;
+    padding: 0 15px;
+    color: #FFFFFF;
+    box-sizing: border-box;
+
+    &:focus {
+        outline: none;
+        border-color: pink;
+    }
+
+    &::placeholder {
+        color: #999;
+    }
+`;
+
+const ErrorMessageStyle = styled.p`
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    width: 100%;
+    word-wrap: break-word;
+    min-height: 20px; // 최소 높이 설정
+`;
+
+const NavButton = styled.button`
+  background: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  flex-shrink: 0;
+`;
+
+const DuplicateInput = ({title, type, value, placeholder, onChange, error, onCheckDuplicate}) => { 
 
 
     return (
-        <div>
-            <h1> {title} </h1>
-            <div>
-                <input
+        <InputContainerStyle>
+            <InputTitleStyle> {title} </InputTitleStyle>
+            <InputWrapper>
+                <InputStyle
                     type={type}
                     placeholder= {placeholder}
                     value ={value}
                     onChange={onChange}
                 />
-                {error && <p>{error}</p>}
-                <button onClick = {onCheckDuplicate}> 중복 확인 </button>
-            </div>
-        </div>
+                <NavButton onClick = {onCheckDuplicate}> 중복 확인 </NavButton>
+            </InputWrapper>    
+            {error && <ErrorMessageStyle>{error}</ErrorMessageStyle>}
+        </InputContainerStyle>
     )
 };
 export default DuplicateInput;

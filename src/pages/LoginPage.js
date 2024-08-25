@@ -62,7 +62,6 @@ const LoginPage = () => {
         pw: 'System2000!!'
     }
 
-    //useState: 새로고침을 하지 않아도, 동적으로 페이지가 변화하도록 도아주는 컴포넌트. 
     // Email 검증. 
     const handleEmail = (e) => {
         setEmail(e.target.value);
