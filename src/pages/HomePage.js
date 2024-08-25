@@ -38,8 +38,6 @@ const HomePage = () => {
         const fetchMemberGuilds = async () => {
             try {
                 const response = await axios.get(`/members/${memberId}`);
-                console.log('Current memberGuilds:', response.data.data.memberGuilds);
-                console.log('Is array?', Array.isArray(response.data.data.memberGuilds));
                 setMemberGuilds(response.data.data.memberGuilds);
             } catch (error) {
                 console.error('Error fetching member guilds:', error);
