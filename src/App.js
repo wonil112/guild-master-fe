@@ -21,7 +21,6 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="*" element={
             <>
-              <GlobalHeader />
               <Routes>
                 <Route path="/manage" element={<ManagePage />} />
                 <Route path="/home" element={<HomePage />} />

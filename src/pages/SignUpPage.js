@@ -4,7 +4,40 @@ import '../Global.css';
 import GlobalHeader from './GlobalHeader';
 import RegistInput from '../component/RegistInput';
 import DuplicateInput from '../component/SignUpPage/DuplicateInput'
+import styled from 'styled-components';
 
+
+const SignUpContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+`;
+
+const SignUpForm = styled.div`
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; // 입력창들 사이의 간격
+`;
+
+const SignUpButton = styled.button`
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
+`;
 
 const SignUpPage = () => {
     const navigate = useNavigate();
@@ -138,9 +171,9 @@ const SignUpPage = () => {
     return (
         <div>
             <GlobalHeader />
-            <div className="main">
+            <SignUpContainer>
                 <h1>회원가입</h1>
-                <div>
+                <SignUpForm>
                     <DuplicateInput 
                         title = 'Email'
                         type ={email}
@@ -172,11 +205,11 @@ const SignUpPage = () => {
                         error = {phoneError}
                         onCheckDuplicate = {handleDuplicatePhone}
                     />
-                    <button onClick = {onClickConfirmButton} disabled = {notAllow}>
+                    <SignUpButton onClick = {onClickConfirmButton} disabled = {notAllow}>
                         signUp
-                    </button>
-                </div>
-            </div>
+                    </SignUpButton>
+                </SignUpForm>
+            </SignUpContainer>
         </div>
     );
 };
