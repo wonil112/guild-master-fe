@@ -45,8 +45,11 @@ const GuildList = ({ list = [] }) => {
         setGuildDetails(null);
         setIsModalOpen(false);
     }
+
     // 길드 신청하는 api 요청. 
-    // 근데 이 로직은 modal에서 수행하는 게 아닌가? 
+    // 근데 이 로직은 guild detail modal에서 수행하는 게 아닌가? 
+    // 상위에서 데이터를 내려줘야 하는거며는..... 여기서 해야 하는게 맞는건가?
+    // GuildListPage 에서 해야 하는 게 아닌가? 아닌가 ? ? ? ? 
     // const applyToGuild = async (nickname) => {
     //     try {
     //         const response = await axios.post(`/guilds/${selectedGuildId}/registration`, {

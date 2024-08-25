@@ -1,4 +1,5 @@
 import React, {useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import '../Global.css';
@@ -18,6 +19,21 @@ const CreateButton = styled.button`
   margin-bottom: 20px;
   &:hover {
     background-color: #45a049;
+  }
+`;
+const HomeButton = styled(Link)`
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e0e0e0;
   }
 `;
 
@@ -51,12 +67,9 @@ const GuildListPage = () => {
     ]);
     // 길드 생성 모달에 대한 상태. 생성 버튼을 누르면, 모달이 뜨도록 함. ture 로 바뀜. 
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-
     const openCreateModal = () => {
-        console.log('Opening modal');
         setIsCreateModalOpen(true);
     };
-
     const closeCreateModal = () => {
         setIsCreateModalOpen(false);
     };
@@ -67,6 +80,9 @@ const GuildListPage = () => {
     const handleSearch = (guild) => {
         setSearchGuild(guild);
     }
+    // 검색 기능. guildList 는 현재 있는 길드와, post 요청이 성공했을 때 업데이트 되는
+    // newGuild 까지 포함되어 있음. 여기서 필터를 사용해서 이름을 검색하면 그에 
+    // 해당하는 길드만 뜸. 
     const filteredGuildList = guildList.filter(guild => 
         guild.guildName.toLowerCase().includes(searchGuild.toLowerCase())
     );
@@ -77,6 +93,7 @@ const GuildListPage = () => {
     // post /guilds/{guildId}/registration 이건 길드 상세 조회 모달에서 하는데 여기 상위에서 해야 되나?
     // post /guilds/{guildId} 이건 길드 생성 모달에서 하는데?
     // 길드들을 다 데리고 옴. 
+
     // useEffect(() => {
     //     fetchGuilds();
     // }, []);
@@ -90,8 +107,12 @@ const GuildListPage = () => {
     //         setIsLoading(false);
     //     }
     // };
+
+    //생성된 길드가 즉시 길드 목록에 추가되는게 맞는가!!!! 
+    // 새로운 길드가 성공적으로 생성되었을 때 호출되는 콜백 함수. 
     const handleCreateSuccess = (newGuild) => {
-        setGuildList([...guildList, newGuild]);
+        // guildList 상태를 새로운 배열로 업데이트함. 
+        setGuildList([newGuild, ...guildList]);
     };
 
     return (
@@ -112,7 +133,7 @@ const GuildListPage = () => {
                 </div>
                     <GuildList list={filteredGuildList}/>
                 <div>
-                    <button>홈으로 가기</button>
+                    <HomeButton to="/">홈으로 가기</HomeButton>
                     <div>
                         <span> 0 </span>
                         <span> / 5 </span>

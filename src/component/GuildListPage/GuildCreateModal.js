@@ -87,6 +87,9 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateSuccess }) => {
         guildTotalPopulation: maxMembers,
         guildContent
       });
+      //생성이 성공되면 그 응답 내용. 새로 생성된 길드의 정보가 포함됨. 
+      // 그리고 이게 부모 컴포넌트 (guildListPage)에 정의가 되어 있고, 
+      // 그곳에서 데이터를 받아서 목록 상태를 업데이트 할 것임. 
       onCreateSuccess(response.data);
       onClose();
     } catch (err) {
