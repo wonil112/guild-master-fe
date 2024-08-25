@@ -102,7 +102,8 @@ const LoginPage = () => {
                     username: email,
                     password: pw
                 });
-                console.log('로그인 성공', response.data);
+                const memberId = response.headers.get('memberId');
+                localStorage.setItem('memberId', memberId);
                 alert('로그인에 성공했습니다.');
                 navigate('/home'); // 홈 페이지로 이동
             } catch (error) {
