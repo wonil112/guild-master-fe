@@ -9,33 +9,90 @@ import SearchInput from '../component/GuildListPage/SearchInput'
 import GuildList from '../component/GuildListPage/GuildList';
 import GuildCreateModal from '../component/GuildListPage/GuildCreateModal';
 
-const CreateButton = styled.button`
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  &:hover {
-    background-color: #45a049;
-  }
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 90vh;
+  margin-top: 15px;
 `;
+
+const MainContent = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 80px; // 상단 패딩을 GlobalHeader 높이보다 약간 더 크게 설정
+  flex-grow: 1;
+`;
+
+const ContentWrapper = styled.div`
+  width: 800px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 300px;
+`;
+
+const SearchWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  height: 40px;
+`;
+
+const SearchInputWrapper = styled.div`
+  flex-grow: 1;
+  height: 100%;
+  margin-right: 10px;
+`;
+
+const CreateButton = styled.button`
+  padding: 0px 20px;
+  height: 100%;
+  background-color: #FFFFFF;
+  color: #2B0B3F;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+`;
+
+const FooterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  position: relative;
+`;
+
 const HomeButton = styled(Link)`
   padding: 10px 20px;
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #1E0E2F;
+  color: #FFFFFF;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #e0e0e0;
-  }
 `;
+
+const GuildCounter = styled.div`
+  color: #FFFFFF;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+`;
+
 
 // 1. 게임선택하는 GameList
 
@@ -116,31 +173,36 @@ const GuildListPage = () => {
     };
 
     return (
-        <div>
+        <PageContainer>
             <GlobalHeader />
-            <div className="main">
+            <MainContent>
                 <GameList/>
-                <div>
-                    <SearchInput onSearch={handleSearch}/>
-                    <CreateButton onClick={openCreateModal}>
-                        길드 생성
-                    </CreateButton>
+                <ContentWrapper>
+                    <SearchWrapper>
+                        <SearchInputWrapper>
+                            <SearchInput onSearch={handleSearch}/>
+                        </SearchInputWrapper>
+                        <CreateButton onClick={openCreateModal}>
+                            길드 생성
+                        </CreateButton>
+                    </SearchWrapper>
+                    <GuildList list={filteredGuildList}/>
+                
                     <GuildCreateModal
                     isOpen={isCreateModalOpen}
                     onClose={closeCreateModal}
                     onCreateSuccess={handleCreateSuccess}
                     />
-                </div>
-                    <GuildList list={filteredGuildList}/>
-                <div>
-                    <HomeButton to="/">홈으로 가기</HomeButton>
-                    <div>
+                </ContentWrapper>
+                <FooterWrapper>
+                    <HomeButton to="/home">홈으로 가기</HomeButton>
+                    <GuildCounter>
                         <span> 0 </span>
                         <span> / 5 </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </GuildCounter>
+                </FooterWrapper>
+            </MainContent>
+        </PageContainer>
     );
 };
 
