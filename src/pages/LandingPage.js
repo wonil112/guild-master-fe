@@ -5,14 +5,14 @@ import Logo from '../logo/fulllogo_white_big.png';
 import styled from 'styled-components';
 
 
-export const StyledHeader = styled.header`
+const HeaderStyle = styled.header`
   display: flex;
   justify-content: flex-end;
   margin: 20px;
   padding-right: 10px;  
 `;
 
-export const LoginButton = styled.button`
+const LoginButtonStyle = styled.button`
   height: 40px;
   width: 80px;
   border-radius: 10px;
@@ -22,8 +22,7 @@ export const LoginButton = styled.button`
   font-size: 20px;
 `;
 
-export const StyledButton = styled.button`
-  
+const ButtonStyle = styled.button`
   justify-content: center;
   align-items: right;
   height: 40px;
@@ -35,12 +34,19 @@ export const StyledButton = styled.button`
   font-weight: bold;
 `;
 
-export const Main = styled.div`
+const LandingPageMainStyle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 70vh;
+  overflow: hidden;
+`;
+
+const LandingPageLogoStyle = styled.img`
+  width: 350px;
+  cursor: pointer;
+  margin-left: 10px;
 `;
 
 
@@ -48,15 +54,15 @@ const LandingPage = () => {
     const navigate = useNavigate();
     return (
         <div>
-            <StyledHeader>
-                <LoginButton onClick={() => navigate('/login')}>login</LoginButton>
-            </StyledHeader>           
-            <Main>
-                <h1>
-                    <img src={Logo} alt="Logo" className="logo" />
-                </h1>
-                <StyledButton onClick={() => navigate('/guildlist')}>find your guild</StyledButton>
-            </Main>
+            <HeaderStyle>
+                <LoginButtonStyle onClick={() => navigate('/login')}>login</LoginButtonStyle>
+            </HeaderStyle>           
+            <LandingPageMainStyle>
+                <LandingPageLogoStyle src={Logo}
+                  alt="Logo"
+                  className="logo" />
+                <ButtonStyle onClick={() => navigate('/guildlist')}>find your guild</ButtonStyle>
+            </LandingPageMainStyle>
         </div>
     );
 };

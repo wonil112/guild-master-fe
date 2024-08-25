@@ -4,6 +4,9 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; 
   }
   
 .logo {
@@ -37,6 +40,7 @@
   
 .nav-button:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
   
 .login-button {
@@ -76,3 +80,4 @@
 .logout-button:hover {
     background-color: #f0f0f0; /* 마우스 오버 시 배경색 변경 */
 }
+
