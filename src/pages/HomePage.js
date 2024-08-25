@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../Global.css';
-import GlobalHeader from '../header/GlobalHeader';
-import {Modal} from '../component/Modal';
+import GlobalHeader from './GlobalHeader';
+import Modal from '../component/Modal';
 
 const HomePage = () => {
 

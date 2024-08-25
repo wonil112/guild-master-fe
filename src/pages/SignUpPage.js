@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Global.css';
-import GlobalHeader from '../header/GlobalHeader';
+import GlobalHeader from './GlobalHeader';
 import RegistInput from '../component/RegistInput';
 import DuplicateInput from '../component/SignUpPage/DuplicateInput'
 
