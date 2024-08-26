@@ -57,25 +57,33 @@ const GuildList = ({ list = [] }) => {
     // 근데 이 로직은 guild detail modal에서 수행하는 게 아닌가? 
     // 상위에서 데이터를 내려줘야 하는거며는..... 여기서 해야 하는게 맞는건가?
     // GuildListPage 에서 해야 하는 게 아닌가? 아닌가 ? ? ? ? 
-    // const applyToGuild = async (nickname) => {
-    //     try {
-    //         const response = await axios.post(`/guilds/${selectedGuildId}/registration`, {
-    //             nickname: nickname
-    //           });
-    //         // 사용자의 길드 가입 신청 상태를 관리함...?
-    //         alert('가입 신청에 성공했습니다.')
-    //         // 길드 신청을 관리하는 것. 밑에 item 에 이 정보를 내려서, 거기서 가입 대기. 
-    //         // 글씨가 나오도록 할 것임. 
-    //         setPendingApplications(prev => ({ ...prev, [guildId]: true }));
+    const applyToGuild = async (guildId, nickname) => {
+        try {
+            const token = localStorage.getItem('token');
+            console.log('Stored token:', token);
 
-    //         closeModal();
-    //     } catch (error) {
-    //         alert('가입 신청에 실패했습니다.');
-    //         console.error("Error applying to guild:", error);
-    //     }
-    // }
-
-
+            const response = await axios.post(`/guilds/${selectedGuildId}/registration`, {
+                nickName: nickname
+              }, {
+                headers: {
+                    Authorization: `${token}`
+                }
+              });
+            // 사용자의 길드 가입 신청 상태를 관리함...?
+            if(response.status === 200) {
+                alert('가입 신청에 성공했습니다.');
+                // 길드 신청을 관리하는 것. 밑에 item 에 이 정보를 내려서, 거기서 가입 대기. 
+                // 글씨가 나오도록 할 것임. 
+                setPendingApplications(prev => ({ ...prev, [guildId]: true }));
+            } else {
+                alert('가입 신청에 실패했습니다.');
+            }
+        } catch (error) {
+            alert('가입 신청에 실패했습니다.');
+            console.error("Error applying to guild:", error);
+        }
+        closeModal();
+    }
 
     if(list.length === 0 ) {
         return <div> 길드가 없습니다. </div>
@@ -99,6 +107,7 @@ const GuildList = ({ list = [] }) => {
                     isOpen={isModalOpen}
                     onClose={closeModal}
                     guildDetails={guildDetails}
+                    onApply={(nickname) => applyToGuild(selectedGuildId, nickname)}
                 />
             )}
         </>

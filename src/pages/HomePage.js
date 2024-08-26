@@ -20,7 +20,7 @@ const MainContainer = styled.main`
 const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 150px;
+  margin-top: 80px;
   width: 1300px;
   height: 700px;
   gap: 50px;
