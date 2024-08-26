@@ -123,9 +123,11 @@ const GuildListPage = () => {
     // 검색 기능. guildList 는 현재 있는 길드와, post 요청이 성공했을 때 업데이트 되는
     // newGuild 까지 포함되어 있음. 여기서 필터를 사용해서 이름을 검색하면 그에 
     // 해당하는 길드만 뜸. 
-    const filteredGuildList = guildList.filter(guild => 
-      guild && guild.guildName && guild.guildName.toLowerCase().includes((searchGuild || '').toLowerCase())
-  );
+    const filteredGuildList = Array.isArray(guildList) 
+        ? guildList.filter(guild => 
+            guild && guild.guildName && guild.guildName.toLowerCase().includes((searchGuild || '').toLowerCase())
+          )
+        : [];
   
     // api 요청은 상위에서 다 해야 한다고?
     // get /guilds >> guildList
@@ -146,8 +148,7 @@ const GuildListPage = () => {
       }
         finally {
         }
-      };
-
+    };
 
     //생성된 길드가 즉시 길드 목록에 추가되는게 맞는가!!!! 
     // 새로운 길드가 성공적으로 생성되었을 때 호출되는 콜백 함수. 

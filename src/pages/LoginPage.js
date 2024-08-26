@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react';
-import { useStore } from '../auth';
 import axios from 'axios';
 import '../Global.css';
 import GlobalHeader from './GlobalHeader';
@@ -43,13 +42,6 @@ const LinkStyle = styled(Link)`
 
 const LoginPage = () => {
     const navigate = useNavigate();
-    const { dispatch } = useStore();
-
-    const handleLogin = () => {
-        dispatch({ type: 'LOGIN', payload: { username: 'email' } });
-        navigate('/home');
-    }
-
     const [email, setEmail] = useState('');
     const [pw, setPw] = useState('');
     // 이메일 형식 검증
@@ -114,12 +106,7 @@ const LoginPage = () => {
                 localStorage.setItem('memberId', memberId);
                 const token = response.headers.get('Authorization');
                 localStorage.setItem('token', token);
-                dispatch({ type: 'LOGIN', 
-                    payload: { username: email,
-                        memberId: memberId,
-                        token: token
-                     }
-                    });
+
                 alert('로그인에 성공했습니다.');
                 navigate('/home'); // 홈 페이지로 이동
             } catch (error) {

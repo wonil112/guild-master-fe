@@ -91,16 +91,16 @@ const HomePage = () => {
 
     return (
         <>
-        <GlobalHeader />
+        <GlobalHeader/>
         <MainContainer>
           <ContentWrapper>
             <ListContainer>
               <ListTitle>내 길드 목록</ListTitle>
-              <MyGuildList list={memberGuilds} />
+              <MyGuildList list={memberGuilds}/>
             </ListContainer>
             <ListContainer>
               <ListTitle>신청 이벤트 목록</ListTitle>
-              <MyEventList list={memberEvents} />
+              <MyEventList list={memberEvents}/>
             </ListContainer>
           </ContentWrapper>
         </MainContainer>
