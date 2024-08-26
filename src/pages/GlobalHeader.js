@@ -9,7 +9,7 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  z-index:1000;
+  z-index: 1000;
 `;
 
 const LogoImg = styled.img`

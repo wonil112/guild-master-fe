@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
+import axios from 'axios';
 import '../Global.css';
 import GlobalHeader from './GlobalHeader';
 import LoginInput from '../component/RegistInput';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -17,7 +18,6 @@ const LoginButtonStyle = styled.button`
     font-size: 20px;
     font-weight: bold;
 `;
-
 
 const LinkContainer = styled.div`
   display: flex;
@@ -40,9 +40,8 @@ const LinkStyle = styled(Link)`
   }
 `;
 
-
-
 const LoginPage = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [pw, setPw] = useState('');
     // 이메일 형식 검증
@@ -94,14 +93,24 @@ const LoginPage = () => {
     }
 
     // 로그인 버튼 클릭.! email 과 비밀번호 검증이 다 끝냈을 때. 버튼 활성화. 
-    const onClickConfirmButton = () => {
+    const onClickConfirmButton = async () => {
         // 나중에 여기다가 api /login Post 요청을 보내야 함. 
         // 바꿔야 되네.......나중에...........
         if(validateEmail() && validatePw()) {
-            if (email === User.email && pw === User.pw) {
-                alert('로그인에 성공했습니다.')
-            } else {
-                alert('등록되지 않은 회원이거나 입력한 값이 일치하지 않습니다.');
+            try {
+                const response = await axios.post('/members/login', {
+                    username: email,
+                    password: pw
+                });
+                const memberId = response.headers.get('memberId');
+                localStorage.setItem('memberId', memberId);
+                const token = response.headers.get('token');
+                localStorage.setItem('token', token);
+                alert('로그인에 성공했습니다.');
+                navigate('/home'); // 홈 페이지로 이동
+            } catch (error) {
+                console.error('로그인 실패', error);
+                alert('로그인에 실패했습니다. 다시 시도해주세요.');
             }
         }
     }

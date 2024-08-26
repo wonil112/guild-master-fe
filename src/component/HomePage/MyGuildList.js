@@ -5,7 +5,6 @@ import MyGuildItem from './MyGuildItem';
 const GuildListContainer = styled.div`
   width: 100%;
   padding: 20px;
-  background-color: #f5f5f5;
   border-radius: 8px;
 `;
 
@@ -23,14 +22,12 @@ const GuildItemsWrapper = styled.div`
 
 const EmptyMessage = styled.div`
   text-align: center;
-  color: #666;
   padding: 20px;
 `;
 
 function MyGuildList({list = []}) {
     return (
         <GuildListContainer>
-            <GuildListTitle>내 길드 목록</GuildListTitle>
             {list.length === 0 ? (
                 <EmptyMessage>내 길드가 없습니다.</EmptyMessage>
             ) : (

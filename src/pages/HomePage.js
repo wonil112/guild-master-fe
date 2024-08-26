@@ -8,18 +8,36 @@ import MyEventList from '../component/HomePage/MyEventList';
 import { useEffect, useState } from 'react';
 
 
-const MainContainer = styled.div`
+const MainContainer = styled.main`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  flex-grow: 1;
+`;
+
+const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  margin-top: 150px;
+  width: 1300px;
+  height: 500px;
+  gap: 50px;
 `;
 
 const ListContainer = styled.div`
   width: 48%;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
+const ListTitle = styled.h2`
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+`;
 // 1. 우측 MyGuildList 좌측 MyEventList(내가 참석한 이벤트만 뜨는 List)
 // 2. MyGuildList GuildItem 에서 필요한 것. >> page 에서 get /membmers/{member-id} 의 response.data.memberGuildDtos.
 // 를 받아서 내려주어야 함.
@@ -49,17 +67,21 @@ const HomePage = () => {
 
 
     return (
-        <div>
-            <GlobalHeader/>
-            <MainContainer>
-                <ListContainer>
-                    <MyGuildList list={memberGuilds}/>
-                </ListContainer>
-                <ListContainer>
-                    <MyEventList list={MyEventList}/>
-                </ListContainer>
-            </MainContainer>
-        </div>
+        <>
+        <GlobalHeader />
+        <MainContainer>
+          <ContentWrapper>
+            <ListContainer>
+              <ListTitle>내 길드 목록</ListTitle>
+              <MyGuildList list={memberGuilds} />
+            </ListContainer>
+            <ListContainer>
+              <ListTitle>신청 이벤트 목록</ListTitle>
+              <MyEventList list={MyEventList} />
+            </ListContainer>
+          </ContentWrapper>
+        </MainContainer>
+      </>
     );
 };
 
