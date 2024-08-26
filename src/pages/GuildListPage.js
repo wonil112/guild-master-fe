@@ -104,24 +104,7 @@ const GuildCounter = styled.div`
 // get 요청을 보냈을 시 이 데이터를 받아야 하는 GuildList. >> guilds 데이터를 받음. 
 // 
 const GuildListPage = () => {
-    const [guildList, setGuildList] = useState([
-        {
-            guildId: 1,
-            gameId: 1,
-            guildName: '오버워치 길드',
-            guildCurrentPopulation: 50,
-            guildTotalPopulation: 100,
-            guildContent: '오버워치 길드입니다.'
-        },
-        {
-            guildId: 2,
-            gameId: 4,
-            guildName: 'LoL 길드',
-            guildCurrentPopulation: 5,
-            guildTotalPopulation: 50,
-            guildContent: '롤 길드입니다.'
-        }
-    ]);
+    const [guildList, setGuildList] = useState([]);
     // 길드 생성 모달에 대한 상태. 생성 버튼을 누르면, 모달이 뜨도록 함. ture 로 바뀜. 
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
     const openCreateModal = () => {
@@ -141,9 +124,9 @@ const GuildListPage = () => {
     // newGuild 까지 포함되어 있음. 여기서 필터를 사용해서 이름을 검색하면 그에 
     // 해당하는 길드만 뜸. 
     const filteredGuildList = guildList.filter(guild => 
-        guild.guildName.toLowerCase().includes(searchGuild.toLowerCase())
-    );
-    
+      guild && guild.guildName && guild.guildName.toLowerCase().includes((searchGuild || '').toLowerCase())
+  );
+  
     // api 요청은 상위에서 다 해야 한다고?
     // get /guilds >> guildList
     // get /guilds/{guildId} >> selectedGuild
@@ -151,25 +134,27 @@ const GuildListPage = () => {
     // post /guilds/{guildId} 이건 길드 생성 모달에서 하는데?
     // 길드들을 다 데리고 옴. 
 
-    // useEffect(() => {
-    //     fetchGuilds();
-    // }, []);
-    // const fetchGuilds = async () => {
-    //     setIsLoading(true);
-    //     try {
-    //         const response = await axios.get('/guilds');
-    //         setGuildList(response.data);
-    //     } 
-    //     finally {
-    //         setIsLoading(false);
-    //     }
-    // };
+    // 최초한번만 되게. 
+    useEffect(() => {
+        fetchGuilds();
+    }, []);
+
+    const fetchGuilds = async () => {
+      try {
+          const response = await axios.get('/guilds?page=1&size=100');
+          setGuildList(response.data.data);
+      }
+        finally {
+        }
+      };
+
 
     //생성된 길드가 즉시 길드 목록에 추가되는게 맞는가!!!! 
     // 새로운 길드가 성공적으로 생성되었을 때 호출되는 콜백 함수. 
-    const handleCreateSuccess = (newGuild) => {
+    const handleCreateSuccess = async (newGuild) => {
         // guildList 상태를 새로운 배열로 업데이트함. 
         setGuildList([newGuild, ...guildList]);
+        await fetchGuilds();
     };
 
     return (
@@ -187,7 +172,6 @@ const GuildListPage = () => {
                         </CreateButton>
                     </SearchWrapper>
                     <GuildList list={filteredGuildList}/>
-                
                     <GuildCreateModal
                     isOpen={isCreateModalOpen}
                     onClose={closeCreateModal}

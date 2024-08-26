@@ -80,17 +80,26 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateSuccess }) => {
         return;
     }
     try {
-      const response = await axios.post('/guilds', {
-        gameId,
-        guildName,
-        guildMasterName: masterNickname,
-        guildTotalPopulation: maxMembers,
-        guildContent
-      });
+      const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옵니다.
+      
+      const response = await axios.post('/guilds', 
+        {
+          gameId,
+          guildName,
+          guildMasterName: masterNickname,
+          guildTotalPopulation: maxMembers,
+          guildContent
+        },
+        {
+          headers: {
+            Authorization: `${token}` // Authorization 헤더에 토큰을 추가합니다.
+          }
+        }
+      );
       //생성이 성공되면 그 응답 내용. 새로 생성된 길드의 정보가 포함됨. 
       // 그리고 이게 부모 컴포넌트 (guildListPage)에 정의가 되어 있고, 
       // 그곳에서 데이터를 받아서 목록 상태를 업데이트 할 것임. 
-      onCreateSuccess(response.data);
+      onCreateSuccess(response.data.data);
       onClose();
     } catch (err) {
       setError('길드 생성에 실패했습니다. 다시 시도해주세요.');

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GuildItem from "./GuildItem";
+import axios from 'axios';
 import GuildDetailModal from "./GuildDetailModal"; 
 // 상위에서 받은 데이터를 guildItem 에 뿌려줌. 
 // guild.gameId, guild.guildName,  
@@ -19,21 +20,27 @@ const GuildList = ({ list = [] }) => {
     
     // selectedGuildId 가 존재할 때에만 fetchGuildDetails 함수를 호출함.
     // 길드를 선택해서, sectedGuildId 가 바뀔 때마다 해당 길드의 상세 정보를 가져옴. 
-    // useEffect(() => {
-    //     if (selectedGuildId) {
-    //         fetchGuildDetails(selectedGuildId);
-    //     }
-    // }, [selectedGuildId]);
-    // const fetchGuildDetails = async (guildId) => {
-    //     try {
-    //         const response = await axios.get(`/guilds/${guildId}`);
-    //         // guild 정보에 대한 상태? 
-    //         setGuildDetails(response.data);
-    //         setIsModalOpen(true);
-    //     } catch (error) {
-    //         console.error("Error fetching guild details:", error);
-    //     }
-    // };
+    useEffect(() => {
+        if (selectedGuildId) {
+            fetchGuildDetails(selectedGuildId);
+        }
+    }, [selectedGuildId]);
+
+    const fetchGuildDetails = async (guildId) => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`/guilds/${guildId}`, {
+                headers: {
+                    'Authorization': `${token}`
+                }
+            });
+            // guild 정보에 대한 상태? 
+            setGuildDetails(response.data.data);
+            setIsModalOpen(true);
+        } catch (error) {
+            console.error("Error fetching guild details:", error);
+        }
+    };
 
     // guildItem 을 클릭하면 guildId 에 해당하는 상세 정보모달이 가 뜸.  
     const handleGuildClick = (guildId) => {
