@@ -4,34 +4,32 @@ import MyGuildItem from './MyGuildItem';
 
 const GuildListContainer = styled.div`
   width: 100%;
-  padding: 20px;
+  max-height: 600px;
   border-radius: 8px;
+  overflow-y: auto;
+
+   .empty-message {
+    text-align: center;
+    color: #666;
+    padding: 20px 0;
+  }
+
+  .guild-items {
+    text-align: flex;
+    flex-direction: column;
+    padding: 30px 0;
+  }
 `;
 
-const GuildListTitle = styled.h2`
-  font-size: 24px;
-  margin-bottom: 20px;
-  color: #333;
-`;
 
-const GuildItemsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-const EmptyMessage = styled.div`
-  text-align: center;
-  padding: 20px;
-`;
 
 function MyGuildList({list = []}) {
     return (
         <GuildListContainer>
             {list.length === 0 ? (
-                <EmptyMessage>내 길드가 없습니다.</EmptyMessage>
+                <div className="empty-message">신청 길드가 없습니다.</div>
             ) : (
-                <GuildItemsWrapper>
+                <div className="guild-items">
                     {list.map(({
                         guildId,
                         gameId,
@@ -52,7 +50,7 @@ function MyGuildList({list = []}) {
                             memberGuildStatuses={memberGuildStatuses}
                         />
                     ))}
-                </GuildItemsWrapper>
+                </div>
             )}
         </GuildListContainer>
     );
