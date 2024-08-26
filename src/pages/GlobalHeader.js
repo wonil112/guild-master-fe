@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Logo from '../logo/fulllogo_white.png';
+import { useStore } from '../auth';
 
 const Header = styled.header`
   display: flex;
@@ -60,15 +61,22 @@ const LoginButton = styled.button`
 `;
 
 const LogoutButton = styled(LoginButton)`
-  width: 105px;
 `;
 
 const GlobalHeader = () => {
   const navigate = useNavigate();
+  const { state, dispatch } = useStore();
+  
+  console.log('Current state:', state);
 
   const handleClick = (path) => {
     console.log(`Navigating to ${path}`);
     navigate(path);
+  };
+
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+    navigate('/');
   };
 
   return (
@@ -81,11 +89,11 @@ const GlobalHeader = () => {
       <NavContainer>
         <NavButton onClick={() => handleClick('/mypage')}>My Page</NavButton>
         <NavButton onClick={() => handleClick('/guildlist')}>Search</NavButton>
-        {/* {isLoggedIn ? (
+        {state.isLogin ? (
           <LogoutButton onClick={handleLogout}>logout</LogoutButton>
-        ) : ( */}
+        ) : (
           <LoginButton onClick={() => handleClick('/login')}>login</LoginButton>
-        {/* )} */}
+        )}
       </NavContainer>
     </Header>
   );
