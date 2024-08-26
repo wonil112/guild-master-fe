@@ -97,4 +97,3 @@ const GuildDetailModal = ({ isOpen, onClose, guildDetails, onApply }) => {
   };
 
   export default GuildDetailModal;
-  
