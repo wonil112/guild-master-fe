@@ -112,16 +112,14 @@ const LoginPage = () => {
                 });
                 const memberId = response.headers.get('memberId');
                 localStorage.setItem('memberId', memberId);
-                const token = response.headers.get('token');
+                const token = response.headers.get('Authorization');
                 localStorage.setItem('token', token);
-
                 dispatch({ type: 'LOGIN', 
                     payload: { username: email,
                         memberId: memberId,
                         token: token
                      }
                     });
-
                 alert('로그인에 성공했습니다.');
                 navigate('/home'); // 홈 페이지로 이동
             } catch (error) {
