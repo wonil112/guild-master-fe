@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 // guildData에서 원하는 정보를 보여줌. 
 import styled from 'styled-components'
 import Modal from '../Modal'
+import axios from 'axios';
 
 const GuildInfo = styled.div`
   margin-bottom: 10px;
@@ -12,9 +13,11 @@ const GuildInfo = styled.div`
 const ApplyButton = styled.button`
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 20px;
   cursor: pointer;
-  background-color: var(--coz-purple-600);
+  background-color: #000000;
   color: white;
 `;
 
@@ -40,15 +43,36 @@ const NicknameInput = styled.input`
 `;
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  margin-top: 10px;
+  justify-content: center;
 `;
 
 const GuildDetailModal = ({ isOpen, onClose, guildDetails, onApply }) => {
+
+  console.log(guildDetails);
     // 가입 신청 시 닉네임을 받아서 post 요청을 보낼 것..
     const [nickname, setNickname] = useState('');
-    const handleApply = () => {
-      onApply(nickname);
-      onClose();
+    const handleApply = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        const response = await axios.post(`/guilds/${guildDetails.guildId}/registration`, {
+          guildId: guildDetails.guildId,
+          nickname: nickname
+        }, {headers: {
+          Authorization: `${token}`
+        }});
+
+        if(response.status === 201) {
+          alert('가입신청 성공');
+          onApply(nickname);
+          onClose();
+        } else {
+          alert('가입신청 실패');
+        }
+      } catch (error) {
+        console.error("가입신청 오류 :", error);
+        alert('가입신청 오류');
+      }      
     };
     console.log(guildDetails);
   

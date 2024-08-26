@@ -25,14 +25,6 @@ const Input = styled.input`
   border-radius: 5px;
 `;
 
-const TextArea = styled.textarea`
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: vertical;
-  min-height: 100px;
-`;
-
 const Select = styled.select`
   padding: 10px;
   border: 1px solid #ccc;
@@ -90,7 +82,7 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateSuccess }) => {
     try {
       const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옵니다.
       
-      const response = await axios.post('/guilds', 
+      const response = await axios.post('/events', 
         {
           gameId,
           guildName,
@@ -176,7 +168,7 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateSuccess }) => {
 
         <InputGroup>
           <Label htmlFor="guildContent">길드 소개</Label>
-          <TextArea
+          <Input
             id="guildContent"
             type="text"
             placeholder="길드 소개를 입력하세요"
@@ -194,4 +186,4 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateSuccess }) => {
   );
 };
 
-export default GuildCreateModal;
+export default GuildEventCreateModal;
