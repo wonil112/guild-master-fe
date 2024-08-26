@@ -16,6 +16,8 @@ const rootReducer = (state, action) => {
           }
         };
       case 'LOGOUT':
+        localStorage.removeItem('token');
+        localStorage.removeItem('memberId');
         return {
           ...state,
           isLogin: false,

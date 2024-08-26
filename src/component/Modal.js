@@ -45,7 +45,7 @@ const ModalFooter = styled.div`
   justify-content: flex-end;
 `;
 
-const Modal = ({ isOpen, onClose, title, children  }) => {
+const Modal = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
 
   return (

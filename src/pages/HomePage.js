@@ -50,11 +50,13 @@ const HomePage = () => {
     const [memberGuilds, setMemberGuilds] = useState([]);
     // const memberId = 2; // 나중에 로그인 했을 때. localstorage 에 저장된 걸로. 
     //레디스를 적용하면.. 토큰은 로킬스토리지가 아닌 레디스에 있는 거??
-    const memberId = localStorage.getItem('memberId');
+    
 
     const [memberEvents, setMemberEvents] = useState([]);
     
     // memberId 에 대한 조회를 하면 가입한 길드들이 조회가 됨. 
+    const memberId = localStorage.getItem('memberId');
+
     useEffect(() => {
         const fetchMemberGuilds = async () => {
             try {
@@ -71,9 +73,13 @@ const HomePage = () => {
     useEffect(() => {
         const fetchMemberEvents = async () => {
             try {
-                const response = await axios.get(`/events/members/${memberId}`);
-                // response dto 확인하기. 
-                setMemberEvents(response.data);
+                const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
+                const response = await axios.get(`/events/members/${memberId}?page=1&size=100`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setMemberEvents(response.data.data);
             } catch (error) {
                 console.error('Error fetching member guilds:', error);
             }
