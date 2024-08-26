@@ -187,9 +187,77 @@ const GuildCreateModal = ({ isOpen, onClose, onCreateSuccess }) => {
       isOpen={isOpen}
       onClose={onClose}
       title="길드 생성"
-      content={content}
-      footer={footer}
-    />
+    >
+      <CreateContainer>
+        <InputGroup>
+          <Label htmlFor="guildName">길드명</Label>
+          <Input
+            id="guildName"
+            type="text"
+            placeholder="길드명을 입력하세요"
+            value={guildName}
+            onChange={(e) => setGuildName(e.target.value)}
+            required
+          />
+        </InputGroup>
+
+        <InputGroup>
+          <Label htmlFor="gameId">게임</Label>
+          <Select
+            id="gameId"
+            value={gameId}
+            onChange={(e) => setGameId(e.target.value)}
+            required
+          >
+            <option value="">게임 선택</option>
+            <option value="1">오버워치</option>
+            <option value="2">발로란트</option>
+            <option value="3">리그오브레전드</option>
+            <option value="4">로스트아크</option>
+          </Select>
+        </InputGroup>
+
+        <InputGroup>
+          <Label htmlFor="maxMembers">최대 인원수</Label>
+          <Input
+            id="maxMembers"
+            type="number"
+            placeholder="최대 인원수를 입력하세요"
+            value={maxMembers}
+            onChange={(e) => setMaxMembers(e.target.value)}
+            required
+          />
+        </InputGroup>
+
+        <InputGroup>
+          <Label htmlFor="masterNickname">마스터 닉네임</Label>
+          <Input
+            id="masterNickname"
+            type="text"
+            placeholder="마스터 닉네임을 입력하세요"
+            value={masterNickname}
+            onChange={(e) => setMasterNickname(e.target.value)}
+            required
+          />
+        </InputGroup>
+
+        <InputGroup>
+          <Label htmlFor="guildContent">길드 소개</Label>
+          <Input
+            id="guildContent"
+            type="text"
+            placeholder="길드 소개를 입력하세요"
+            value={guildContent}
+            onChange={(e) => setGuildContent(e.target.value)}
+            required
+          />
+        </InputGroup>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <Button type="submit" onClick={handleSubmit} disabled={isSubmitting}>
+          {isSubmitting ? '생성 중...' : '길드 생성'}
+        </Button>
+      </CreateContainer>
+    </Modal>
   );
 };
 
