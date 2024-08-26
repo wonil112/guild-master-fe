@@ -12,6 +12,7 @@ const MainContainer = styled.main`
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  margin-top: 15px;
   padding: 20px;
   flex-grow: 1;
 `;
