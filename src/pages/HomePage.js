@@ -21,7 +21,7 @@ const ContentWrapper = styled.div`
   justify-content: space-between;
   margin-top: 150px;
   width: 1300px;
-  height: 500px;
+  height: 700px;
   gap: 50px;
 `;
 
@@ -50,6 +50,8 @@ const HomePage = () => {
     // const memberId = 2; // 나중에 로그인 했을 때. localstorage 에 저장된 걸로. 
     //레디스를 적용하면.. 토큰은 로킬스토리지가 아닌 레디스에 있는 거??
     const memberId = localStorage.getItem('memberId');
+
+    const [memberEvents, setMemberEvents] = useState([]);
     
     // memberId 에 대한 조회를 하면 가입한 길드들이 조회가 됨. 
     useEffect(() => {
@@ -65,6 +67,20 @@ const HomePage = () => {
         fetchMemberGuilds();
     }, [memberId]);
 
+    useEffect(() => {
+        const fetchMemberEvents = async () => {
+            try {
+                const response = await axios.get(`/events/members/${memberId}`);
+                // response dto 확인하기. 
+                setMemberEvents(response.data);
+            } catch (error) {
+                console.error('Error fetching member guilds:', error);
+            }
+        };
+
+        fetchMemberEvents();
+    }, [memberId]);
+
 
     return (
         <>
@@ -77,7 +93,7 @@ const HomePage = () => {
             </ListContainer>
             <ListContainer>
               <ListTitle>신청 이벤트 목록</ListTitle>
-              <MyEventList list={MyEventList} />
+              <MyEventList list={memberEvents} />
             </ListContainer>
           </ContentWrapper>
         </MainContainer>
