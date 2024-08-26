@@ -45,7 +45,7 @@ const ModalFooter = styled.div`
   justify-content: flex-end;
 `;
 
-const Modal = ({ isOpen, onClose, title, content, footer }) => {
+const Modal = ({ isOpen, onClose, title, children  }) => {
   if (!isOpen) return null;
 
   return (
@@ -55,8 +55,7 @@ const Modal = ({ isOpen, onClose, title, content, footer }) => {
         <ModalHeader>
           <h2>{title}</h2>
         </ModalHeader>
-        <ModalBody>{content}</ModalBody>
-        <ModalFooter>{footer}</ModalFooter>
+        <ModalBody>{children}</ModalBody>
       </ModalContent>
     </ModalContainer>
   );
