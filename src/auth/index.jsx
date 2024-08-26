@@ -5,22 +5,26 @@ const Context = createContext();
 
 const rootReducer = (state, action) => {
     switch (action.type) {
-        case "LOGIN":
-            return {
-                ...state,
-                isLogin: true,
-                user: action.payload,
-            };
-        case "LOGOUT":
-            return {
-                ...state,
-                isLogin: false,
-                user: {},
-            };
-        default:
-            return state;
+      case 'LOGIN':
+        return {
+          ...state,
+          isLogin: true,
+          user: {
+            username: action.payload.username,
+            memberId: action.payload.memberId,
+            token: action.payload.token
+          }
+        };
+      case 'LOGOUT':
+        return {
+          ...state,
+          isLogin: false,
+          user: {}
+        };
+      default:
+        return state;
     }
-};
+  };
 
 export const StoreProvider = ({children}) => {
     const initialState = {
