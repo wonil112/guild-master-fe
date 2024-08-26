@@ -16,6 +16,8 @@ const rootReducer = (state, action) => {
           }
         };
       case 'LOGOUT':
+        localStorage.removeItem('token');
+        localStorage.removeItem('memberId');
         return {
           ...state,
           isLogin: false,
@@ -31,14 +33,16 @@ export const StoreProvider = ({children}) => {
         isLogin: false,
         user: {},
     }
-    const [state, dispatch] = useReducer(rootReducer, initialState)
-    const [persistedState, setPersistedState] = usePersistState("state", state)
+
+    const [persistedState, setPersistedState] = usePersistState("state", initialState)
+    const [state, dispatch] = useReducer(rootReducer, persistedState)
 
     const globalState = {
-        state: persistedState,
+        state,
         dispatch: (action) => {
-            dispatch(action)
-            setPersistedState(rootReducer(persistedState, action))
+            const newState = rootReducer(state, action);
+            dispatch(action);
+            setPersistedState(newState);
         },
     }
 
