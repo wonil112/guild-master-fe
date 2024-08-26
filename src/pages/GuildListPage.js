@@ -134,7 +134,7 @@ const GuildListPage = () => {
     // post /guilds/{guildId} 이건 길드 생성 모달에서 하는데?
     // 길드들을 다 데리고 옴. 
 
-    // 최초한번만 되게. 
+    // 최초 한번만 되게. 
     useEffect(() => {
         fetchGuilds();
     }, []);
