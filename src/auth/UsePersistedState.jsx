@@ -9,9 +9,14 @@ export const usePersistState = (key, initialState) => {
     useEffect(() => {
         localStorage.setItem(key, JSON.stringify(state))
     }, [key, state]);
-    const changeStore = (change) => {
-        setState(change)
-    }
+    
+    const setPersistState = (newState) => {
+        setState(prevState => {
+            const updatedState = typeof newState === 'function' ? newState(prevState) : newState;
+            localStorage.setItem(key, JSON.stringify(updatedState))
+            return updatedState;
+        });
+    };
 
-    return [state, changeStore];
+    return [state, setPersistState];
 };
