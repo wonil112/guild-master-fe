@@ -97,7 +97,7 @@ const SignUpPage = () => {
         setPw(newPw);
         const regex =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
-        if (regex.test(pw)) {
+        if (regex.test(newPw)) {
             setPwValid(true);
             setPwError('')
         } else {

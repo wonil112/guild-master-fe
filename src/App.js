@@ -10,11 +10,13 @@ import GuildBoardPage from './pages/GuildBoardPage'
 import SignUpPage from './pages/SignUpPage'
 import ManagePage from './pages/ManagePage';
 import GlobalHeader from './header/GlobalHeader';
+import { StoreProvider } from './auth';
 import './Global.css';
 import './header/GlobalHeader.css';
 
 function App() {
   return (    
+    <StoreProvider>
     <Router>      
       <div>
         <Routes>
@@ -35,6 +37,7 @@ function App() {
         </Routes>
       </div>
     </Router>
+    </StoreProvider>
   );
 }
 
