@@ -8,18 +8,28 @@ import styled from 'styled-components';
 const HeaderStyle = styled.header`
   display: flex;
   justify-content: flex-end;
-  margin: 20px;
+  margin-top: 33px;
+  margin-right: 20px;
   padding-right: 10px;  
 `;
 
-const LoginButtonStyle = styled.button`
-  height: 40px;
-  width: 80px;
-  border-radius: 10px;
-  background-color: #FFFFFF;
-  color: #000000;
+const LoginButton = styled.button`
+  background-color: white;
+  color: black;
+  border: none;
+  font-size: 16px;
   cursor: pointer;
-  font-size: 20px;
+  border-radius: 5px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  height: 38.5px;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
 `;
 
 const ButtonStyle = styled.button`
@@ -55,7 +65,7 @@ const LandingPage = () => {
     return (
         <div>
             <HeaderStyle>
-                <LoginButtonStyle onClick={() => navigate('/login')}>login</LoginButtonStyle>
+                <LoginButton onClick={() => navigate('/login')}>login</LoginButton>
             </HeaderStyle>           
             <LandingPageMainStyle>
                 <LandingPageLogoStyle src={Logo}
