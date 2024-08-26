@@ -104,6 +104,8 @@ const LoginPage = () => {
                 });
                 const memberId = response.headers.get('memberId');
                 localStorage.setItem('memberId', memberId);
+                const token = response.headers.get('token');
+                localStorage.setItem('token', token);
                 alert('로그인에 성공했습니다.');
                 navigate('/home'); // 홈 페이지로 이동
             } catch (error) {
