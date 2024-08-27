@@ -1,6 +1,6 @@
 import '../Global.css';
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link  } from 'react-router-dom';
 import GlobalHeader from './GlobalHeader';
 import axios from 'axios';
 import GuildBoardCalendar from '../image/guildBoardCalender.png'
@@ -37,10 +37,15 @@ const ContentWrapper = styled.div`
   gap: 50px;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const StyledButton = styled.button`
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  // ... other styles ...
 `;
 
 const GuildBoardPage = () => {
@@ -82,7 +87,9 @@ const GuildBoardPage = () => {
             <MainContainer>
             <ButtonContainer>
                     <StyledButton>이벤트 생성</StyledButton>
-                    <StyledButton>길드원 관리</StyledButton>
+                    <StyledLink to="/manage">
+                        <StyledButton>길드원 관리</StyledButton>
+                    </StyledLink>
                 </ButtonContainer>
                 <ContentWrapper>
                     <CalendarImage src={GuildBoardCalendar} alt="Guild Board Calendar" />

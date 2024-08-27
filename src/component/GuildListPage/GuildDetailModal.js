@@ -49,7 +49,6 @@ const ButtonContainer = styled.div`
 
 const GuildDetailModal = ({ isOpen, onClose, guildDetails, onApply }) => {
 
-  console.log(guildDetails);
     // 가입 신청 시 닉네임을 받아서 post 요청을 보낼 것..
     const [nickname, setNickname] = useState('');
     const handleApply = async () => {
@@ -74,28 +73,7 @@ const GuildDetailModal = ({ isOpen, onClose, guildDetails, onApply }) => {
         alert('가입신청 오류');
       }      
     };
-    console.log(guildDetails);
-  
-    const modalContent = (
-      <>
-        <GuildInfo>
-          <p>게임: {guildDetails.guildName}</p>
-          <p>인원: {guildDetails.guildCurrentPopulation} / {guildDetails.guildTotalPopulation}</p>
-          <p>설명: {guildDetails.guildContent}</p>
-        </GuildInfo>
-        <NicknameInput
-        type="text"
-        placeholder="길드 내 사용할 닉네임을 입력하세요"
-        value={nickname}
-        onChange={(e) => setNickname(e.target.value)}
-      />
-      </>
-    );
-  
-    const modalFooter = (
-      <ApplyButton onClick={handleApply}>가입 신청</ApplyButton>
-    );
-  
+
     return (
       <Modal
         isOpen={isOpen}
