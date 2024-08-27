@@ -63,7 +63,7 @@ const HomePage = () => {
               
               const response = await axios.get(`/members/${memberId}`, {
                   headers: {
-                      'Authorization': `Bearer ${token}` // 헤더에 토큰을 추가합니다.
+                      'Authorization': `${token}` // 헤더에 토큰을 추가합니다.
                   }
               });
               
@@ -85,7 +85,7 @@ const HomePage = () => {
                 const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
                 const response = await axios.get(`/events/members/${memberId}?page=1&size=100`, {
                     headers: {
-                        Authorization: `Bearer ${token}`
+                        Authorization: `${token}`
                     }
                 });
                 setMemberEvents(response.data.data);

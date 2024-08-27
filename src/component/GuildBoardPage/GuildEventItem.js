@@ -32,7 +32,7 @@ const EventInfo = styled.p`
   margin: 4px 0;
 `;
 
-const GuildEventItem = ({eventId, eventName, eventCurrentPopulation, eventTotalPopulation, startDate, dueDate, onClick}) => {
+const GuildEventItem = ({eventName, eventCurrentPopulation, eventTotalPopulation, startDate, dueDate, onClick}) => {
      
     function formatDateRange(startDate, dueDate) {
         const start = new Date(startDate);
@@ -59,18 +59,6 @@ const GuildEventItem = ({eventId, eventName, eventCurrentPopulation, eventTotalP
             <EventInfo>참석 : {eventCurrentPopulation} / {eventTotalPopulation}</EventInfo>
         </EventItemWrapper>
     )
-    
 };
 
 export default GuildEventItem;
-
-
-{/* <GuildEventItem
-key={eventId}
-eventName={eventName}
-eventCurrentPopulation={eventCurrentPopulation}
-eventTotalPopulation={eventTotalPopulation}
-startDate={startDate}
-dueDate={dueDate}
-onClick={() => handleEventClick[eventId]}
-/> */}
