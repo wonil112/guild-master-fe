@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import { useStore } from '../auth';
 import axios from 'axios';
 import '../Global.css';
 import GlobalHeader from './GlobalHeader';
@@ -42,6 +43,7 @@ const LinkStyle = styled(Link)`
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    const { dispatch } = useStore();
     const [email, setEmail] = useState('');
     const [pw, setPw] = useState('');
     // 이메일 형식 검증
@@ -54,12 +56,6 @@ const LoginPage = () => {
     const [pwError, setPwError] = useState('');
     //로그인 버튼 클릭 활성화 시키는 상태. 
     const [notAllow, setNotAllow] = useState(true);
-    
-    //임시 데이터임. 나중에는 api 요청을 받아서 할 것임. 
-    const User = {
-        email: 'abc@naver.com',
-        pw: 'System2000!!'
-    }
 
     // Email 검증. 
     const handleEmail = (e) => {
@@ -106,7 +102,12 @@ const LoginPage = () => {
                 localStorage.setItem('memberId', memberId);
                 const token = response.headers.get('Authorization');
                 localStorage.setItem('token', token);
-
+                dispatch({ type: 'LOGIN', 
+                    payload: { username: email,
+                        memberId: memberId,
+                        token: token
+                     }
+                    });
                 alert('로그인에 성공했습니다.');
                 navigate('/home'); // 홈 페이지로 이동
             } catch (error) {
