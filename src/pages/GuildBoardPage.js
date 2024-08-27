@@ -5,6 +5,7 @@ import GlobalHeader from './GlobalHeader';
 import axios from 'axios';
 import GuildBoardCalendar from '../image/guildBoardCalender.png'
 import GuildEventList from '../component/GuildBoardPage/GuildEventList'
+import GuildEventCreateModal from '../component/GuildBoardPage/GuildEventCreateModal'
 import styled from 'styled-components';
 
 const MainContainer = styled.main`
@@ -30,7 +31,6 @@ const ButtonContainer = styled.div`
 
 const ContentWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   margin-top: 30px;
   width: 1300px;
   height: 700px;
@@ -51,7 +51,7 @@ const StyledButton = styled.button`
 const GuildBoardPage = () => {
     const [guildEventList, setGuildEventList] = useState([]);
     const { guildId } = useParams(); // 라우터에서 guildId를 가져옵니다
-    const [selectedEventId, setSelectedEventId] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         fetchGuildEvents();
@@ -72,21 +72,31 @@ const GuildBoardPage = () => {
         }
       };
 
-      const handleEventClick = (eventId) => {
-        setSelectedEventId(eventId);
-        // 여기에 모달을 열거나 다른 작업을 수행하는 로직을 추가할 수 있습니다.
+      const handleOpenModal = () => {
+        setIsModalOpen(true);
+      };
+
+      const handleCloseModal = () => {
+        setIsModalOpen(false);
+      };
+
+      const handleEventCreateSuccess = () => {
+        fetchGuildEvents();
+      };
+
+      const handleEventClick = (event) => {
+        // 이벤트 클릭 시 수행할 동작을 여기에 작성
+        console.log('Clicked event:', event);
       };
   
-
-
-
-
     return (
         <div>
             <GlobalHeader />
             <MainContainer>
-            <ButtonContainer>
-                    <StyledButton>이벤트 생성</StyledButton>
+                <ButtonContainer>
+                    <StyledButton onClick={handleOpenModal}>
+                        이벤트 생성
+                    </StyledButton>                    
                     <StyledLink to="/manage">
                         <StyledButton>길드원 관리</StyledButton>
                     </StyledLink>
@@ -99,7 +109,12 @@ const GuildBoardPage = () => {
                     />
                 </ContentWrapper>
             </MainContainer>
-    </div>
+              <GuildEventCreateModal 
+                isOpen={isModalOpen} 
+                onClose={handleCloseModal}                
+                onEventCreateSuccess={handleEventCreateSuccess}
+              />
+        </div>
     );
 };
 
