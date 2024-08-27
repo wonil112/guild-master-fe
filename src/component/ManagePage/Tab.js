@@ -4,8 +4,9 @@ import styled from 'styled-components';
 const TabContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 640px;
+  width: 800px;
+  height: 750px;
+  margin: 60px auto 0; 
 `;
 
 const TabHeader = styled.div`
@@ -35,21 +36,18 @@ const TabButton = styled.button`
 const TabContent = styled.div`
   flex-grow: 1;
   padding: 15px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(223, 164, 255, 0.3);
   border-radius: 0 0 5px 5px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const TabPanel = styled.div`
-  background-color: #985FB8;
   padding: 10px;
   border-radius: 10px;
   color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
   transition: background-color 0.3s, border-color 0.3s;
 `;
 

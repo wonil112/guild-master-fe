@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:8080';
+// ec2-15-164-10-220.ap-northeast-2.compute.amazonaws.com
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Modal from '../Modal'
 import axios from 'axios';
 import GuildEventMemberList from './GuildEventMemberList';
+import EventRegistrationModal from './EventRegistrationModal'
 
 const ModalContent = styled.div`
   display: flex;
@@ -66,12 +67,12 @@ const GuildDetailModal = ({ eventId, isOpen, onClose, guildEventDetails, gameId 
     const [guildEventMemberList, setGuildEventMemberList] = useState([]);
     // game 디테일을 데리고 옴. 
     const [gameDetails, setGameDetails] = useState(null);
-
+    const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+    // 길드 이벤트 참여 멤버를 알 수 있음. 
     // // event/{event-id}/members를 내려주어야 함. 
-    // useEffect(() => {
-    //   fetchGuildEventMembers();
-    // }, []);
-
+    useEffect(() => {
+      fetchGuildEventMembers();
+    }, []);
     const fetchGuildEventMembers = async () => {
       try {
         const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옵니다.
@@ -87,6 +88,7 @@ const GuildDetailModal = ({ eventId, isOpen, onClose, guildEventDetails, gameId 
         console.error("Error fetching guild event members:", error);
       }
     };
+    console.log(gameDetails);
 
     // 날짜...guildEventDetails 에 있을텐데.. 그거를 받아서.... 시간을 잘 보이게 가공. 
     function formatDateRange(startDate, dueDate) {
@@ -110,19 +112,27 @@ const GuildDetailModal = ({ eventId, isOpen, onClose, guildEventDetails, gameId 
 
     // Event 참여 멤버 조회. /events/{event-id}/members
     // 게임 정보를 데리고 옴..
-    // const fetchGameDetails = async () => {
-    //     try {
-    //         const token = localStorage.getItem('token');
-    //         const response = await axios.get(`/games/${gameId}`, {
-    //             headers: {
-    //                 'Authorization': `${token}`
-    //             }
-    //         });
-    //         setGameDetails(response.data);
-    //     } catch (error) {
-    //         console.error("Error fetching game details:", error);
-    //     }
-    // };
+    const fetchGameDetails = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`/games/${gameId}`, {
+                headers: {
+                    'Authorization': `${token}`
+                }
+            });
+            setGameDetails(response.data.data);
+        } catch (error) {
+            console.error("Error fetching game details:", error);
+        }
+    };
+    const handleApplyClick = () => {
+      fetchGameDetails();
+      setIsRegistrationModalOpen(true);
+    };
+  
+    const handleCloseRegistrationModal = () => {
+      setIsRegistrationModalOpen(false);
+    };
 
     return (
       <Modal isOpen={isOpen} onClose={onClose} title={guildEventDetails.eventName}> 
@@ -147,8 +157,14 @@ const GuildDetailModal = ({ eventId, isOpen, onClose, guildEventDetails, gameId 
         
         <GuildEventMemberList list = {guildEventMemberList}/>
 
-        <ApplyButton >참가 신청</ApplyButton>
+        <ApplyButton onClick={handleApplyClick}>참가 신청</ApplyButton>
         </ModalContent>
+        <EventRegistrationModal 
+          isOpen={isRegistrationModalOpen}
+          onClose={handleCloseRegistrationModal}
+          gameDetails={gameDetails}
+          eventId={eventId}
+        />
       </Modal>
     );
   };

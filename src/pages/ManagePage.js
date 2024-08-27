@@ -8,7 +8,6 @@ const ManagePage = () => {
         <div>
             <GlobalHeader />
             <div className="main">
-                <h1>관리</h1>
                 <ManagePlayerTab/>
             </div>
         </div>
