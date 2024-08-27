@@ -6,6 +6,7 @@ import axios from 'axios';
 import GuildBoardCalendar from '../image/guildBoardCalender.png'
 import GuildEventList from '../component/GuildBoardPage/GuildEventList'
 import GuildEventCreateModal from '../component/GuildBoardPage/GuildEventCreateModal'
+import GuildEventDetailModal from '../component/GuildBoardPage/GuildEventDetailModal'
 import styled from 'styled-components';
 
 const MainContainer = styled.main`
@@ -48,10 +49,11 @@ const StyledButton = styled.button`
   // ... other styles ...
 `;
 
-const GuildBoardPage = () => {
-    const [guildEventList, setGuildEventList] = useState([]);
+const GuildBoardPage = () => { 
+  const [guildEventList, setGuildEventList] = useState([]);
     const { guildId } = useParams(); // 라우터에서 guildId를 가져옵니다
     const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     useEffect(() => {
         fetchGuildEvents();
@@ -67,6 +69,7 @@ const GuildBoardPage = () => {
                 }
             });
             setGuildEventList(response.data.data);
+            console.log(response.data.data);
         } catch (error) {
             console.error('Failed to fetch guild events:', error);
         }
@@ -78,17 +81,12 @@ const GuildBoardPage = () => {
 
       const handleCloseModal = () => {
         setIsModalOpen(false);
-      };
+    };
 
       const handleEventCreateSuccess = () => {
         fetchGuildEvents();
       };
 
-      const handleEventClick = (event) => {
-        // 이벤트 클릭 시 수행할 동작을 여기에 작성
-        console.log('Clicked event:', event);
-      };
-  
     return (
         <div>
             <GlobalHeader />
@@ -105,7 +103,6 @@ const GuildBoardPage = () => {
                     <CalendarImage src={GuildBoardCalendar} alt="Guild Board Calendar" />
                     <GuildEventList
                         list={guildEventList} 
-                        onEventClick={handleEventClick}
                     />
                 </ContentWrapper>
             </MainContainer>
@@ -115,7 +112,6 @@ const GuildBoardPage = () => {
                 onEventCreateSuccess={handleEventCreateSuccess}
               />
         </div>
-    );
+    )
 };
-
 export default GuildBoardPage;
