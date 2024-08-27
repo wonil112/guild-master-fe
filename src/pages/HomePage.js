@@ -56,19 +56,28 @@ const HomePage = () => {
     
     // memberId 에 대한 조회를 하면 가입한 길드들이 조회가 됨. 
     const memberId = localStorage.getItem('memberId');
-
     useEffect(() => {
-        const fetchMemberGuilds = async () => {
-            try {
-                const response = await axios.get(`/members/${memberId}`);
-                setMemberGuilds(response.data.data.memberGuilds);
-            } catch (error) {
-                console.error('Error fetching member guilds:', error);
-            }
-        };
-
-        fetchMemberGuilds();
-    }, [memberId]);
+      const fetchMemberGuilds = async () => {
+          try {
+              const token = localStorage.getItem('token'); // 토큰을 로컬 스토리지에서 가져옵니다.
+              
+              const response = await axios.get(`/members/${memberId}`, {
+                  headers: {
+                      'Authorization': `Bearer ${token}` // 헤더에 토큰을 추가합니다.
+                  }
+              });
+              
+              setMemberGuilds(response.data.data.memberGuilds);
+          } catch (error) {
+              console.error('Error fetching member guilds:', error);
+              // 에러 처리 로직을 추가할 수 있습니다. 예: 사용자에게 에러 메시지 표시
+          }
+      };
+  
+      if (memberId) {
+          fetchMemberGuilds();
+      }
+  }, [memberId]);
 
     useEffect(() => {
         const fetchMemberEvents = async () => {
