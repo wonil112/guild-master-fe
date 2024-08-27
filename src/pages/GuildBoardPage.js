@@ -7,17 +7,30 @@ import GuildBoardCalendar from '../image/guildBoardCalender.png'
 import GuildEventList from '../component/GuildBoardPage/GuildEventList'
 import GuildEventCreateModal from '../component/GuildBoardPage/GuildEventCreateModal'
 import styled from 'styled-components';
+import overwatchImage from '../image/overwatch_black.png'
+import valorantImage from '../image/valorant_black.png'
+import lolImage from '../image/lol_black.png';
+import loastark from '../image/loastark_black.png'
 
 const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  flex: 1;
+  max-height: 95vh;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  max-width: 100vw;
 `;
 
 const CalendarImage = styled.img`
-  width: 700px;
-  height: 850px;
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
 `;
 
 const ButtonContainer = styled.div`
@@ -25,16 +38,38 @@ const ButtonContainer = styled.div`
   justify-content: right;
   width: 100%;
   gap: 10px;
-  margin-top: 90px;
+  margin-top: 70px;
   margin-right: 30px;
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
-  margin-top: 30px;
-  width: 1300px;
-  height: 700px;
-  gap: 50px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1500px;
+  margin: 30px auto 0;
+  gap: 20px;
+  height: calc(100% - 150px);  /* 버튼 컨테이너와 이미지 포함 높이 */
+  overflow-x: hidden; /* 가로 및 세로 스크롤 방지 */
+  overflow-y: auto;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 80px;
+  }
+`;
+
+const EventListWrapper = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 100%;
 `;
 
 const StyledLink = styled(Link)`
@@ -48,15 +83,63 @@ const StyledButton = styled.button`
   // ... other styles ...
 `;
 
+const GameIcon = styled.img`
+  width: 80px;  /* 이미지 크기를 적절히 조정 */
+  height: 80px;
+  margin-bottom: 8px;
+`;
+
+const GuildInfoContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+`;
+
+const GuildName = styled.h1`
+  font-size: 24px;
+  color: white;
+  text-align: center;
+`;
+
+const gameData = {
+  1: { image: overwatchImage, name: 'Overwatch' },
+  2: { image: valorantImage, name: 'Valorant' },
+  3: { image: lolImage, name: 'League of Legends' },
+  4: { image: loastark, name: 'Lost Ark' }
+};    
+
 const GuildBoardPage = () => {
     const [guildEventList, setGuildEventList] = useState([]);
     const { guildId } = useParams(); // 라우터에서 guildId를 가져옵니다
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [guildName, setGuildName] = useState('');
+    const [gameId, setGameId] = useState('');
+
+
+    const game = gameData[gameId];
 
     useEffect(() => {
         fetchGuildEvents();
+        fetchGuildInfo();
     }, [guildId]);
 
+    const fetchGuildInfo = async () => {
+      try {
+          const token = localStorage.getItem('token');
+          const response = await axios.get(`/guilds/${guildId}`, {
+              headers: {
+                  'Authorization': `${token}`
+              }
+          });
+          setGuildName(response.data.data.guildName);
+          setGameId(response.data.data.gameId);
+      } catch (error) {
+          console.error('Failed to fetch guild info:', error);
+      }
+  };
 
     const fetchGuildEvents = async () => {
         try {
@@ -93,6 +176,14 @@ const GuildBoardPage = () => {
         <div>
             <GlobalHeader />
             <MainContainer>
+              <GuildInfoContainer>
+                {game && (
+                  <>
+                    <GameIcon src={game.image} alt={game.name} />
+                    <GuildName>{guildName}</GuildName>
+                  </>
+                )}
+              </GuildInfoContainer>
                 <ButtonContainer>
                     <StyledButton onClick={handleOpenModal}>
                         이벤트 생성
@@ -103,10 +194,12 @@ const GuildBoardPage = () => {
                 </ButtonContainer>
                 <ContentWrapper>
                     <CalendarImage src={GuildBoardCalendar} alt="Guild Board Calendar" />
-                    <GuildEventList
+                    <EventListWrapper>
+                      <GuildEventList
                         list={guildEventList} 
                         onEventClick={handleEventClick}
-                    />
+                      />
+                    </EventListWrapper>
                 </ContentWrapper>
             </MainContainer>
               <GuildEventCreateModal 
