@@ -4,8 +4,10 @@ import styled from 'styled-components';
 const EventItemWrapper = styled.div`
   background-color: #f5f5f5;
   border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  margin-bottom: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%; 
