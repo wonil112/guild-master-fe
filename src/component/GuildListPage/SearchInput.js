@@ -4,14 +4,15 @@ import styled from "styled-components";
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  flex-grow: 1;
 `;
 
 const Input = styled.input`
+  flex: 1;
   width: 100%;
   padding: 10px 15px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 16px;
   outline: none;
 

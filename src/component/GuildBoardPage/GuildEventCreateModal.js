@@ -182,7 +182,7 @@ const GuildEventCreateModal = ({ isOpen, onClose, onEventCreateSuccess }) => {
           <TextArea
             id="eventContent"
             type="text"
-            placeholder="길드 소개를 입력하세요"
+            placeholder="이벤트 소개를 입력하세요"
             value={eventContent}
             onChange={(e) => setEventContent(e.target.value)}
             required
@@ -190,7 +190,7 @@ const GuildEventCreateModal = ({ isOpen, onClose, onEventCreateSuccess }) => {
         </InputGroup>
         {error && <ErrorMessage>{error}</ErrorMessage>}
         <Button type="submit" onClick={handleSubmit} disabled={isSubmitting}>
-          {isSubmitting ? '생성 중...' : '길드 생성'}
+          {isSubmitting ? '생성 중...' : '이벤트 생성'}
         </Button>
       </CreateContainer>
     </Modal>
