@@ -28,21 +28,32 @@ const GameIcon = styled.img`
   width: 40px;
   height: 40px;
   margin-right: 15px;
+  flex-shrink: 0;
 `;
 
 const GuildInfo = styled.div`
   flex-grow: 1;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const GuildName = styled.h3`
   margin: 0;
   font-size: 18px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const GuildPopulation = styled.p`
   margin: 5px 0 0;
   font-size: 14px;
+  width: 120px;
+  text-align: center;
+  flex-shrink: 0;
 `;
 const RoleDisplay = styled.span`
   font-size: 12px;

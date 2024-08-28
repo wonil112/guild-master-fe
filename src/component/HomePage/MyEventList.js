@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import MyEventItem from './MyEventItem';
 
 const EventListContainer = styled.div`
-  background-color: #f5f5f5;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   padding: 20px;
+  border-radius: 10px;
 
   .empty-message {
     text-align: center;

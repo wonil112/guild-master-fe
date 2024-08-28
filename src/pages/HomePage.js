@@ -33,6 +33,9 @@ const ListContainer = styled.div`
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background: rgba(255, 255, 255, 0.1);
+  overflow-y: auto;  
+  max-height: 900px;
+
 `;
 
 const ListTitle = styled.h2`
@@ -105,11 +108,11 @@ const HomePage = () => {
         <MainContainer>
           <ContentWrapper>
             <ListContainer>
-              <ListTitle>내 길드 목록</ListTitle>
+              <h2></h2>
               <MyGuildList list={memberGuilds}/>
             </ListContainer>
             <ListContainer>
-              <ListTitle>신청 이벤트 목록</ListTitle>
+            <h2></h2>
               <MyEventList list={memberEvents}/>
             </ListContainer>
           </ContentWrapper>

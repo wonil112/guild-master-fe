@@ -7,18 +7,27 @@ import Modal from '../Modal'
 import axios from 'axios';
 import GuildEventMemberList from './GuildEventMemberList';
 import EventRegistrationModal from './EventRegistrationModal'
+import PositionList from './PositionList';
+import LargeModal from '../LargeModal';
 
 const ModalContent = styled.div`
   display: flex;
-  flex-direction: column;
+  gap: 20px;
+`;
+
+const MainSection = styled.div`
+  flex: 1;
+`;
+
+const SideSection = styled.div`
+  flex: 1;
+  min-width: 300px;
 `;
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
-  flex-direction: row-reverse;
+  justify-content: flex-end;
   align-items: center;
-  margin-left: 350px;
   margin-bottom: 20px;
 `;
 
@@ -38,33 +47,54 @@ const Button = styled.button`
 
 const InfoSection = styled.div`
   margin-bottom: 20px;
+  background-color: rgba(106, 90, 205, 0.1);
+  padding: 10px;
+  border-radius: 5px;
 `;
 
 const InfoItem = styled.div`
-  background-color: #6a5acd;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
   margin-bottom: 10px;
 `;
 
 const ParticipantSection = styled.div`
+  background-color: rgba(106, 90, 205, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+`;
+
+const ParticipantHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 `;
 
-const ApplyButton = styled(Button)`
-  background-color: #191970;
-  padding: 10px 20px;
-  font-size: 16px;
+const ParticipantCount = styled.div`
+  font-size: 17px;
+  font-weight: bold;
+`;
+const ApplyButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
   margin-top: 20px;
 `;
 
+const ApplyButton = styled(Button)`
+  width: 20%;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+`;
+const PositionSection = styled.div`
+  margin-bottom: 20px;
+`;
 
 // Event Id 를 하나 받았을 때... guildeventlist 에서 get 으로 data 하나. 받아서 깔아줌. 
 const GuildDetailModal = ({ eventId, isOpen, onClose, guildEventDetails, gameId  }) => {
+    // 포지션 목록 데리고 옴. 
+    const [positions, setPositions] = useState({});
     // // 하나의 특정 이벤트에 대한 멤버 를 axios 로 요청 받아서. GuildEventMemberList 에 뿌려줄 것임. 
     const [guildEventMemberList, setGuildEventMemberList] = useState([]);
     // game 디테일을 데리고 옴. 
@@ -114,9 +144,10 @@ const GuildDetailModal = ({ eventId, isOpen, onClose, guildEventDetails, gameId 
 
     // Event 참여 멤버 조회. /events/{event-id}/members
     // 게임 정보를 데리고 옴..
-    const fetchGameDetails = async () => {
+    const token = localStorage.getItem('token');
+      const fetchGameDetails = async () => {
         try {
-            const token = localStorage.getItem('token');
+
             const response = await axios.get(`/games/${gameId}`, {
                 headers: {
                     'Authorization': `${token}`
@@ -126,7 +157,31 @@ const GuildDetailModal = ({ eventId, isOpen, onClose, guildEventDetails, gameId 
         } catch (error) {
             console.error("Error fetching game details:", error);
         }
-    };
+    }
+
+
+    // 포지션 통계내용 데려오기. 
+    useEffect(() => {
+      const fetchPositions = async () => {
+        try {
+          const response = await axios.get(`/events/${eventId}/positions`, {
+            headers: {
+                'Authorization': `${token}`
+            }
+        }
+
+          );
+          setPositions(response.data);
+        } catch (error) {
+          console.error('Error fetching positions:', error);
+        }
+      };
+  
+      fetchPositions();
+    }, [eventId]);
+
+
+
     const handleApplyClick = () => {
       fetchGameDetails();
       setIsRegistrationModalOpen(true);
@@ -136,38 +191,55 @@ const GuildDetailModal = ({ eventId, isOpen, onClose, guildEventDetails, gameId 
       setIsRegistrationModalOpen(false);
     };
 
+
+
     return (
-      <Modal isOpen={isOpen} onClose={onClose} title={guildEventDetails.eventName}> 
+      <LargeModal isOpen={isOpen} onClose={onClose} title={guildEventDetails.eventName}>
       <ModalContent>
-        <Header>
-          <ButtonGroup>
-            <Button>수정</Button>
-            <Button>삭제</Button>
-          </ButtonGroup>
-          <div>{guildEventDetails.eventCurrentPopulation} / {guildEventDetails.eventTotalPopulation}</div>
-        </Header>
+        <MainSection>
+          <Header>
+            <ButtonGroup>
+              <Button>수정</Button>
+              <Button>삭제</Button>
+            </ButtonGroup>
+          </Header>
 
-        <InfoSection>
-          <InfoItem>일시: {formatDateRange(guildEventDetails.startDate, guildEventDetails.dueDate)}</InfoItem>
-          <InfoItem>이벤트 설명: {guildEventDetails.eventContent}</InfoItem>
-        </InfoSection>
+          <InfoSection>
+            <InfoItem>일시: {formatDateRange(guildEventDetails.startDate, guildEventDetails.dueDate)}</InfoItem>
+            <InfoItem>이벤트 설명: {guildEventDetails.eventContent}</InfoItem>
+          </InfoSection>
 
-        <ParticipantSection>
-          <h3>참여인원 현황</h3>
-          <Button>인원 수정</Button>
-        </ParticipantSection>
-        
-        <GuildEventMemberList list = {guildEventMemberList}/>
+          <PositionSection>
+            <h3>직업별 인원</h3>
+            <PositionList positions={positions} />
+          </PositionSection>
 
+
+        </MainSection>
+        <SideSection>
+          <ParticipantSection>
+            <ParticipantHeader>
+              <h3>참여인원 현황</h3>
+              <Button>인원 수정</Button>
+            </ParticipantHeader>
+            <ParticipantCount>
+              {guildEventDetails.eventCurrentPopulation} / {guildEventDetails.eventTotalPopulation}
+            </ParticipantCount>
+            <GuildEventMemberList list={guildEventMemberList} />
+          </ParticipantSection>
+        </SideSection>
+      </ModalContent>
+      <ApplyButtonContainer>
         <ApplyButton onClick={handleApplyClick}>참가 신청</ApplyButton>
-        </ModalContent>
-        <EventRegistrationModal 
-          isOpen={isRegistrationModalOpen}
-          onClose={handleCloseRegistrationModal}
-          gameDetails={gameDetails}
-          eventId={eventId}
-        />
-      </Modal>
+      </ApplyButtonContainer>
+
+      <EventRegistrationModal
+        isOpen={isRegistrationModalOpen}
+        onClose={handleCloseRegistrationModal}
+        gameDetails={gameDetails}
+        eventId={eventId}
+      />
+    </LargeModal>
     );
   };
 
