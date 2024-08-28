@@ -21,7 +21,6 @@ const ManagePage = () => {
             <GlobalHeader />
             <ManagePageWrapper>
             <div className="main">
-                <h1></h1>
                 <ManagePlayerTab/>
             </div>
             </ManagePageWrapper>

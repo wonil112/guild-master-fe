@@ -63,13 +63,14 @@ const ContentWrapper = styled.div`
 
 const EventListWrapper = styled.div`
   width: 100%;
-  max-width: 1200px;
+  max-width: 900px;
   margin-top: 14px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 20px;
   overflow-y: auto;
   max-height: 73vh;
+
 `;
 
 const StyledLink = styled(Link)`

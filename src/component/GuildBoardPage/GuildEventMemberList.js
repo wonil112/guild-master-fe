@@ -30,12 +30,13 @@ const GuildEventMemberList = ({list = []}) => {
                 <div className="member-items">
                     {list.map(({
                         memberId,
+                        nickname,
                         gameTier,
                         selectedPosition
                     }) => (
                         < GuildEventMemberItem
                             key={memberId}
-                            memberId={memberId}
+                            nickname={nickname}
                             gameTier={gameTier}
                             selectedPosition={selectedPosition}
                         />
