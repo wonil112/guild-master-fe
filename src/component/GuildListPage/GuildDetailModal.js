@@ -47,31 +47,13 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-const GuildDetailModal = ({ isOpen, onClose, guildDetails, onApply }) => {
+const GuildDetailModal = ({ isOpen, onClose, guildDetails, onApply, isApplying }) => {
 
     // 가입 신청 시 닉네임을 받아서 post 요청을 보낼 것..
     const [nickname, setNickname] = useState('');
-    const handleApply = async () => {
-      const token = localStorage.getItem('token');
-      try {
-        const response = await axios.post(`/guilds/${guildDetails.guildId}/registration`, {
-          guildId: guildDetails.guildId,
-          nickname: nickname
-        }, {headers: {
-          Authorization: `${token}`
-        }});
 
-        if(response.status === 201) {
-          alert('가입신청 성공');
-          onApply(nickname);
-          onClose();
-        } else {
-          alert('가입신청 실패');
-        }
-      } catch (error) {
-        console.error("가입신청 오류 :", error);
-        alert('가입신청 오류');
-      }      
+    const handleApply = () => {
+      onApply(guildDetails.guildId, nickname);
     };
 
     return (
@@ -92,10 +74,13 @@ const GuildDetailModal = ({ isOpen, onClose, guildDetails, onApply }) => {
           onChange={(e) => setNickname(e.target.value)}
         />
         <ButtonContainer>
-          <ApplyButton onClick={handleApply}>가입 신청</ApplyButton>
+          <ApplyButton onClick={handleApply} disabled={isApplying}>
+            {isApplying ? '가입 신청 중...' : '가입 신청'}
+          </ApplyButton>
         </ButtonContainer>
       </Modal>
     );
-  };
+  
+};
 
   export default GuildDetailModal;
