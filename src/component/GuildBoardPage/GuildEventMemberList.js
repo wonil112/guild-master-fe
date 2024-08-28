@@ -3,6 +3,21 @@ import React from 'react';
 import styled from 'styled-components';
 import GuildEventMemberItem from './GuildEventMemberItem';
 
+const TableHeader = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 10px;
+`;
+
+const HeaderItem = styled.p`
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+`;
+
 const EventListContainer = styled.div`
   background-color: #f5f5f5;
   border-radius: 8px;
@@ -24,6 +39,11 @@ const EventListContainer = styled.div`
 const GuildEventMemberList = ({list = []}) => {
     return (
         <EventListContainer>
+            <TableHeader>
+                <HeaderItem>닉네임</HeaderItem>
+                <HeaderItem>티어</HeaderItem>
+                <HeaderItem>포지션</HeaderItem>
+            </TableHeader>
             {list.length === 0 ? (
                 <div className="empty-message"> 신청 길드원이 없습니다.</div>
             ) : (

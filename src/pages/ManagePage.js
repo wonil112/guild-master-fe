@@ -9,13 +9,32 @@ import PlayerList from '../component/ManagePage/PlayerList'
 import WaitList from '../component/ManagePage/WaitList'
 
 const ManagePageWrapper = styled.div`
-  width: 100%;
-  max-width: 800px;
+  width: 1200px;
+  height: 900px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 120px;
+`;
+
+const MainContent = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+`;
+
+const ListContainer = styled.div`
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 `;
+
+const ListTitle = styled.h2`
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-align: center;
+`;
+
 
 // guilds/{guild-id}/members >> 길드에 참여한 길드원을 내려주어야 함. 
 // status 가 active 이면 playerlist 에 넣어줌. 
@@ -66,11 +85,16 @@ const ManagePage = () => {
         <div>
             <GlobalHeader />
             <ManagePageWrapper>
-            <div className="main">
-                {/* <ManagePlayerTab/> */}
-                <PlayerList list={playerList} />
-                <WaitList list={waitList} />
-            </div>
+                <MainContent>
+                    <ListContainer>
+                        <ListTitle>길드원 목록</ListTitle>
+                        <PlayerList list={playerList} />
+                    </ListContainer>
+                    <ListContainer>
+                        <ListTitle>대기 목록</ListTitle>
+                        <WaitList list={waitList} />
+                    </ListContainer>
+                </MainContent>
             </ManagePageWrapper>
         </div>
     );

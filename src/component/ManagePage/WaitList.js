@@ -45,7 +45,7 @@ const WaitList = ({ list = [] }) => {
                     <tr>
                         <TableHeaderCell>닉네임</TableHeaderCell>
                         <TableHeaderCell>신청일자</TableHeaderCell>
-                        <TableHeaderCell>액션</TableHeaderCell>
+                        <TableHeaderCell>대기승인</TableHeaderCell>
                     </tr>
                 </TableHeader>
                 <TableBody>
