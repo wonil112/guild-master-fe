@@ -32,12 +32,13 @@ const ListContainer = styled.div`
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.1);
 `;
 
 const ListTitle = styled.h2`
   font-size: 24px;
   margin-bottom: 20px;
-  color: #333;
+  color: #FFFFFF;
 `;
 // 1. 우측 MyGuildList 좌측 MyEventList(내가 참석한 이벤트만 뜨는 List)
 // 2. MyGuildList GuildItem 에서 필요한 것. >> page 에서 get /membmers/{member-id} 의 response.data.memberGuildDtos.

@@ -51,9 +51,8 @@ const ContentWrapper = styled.div`
   max-width: 1500px;
   margin: 30px auto 0;
   gap: 20px;
-  height: calc(100% - 150px);  /* 버튼 컨테이너와 이미지 포함 높이 */
-  overflow-x: hidden; /* 가로 및 세로 스크롤 방지 */
-  overflow-y: auto;
+  max-height: 80vh;  /* 버튼 컨테이너와 이미지 포함 높이 */
+  overflow: hidden; /* 가로 및 세로 스크롤 방지 */
 
   @media (min-width: 1200px) {
     flex-direction: row;
@@ -70,7 +69,7 @@ const EventListWrapper = styled.div`
   border-radius: 20px;
   padding: 20px;
   overflow-y: auto;
-  max-height: 100%;
+  max-height: 73vh;
 `;
 
 const StyledLink = styled(Link)`
