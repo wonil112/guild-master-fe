@@ -16,7 +16,9 @@ const ModalContent = styled.div`
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-direction: row-reverse;
   align-items: center;
+  margin-left: 350px;
   margin-bottom: 20px;
 `;
 
@@ -139,8 +141,8 @@ const GuildDetailModal = ({ eventId, isOpen, onClose, guildEventDetails, gameId 
       <ModalContent>
         <Header>
           <ButtonGroup>
-            <Button>삭제</Button>
             <Button>수정</Button>
+            <Button>삭제</Button>
           </ButtonGroup>
           <div>{guildEventDetails.eventCurrentPopulation} / {guildEventDetails.eventTotalPopulation}</div>
         </Header>

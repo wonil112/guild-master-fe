@@ -13,56 +13,63 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 90vh;
-  margin-top: 15px;
+  height: 98vh;
+  margin-top: 5px;
+  overflow: hidden;
 `;
 
 const MainContent = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 80px; // 상단 패딩을 GlobalHeader 높이보다 약간 더 크게 설정
+  padding-top: 40px; // 상단 패딩을 GlobalHeader 높이보다 약간 더 크게 설정
   flex-grow: 1;
 `;
 
 const ContentWrapper = styled.div`
-  width: 800px;
+  width: 805px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   padding: 20px;
-  margin-top: 20px;
+  margin-left: 40px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   min-height: 300px;
-`;
-
-const SearchWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  height: 40px;
+  max-height: 60vh;
+  overflow-y: auto;
 `;
 
 const SearchInputWrapper = styled.div`
-  flex-grow: 1;
-  height: 100%;
-  margin-right: 10px;
+  width: 100%;
+  max-width: 800px;
+`;
+
+const SearchInputStyle = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 5px 15px;
 `;
 
 const CreateButton = styled.button`
   padding: 0px 20px;
-  height: 100%;
+  height: 36px;
   background-color: #FFFFFF;
   color: #2B0B3F;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   font-weight: bold;
+  margin-left: 10px;
+  white-space: nowrap;
 `;
 
 const FooterWrapper = styled.div`
@@ -171,15 +178,15 @@ const GuildListPage = () => {
             <GlobalHeader />
             <MainContent>
                 <GameList/>
+                <SearchInputWrapper>
+                  <SearchInputStyle>
+                    <SearchInput onSearch={handleSearch}/>                        
+                    <CreateButton onClick={openCreateModal}>
+                      길드 생성
+                    </CreateButton>
+                    </SearchInputStyle>
+                </SearchInputWrapper>
                 <ContentWrapper>
-                    <SearchWrapper>
-                        <SearchInputWrapper>
-                            <SearchInput onSearch={handleSearch}/>
-                        </SearchInputWrapper>
-                        <CreateButton onClick={openCreateModal}>
-                            길드 생성
-                        </CreateButton>
-                    </SearchWrapper>
                     <GuildList list={filteredGuildList}/>
                     <GuildCreateModal
                     isOpen={isCreateModalOpen}
