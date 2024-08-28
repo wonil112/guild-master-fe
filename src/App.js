@@ -24,7 +24,7 @@ function App() {
           <Route path="*" element={
             <>
               <Routes>
-                <Route path="/manage" element={<ManagePage />} />
+                <Route path="/manage/:guildId" element={<ManagePage />} />
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/mypage" element={<MyPage />} />
                 <Route path="/login" element={<LoginPage />} />

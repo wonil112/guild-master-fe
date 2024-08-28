@@ -1,6 +1,6 @@
 import '../Global.css';
 import React, { useState, useEffect } from 'react';
-import { useParams, Link  } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import GlobalHeader from './GlobalHeader';
 import axios from 'axios';
 import GuildBoardCalendar from '../image/guildBoardCalender.png'
@@ -118,6 +118,7 @@ const GuildBoardPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [guildName, setGuildName] = useState('');
     const [gameId, setGameId] = useState('');
+    const navigate = useNavigate();
 
 
     const game = gameData[gameId];
@@ -170,6 +171,12 @@ const GuildBoardPage = () => {
         fetchGuildEvents();
       };
 
+      const handleManageClick = () => {
+        console.log("길드원 관리 버튼 클릭됨");
+        console.log("현재 guildId:", guildId);
+        navigate(`/manage/${guildId}`);
+       };
+
     return (
         <div>
             <GlobalHeader />
@@ -186,9 +193,7 @@ const GuildBoardPage = () => {
                     <StyledButton onClick={handleOpenModal}>
                         이벤트 생성
                     </StyledButton>                    
-                    <StyledLink to="/manage">
-                        <StyledButton>길드원 관리</StyledButton>
-                    </StyledLink>
+                    <StyledButton onClick={handleManageClick} >길드원 관리</StyledButton>
                 </ButtonContainer>
                 <ContentWrapper>
                     <CalendarImage src={GuildBoardCalendar} alt="Guild Board Calendar" />
