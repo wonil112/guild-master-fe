@@ -123,6 +123,9 @@ const GuildListPage = () => {
 
     //검색 기능 구현........ 
     const [searchGuild, setSearchGuild ] = useState('');
+    const [selectedGameId, setSelectedGameId] = useState(null);
+
+    
 
     const handleSearch = (guild) => {
         setSearchGuild(guild);
@@ -132,7 +135,10 @@ const GuildListPage = () => {
     // 해당하는 길드만 뜸. 
     const filteredGuildList = Array.isArray(guildList) 
         ? guildList.filter(guild => 
-            guild && guild.guildName && guild.guildName.toLowerCase().includes((searchGuild || '').toLowerCase())
+            guild && 
+            guild.guildName && 
+            guild.guildName.toLowerCase().includes((searchGuild || '').toLowerCase()) &&
+            (selectedGameId ? guild.gameId === selectedGameId : true)
           )
         : [];
   
@@ -146,7 +152,7 @@ const GuildListPage = () => {
     // 최초 한번만 되게. 
     useEffect(() => {
         fetchGuilds();
-    }, []);
+    }, [selectedGameId]);
 
     const fetchGuilds = async () => {
       try {
@@ -177,7 +183,7 @@ const GuildListPage = () => {
         <PageContainer>
             <GlobalHeader />
             <MainContent>
-                <GameList/>
+                <GameList onSelectGame={setSelectedGameId} />
                 <SearchInputWrapper>
                   <SearchInputStyle>
                     <SearchInput onSearch={handleSearch}/>                        
